@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; style-src 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self'; manifest-src 'self'; worker-src 'self'; connect-src 'self'">
+<title>Sony A7R V</title>
+<style>
+:root{--bg:#000;--card:#111;--line:#444;--tx:#fff;--mu:#d0d0d0;--ac:#ffd400;--ok:#44e38a;--wa:#ffab40;--er:#ff5c5c}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;background:#000}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:18px;line-height:1.4;padding:env(safe-area-inset-top) 0 calc(86px + env(safe-area-inset-bottom))}
+main{max-width:760px;margin:0 auto;padding:12px 14px}
+h1{font-size:22px;margin:6px 0 12px;color:var(--ac)}
+h2{font-size:20px;margin:0 0 10px}
+h3{font-size:18px;margin:14px 0 6px;color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:0 0 14px}
+.tab{display:none}.tab.on{display:block}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:#0b0b0b;border-top:2px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:5}
+nav button{flex:1;min-height:70px;background:none;border:0;color:var(--mu);font-size:17px;font-weight:800;font-family:inherit}
+nav button.on{color:#000;background:var(--ac)}
+button,select,input{font-family:inherit;touch-action:manipulation}
+select{-webkit-appearance:none;appearance:none;background:#000;color:var(--tx);border:2px solid var(--line);border-radius:12px;min-height:56px;padding:0 10px;font-size:20px;font-weight:800;width:100%;text-align:center;text-align-last:center}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lab{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:0 0 6px;font-weight:800;color:var(--mu)}
+.small{font-size:15px;color:var(--mu)}
+.stp{display:grid;grid-template-columns:66px 1fr 66px;gap:8px;align-items:center;margin-bottom:14px}
+.stp button{min-height:62px;border-radius:12px;border:2px solid var(--line);background:#222;color:var(--tx);font-size:32px;font-weight:800;padding:0}
+.stp button:active{background:var(--ac);color:#000}
+.stp select{font-size:28px;min-height:62px}
+.ev{font-weight:900;font-size:20px;color:var(--ac)}
+.ev.z{color:var(--mu)}
+.seg{display:flex;gap:8px}
+.seg button,.btn{flex:1;min-height:56px;border-radius:12px;border:2px solid var(--line);background:#222;color:var(--tx);font-size:17px;font-weight:800;padding:6px 8px}
+.seg button.on,.btn.on{background:var(--ac);color:#000;border-color:var(--ac)}
+.btn:disabled{opacity:.35}
+input[type=range]{width:100%;height:44px;accent-color:var(--ac);margin:0}
+.msg{border-radius:12px;padding:12px;font-weight:700;margin-top:10px;font-size:17px}
+.msg.er{background:#3a0d0d;border:2px solid var(--er)}
+.msg.wa{background:#3a2600;border:2px solid var(--wa)}
+.msg.ok{background:#0c2e1a;border:2px solid var(--ok)}
+.big{font-size:40px;font-weight:900;color:var(--ac);line-height:1.1}
+.fbtn{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:66px}
+.fbtn small{font-size:14px;font-weight:700;opacity:.85}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:16px}
+th,td{border-bottom:1px solid var(--line);padding:9px 6px;text-align:left;vertical-align:top}
+th{color:var(--ac)}
+.tl th:first-child,.tl td:first-child{position:sticky;left:0;background:var(--card);color:var(--mu);font-weight:800;min-width:110px}
+.tl td{min-width:120px}
+.kv td:first-child{color:var(--mu);font-weight:700;width:44%}
+ul{margin:6px 0;padding-left:20px}li{margin:4px 0}
+.path{font-weight:700}
+.mt{margin-top:12px}
+</style>
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-title" content="A7R V">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+</head>
+<body>
+<main>
+
+<!-- ============ RECHNER ============ -->
+<section class="tab on" id="t-rechner">
+<h1>Belichtungsrechner</h1>
+
+<div class="card">
+  <div class="lab"><span>Objektiv</span></div>
+  <select id="lens"></select>
+  <div id="focalBox" class="mt">
+    <div class="lab"><span>Brennweite</span><span id="focalTxt" style="color:var(--tx)"></span></div>
+    <input type="range" id="focal">
+  </div>
+  <div class="mt"><button class="btn" id="tcBtn" style="width:100%">SEL14TC (1,4×) aus</button></div>
+  <div class="small mt" id="lensInfo"></div>
+</div>
+
+<div class="card">
+  <h2>Messung (was die Kamera zeigt)</h2>
+  <div class="g3">
+    <div><div class="lab"><span>Blende</span></div><select id="mA"></select></div>
+    <div><div class="lab"><span>Zeit</span></div><select id="mT"></select></div>
+    <div><div class="lab"><span>ISO</span></div><select id="mI"></select></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Neue Einstellung</h2>
+  <div class="lab"><span>Ausgleich über</span></div>
+  <div class="seg" style="margin-bottom:14px">
+    <button id="modeT" class="on">Zeit zieht nach</button>
+    <button id="modeI">ISO zieht nach</button>
+  </div>
+
+  <div class="lab"><span>Blende</span><span class="ev" id="evA"></span></div>
+  <div class="stp"><button data-p="a" data-d="-1">−</button><select id="cA" data-p="a"></select><button data-p="a" data-d="1">+</button></div>
+
+  <div class="lab"><span>Zeit</span><span class="ev" id="evT"></span></div>
+  <div class="stp"><button data-p="t" data-d="-1">−</button><select id="cT" data-p="t"></select><button data-p="t" data-d="1">+</button></div>
+
+  <div class="lab"><span>ISO</span><span class="ev" id="evI"></span></div>
+  <div class="stp"><button data-p="i" data-d="-1">−</button><select id="cI" data-p="i"></select><button data-p="i" data-d="1">+</button></div>
+
+  <div id="expMsg"></div>
+  <div id="handMsg"></div>
+  <button class="btn mt" id="reset" style="width:100%">Zurück auf Messung</button>
+  <div class="small mt" id="modeHint"></div>
+</div>
+</section>
+
+<!-- ============ FILTER ============ -->
+<section class="tab" id="t-filter">
+<h1>Filter-Rechner</h1>
+<div class="card">
+  <div class="lab"><span>Zeit ohne Filter</span></div>
+  <div class="stp"><button data-p="fb" data-d="-1">−</button><select id="fb"></select><button data-p="fb" data-d="1">+</button></div>
+
+  <div class="lab"><span>Filter (kombinierbar)</span></div>
+  <div class="g2" id="filBtns"></div>
+  <div id="varBox" class="mt">
+    <div class="lab"><span>ND2–32 variabel</span><span id="varTxt" style="color:var(--tx)"></span></div>
+    <input type="range" id="varR" min="3" max="15" step="1">
+  </div>
+</div>
+
+<div class="card">
+  <div class="lab"><span>Filter gesamt</span><span class="ev" id="fStops"></span></div>
+  <div class="small">Zeit mit Filter</div>
+  <div class="big" id="fRes"></div>
+  <div id="fSub" class="mt"></div>
+</div>
+
+<div class="card small">
+  <h3 style="margin-top:0">82-mm-Magnetset passt direkt an</h3>
+  <ul>
+    <li><b style="color:var(--tx)">SEL1635GM2</b> (82 mm)</li>
+    <li><b style="color:var(--tx)">SEL2470GM2</b> (82 mm)</li>
+  </ul>
+  Nur mit Step-up-Ring (nicht in deiner Liste): SEL100400GM 77→82 mm, SEL90M28G 62→82 mm.
+  <h3>Hinweise</h3>
+  <ul>
+    <li>Fokus und Messung vor dem Aufsetzen dunkler ND-Filter, danach auf MF.</li>
+    <li>GND8 nicht mitrechnen – dunkelt nur den Himmel ab (ca. 3 Stufen oben).</li>
+    <li>Black Mist 1/4: praktisch kein Lichtverlust.</li>
+    <li>Langzeit-RM an: Kamera rechnet danach noch einmal gleich lange (Dunkelbild).</li>
+    <li>Über 30 s: Modus M, Zeit über 30″ hinaus → BULB, mit Fernauslöser halten.</li>
+  </ul>
+</div>
+</section>
+
+<!-- ============ OBJEKTIVE ============ -->
+<section class="tab" id="t-obj">
+<h1>Objektive</h1>
+<div class="card" style="padding:6px">
+<div class="tw">
+<table class="tl">
+<thead><tr><th></th><th>16-35 GM II</th><th>24-70 GM II</th><th>90 Macro G</th><th>100-400 GM</th></tr></thead>
+<tbody>
+<tr><td>Modell</td><td>SEL1635GM2</td><td>SEL2470GM2</td><td>SEL90M28G</td><td>SEL100400GM</td></tr>
+<tr><td>Lichtstärke</td><td>F2.8 durchgehend</td><td>F2.8 durchgehend</td><td>F2.8</td><td>F4.5–5.6 *</td></tr>
+<tr><td>Kleinste Blende</td><td>F22</td><td>F22</td><td>F22</td><td>F32</td></tr>
+<tr><td>Filtergewinde</td><td>82 mm</td><td>82 mm</td><td>62 mm</td><td>77 mm</td></tr>
+<tr><td>Naheinstell­grenze</td><td>0,22 m (AF)<br>0,19 m (MF)</td><td>0,21 m (24 mm)<br>0,30 m (70 mm)</td><td>0,28 m<br>(1:1)</td><td>0,98 m</td></tr>
+<tr><td>Bildstabi</td><td>nein – nur IBIS</td><td>nein – nur IBIS</td><td>OSS + IBIS</td><td>OSS + IBIS</td></tr>
+<tr><td>mit SEL14TC</td><td>passt nicht</td><td>passt nicht</td><td>passt nicht</td><td><b>140–560 mm</b><br>F6.3–8<br>kleinste F45<br>Naheinst. unverändert</td></tr>
+<tr><td>Filtersatz</td><td><b style="color:var(--ok)">82-mm-Set direkt</b> (Set 1 + 2)</td><td><b style="color:var(--ok)">82-mm-Set direkt</b> (Set 1 + 2)</td><td>Step-up 62→82</td><td>Step-up 77→82</td></tr>
+</tbody>
+</table>
+</div>
+<p class="small" style="padding:0 8px">* 100-400: ca. F4.5 bis 135 mm, F5 bis 250 mm, darüber F5.6. Mit SEL14TC jeweils eine Stufe dunkler (F6.3 / F7.1 / F8). Der Telekonverter passt von deinen Objektiven nur ans 100-400.</p>
+</div>
+</section>
+
+<!-- ============ KAMERA ============ -->
+<section class="tab" id="t-kam">
+<h1>A7R V + VG-C4EM</h1>
+
+<div class="card">
+<h2>Speicherplätze (Moduswahlrad 1 / 2 / 3)</h2>
+<h3>1 · Landschaft</h3>
+<table class="kv"><tr><td>Modus</td><td>A · F8</td></tr><tr><td>ISO</td><td>Auto 100–3200</td></tr><tr><td>Fokusmodus</td><td>AF-S</td></tr><tr><td>Fokusfeld</td><td>Spot M</td></tr><tr><td>Motiverkennung</td><td>aus</td></tr><tr><td>Bildfolge</td><td>Einzelbild</td></tr></table>
+<h3>2 · Schnappschuss / Wildlife</h3>
+<table class="kv"><tr><td>Modus</td><td>A · F5.6</td></tr><tr><td>ISO</td><td>Auto 100–12800</td></tr><tr><td>Fokusmodus</td><td>AF-C</td></tr><tr><td>Fokusfeld</td><td>Breit</td></tr><tr><td>Motiverkennung</td><td>an · Tier/Vogel</td></tr><tr><td>Bildfolge</td><td>Serie Hi</td></tr></table>
+<h3>3 · Wenig Licht</h3>
+<table class="kv"><tr><td>Modus</td><td>A · F4</td></tr><tr><td>ISO</td><td>Auto 100–12800</td></tr><tr><td>Fokusmodus</td><td>AF-C</td></tr><tr><td>Fokusfeld</td><td>Spot M</td></tr><tr><td>Motiverkennung</td><td>an</td></tr></table>
+</div>
+
+<div class="card">
+<h2>Tasten</h2>
+<table class="kv">
+<tr><td>C1</td><td>Belichtungskorrektur</td></tr>
+<tr><td>C2</td><td>Fokusfeld</td></tr>
+<tr><td>C3</td><td>Fokusmodus</td></tr>
+<tr><td>C4</td><td>Fokuslupe</td></tr>
+<tr><td>Fokushaltetaste (Objektiv)</td><td>Motiverkennung</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Kursbegriff → Sony</h2>
+<table>
+<thead><tr><th>Kurs</th><th>A7R V</th></tr></thead>
+<tr><td>Matrix / Mehrfeld</td><td>Multi</td></tr>
+<tr><td>Selektiv</td><td>Mitte oder Spot</td></tr>
+<tr><td>Integral</td><td>Bildfeld-Durchschn.</td></tr>
+<tr><td>Sportmessung</td><td>gibt es bei Sony nicht</td></tr>
+<tr><td>Blendenautomatik</td><td>Modus S</td></tr>
+<tr><td>Zeitautomatik</td><td>Modus A</td></tr>
+<tr><td>Programmautomatik</td><td>Modus P</td></tr>
+<tr><td>Manuell</td><td>Modus M</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Menüpfade</h2>
+<table class="kv">
+<tr><td>Speicherplatz sichern</td><td class="path">Aufnahme › Aufnahmemodus › Kamera-Einst.-Speicher → 1/2/3</td></tr>
+<tr><td>Speicherplatz abrufen</td><td class="path">Moduswahlrad auf 1, 2 oder 3</td></tr>
+<tr><td>Belichtungskorrektur</td><td class="path">Belichtung/Farbe › Belichtungskorr. › Belichtungskorr.</td></tr>
+<tr><td>ISO / ISO Auto Min–Max</td><td class="path">Belichtung/Farbe › Belichtung › ISO → ISO AUTO, dann nach rechts: Min./Max.</td></tr>
+<tr><td>Messmodus</td><td class="path">Belichtung/Farbe › Messung › Messmodus</td></tr>
+<tr><td>Fokusmodus</td><td class="path">Fokus (AF/MF) › AF/MF › Fokusmodus</td></tr>
+<tr><td>Fokusfeld</td><td class="path">Fokus (AF/MF) › Fokusfeld › Fokusfeld</td></tr>
+<tr><td>Motiverkennung</td><td class="path">Fokus (AF/MF) › Motiverkennung › Motiverk. bei AF / Erkennungsziel</td></tr>
+<tr><td>Fokuslupe</td><td class="path">Fokus (AF/MF) › Fokus-Assistent › Fokusvergrößerung</td></tr>
+<tr><td>Bildfolge</td><td class="path">Aufnahme › Bildfolgemodus › Bildfolgemodus</td></tr>
+<tr><td>Tasten belegen</td><td class="path">Einstellung › Bedienungsanpassung › Ben.-def. Key/Wählr.-Einst.</td></tr>
+<tr><td>SteadyShot</td><td class="path">Aufnahme › Bildstabilisierung › SteadyShot</td></tr>
+<tr><td>Langzeit-RM</td><td class="path">Aufnahme › Bildqualität › Langzeit-RM</td></tr>
+<tr><td>Verschlusstyp</td><td class="path">Aufnahme › Verschluss/Lautlos › Verschlusstyp</td></tr>
+<tr><td>BULB</td><td class="path">Modus M, Zeit über 30″ hinaus drehen</td></tr>
+</table>
+<p class="small">Bezeichnungen können je nach Firmware leicht abweichend abgekürzt sein.</p>
+</div>
+
+<div class="card small">
+Blitz: Godox V860III-S (Sony-Schuh). Synchronzeit ohne HSS: 1/250 s.
+</div>
+</section>
+</main>
+
+<nav>
+  <button data-tab="t-rechner" class="on">Rechner</button>
+  <button data-tab="t-filter">Filter</button>
+  <button data-tab="t-obj">Objektive</button>
+  <button data-tab="t-kam">Kamera</button>
+</nav>
+
+<script>
+(function(){
+"use strict";
+var $=function(id){return document.getElementById(id)};
+
+/* ---------- Skalen in 1/3-Stufen ---------- */
+var AP=[1.4,1.6,1.8,2,2.2,2.5,2.8,3.2,3.5,4,4.5,5,5.6,6.3,7.1,8,9,10,11,13,14,16,18,20,22,25,29,32,36,40,45];
+var ISO=[50,64,80,100,125,160,200,250,320,400,500,640,800,1000,1250,1600,2000,2500,3200,4000,5000,6400,8000,10000,12800,16000,20000,25600,32000,40000,51200,64000,80000,102400];
+var SHL=["1/8000","1/6400","1/5000","1/4000","1/3200","1/2500","1/2000","1/1600","1/1250","1/1000","1/800","1/640","1/500","1/400","1/320","1/250","1/200","1/160","1/125","1/100","1/80","1/60","1/50","1/40","1/30","1/25","1/20","1/15","1/13","1/10","1/8","1/6","1/5","1/4",'0.3"','0.4"','0.5"','0.6"','0.8"','1"','1.3"','1.6"','2"','2.5"','3.2"','4"','5"','6"','8"','10"','13"','15"','20"','25"','30"'];
+
+function fmtDur(s){
+  if(s<1) return "1/"+Math.round(1/s)+" s";
+  if(s<10) return (Math.round(s*10)/10).toString().replace(".",",")+" s";
+  if(s<60) return Math.round(s)+" s";
+  var t=Math.round(s),h=Math.floor(t/3600),m=Math.floor((t%3600)/60),r=t%60;
+  if(h) return h+" h "+m+" min";
+  return m+" min"+(r?" "+r+" s":"");
+}
+var SH=SHL.map(function(l){return {l:l,s:l.indexOf("1/")===0?1/parseFloat(l.slice(2)):parseFloat(l)}});
+var N30=SH.length-1;
+for(var n=1;n<=21;n++){
+  var s=30*Math.pow(2,n/3); s=s<100?Math.round(s):Math.round(s/5)*5;
+  SH.push({l:"BULB "+fmtDur(s),s:s,b:true});
+}
+function isoLab(v){return v<100||v>32000?v+" (erw.)":String(v)}
+
+/* ---------- Objektive ---------- */
+var LENS=[
+ {id:"1635",name:"SEL1635GM2 · 16-35 F2.8",f1:16,f2:35,ap:function(){return 2.8},min:22,fil:82,oss:false,tc:false},
+ {id:"2470",name:"SEL2470GM2 · 24-70 F2.8",f1:24,f2:70,ap:function(){return 2.8},min:22,fil:82,oss:false,tc:false},
+ {id:"90",name:"SEL90M28G · 90 Makro F2.8",f1:90,f2:90,ap:function(){return 2.8},min:22,fil:62,oss:true,tc:false},
+ {id:"100400",name:"SEL100400GM · 100-400",f1:100,f2:400,ap:function(f){return f<=135?4.5:(f<=250?5:5.6)},min:32,fil:77,oss:true,tc:true}
+];
+function L(){for(var i=0;i<LENS.length;i++)if(LENS[i].id===S.lens)return LENS[i];return LENS[1]}
+
+/* ---------- Zustand ---------- */
+var S={tab:"t-rechner",lens:"2470",f:24,tc:false,mode:"t",
+  m:{a:AP.indexOf(8),t:SHL.indexOf("1/125"),i:3},c:null,
+  fb:SHL.indexOf("1/30"),fil:{nd8:false,nd64:false,nd1000:true,cpl:false,vnd:false,mist:false},vs:6};
+S.c={a:S.m.a,t:S.m.t,i:S.m.i};
+try{var o=JSON.parse(localStorage.getItem("sonyA7RV")||"null");if(o&&o.m&&o.c&&o.fil){for(var k in o)S[k]=o[k];}}catch(e){}
+function save(){try{localStorage.setItem("sonyA7RV",JSON.stringify(S))}catch(e){}}
+
+function apR(){var l=L(),add=S.tc?3:0;return [AP.indexOf(l.ap(S.f))+add,AP.indexOf(l.min)+add]}
+function rng(p){return p==="a"?apR():p==="t"?[0,SH.length-1]:p==="i"?[0,ISO.length-1]:[0,SH.length-1]}
+function cl(v,r){v=Math.round(+v);if(isNaN(v))v=r[0];return Math.max(r[0],Math.min(r[1],v))}
+function Bm(){return S.m.t-S.m.a+S.m.i}
+function follower(p){return S.mode==="t"?(p==="t"?"a":"t"):(p==="i"?"t":"i")}
+
+function change(p,v){
+  var c=S.c,B=Bm();
+  c[p]=cl(v,rng(p));
+  var f=follower(p);
+  if(f==="t")c.t=B+c.a-c.i;
+  else if(f==="i")c.i=B-c.t+c.a;
+  else c.a=c.t+c.i-B;
+  c[f]=cl(c[f],rng(f));
+  save();render();
+}
+function fixLens(){
+  var l=L();
+  if(!l.tc)S.tc=false;
+  S.f=cl(S.f,[l.f1,l.f2]);
+  S.m.a=cl(S.m.a,apR());S.m.t=cl(S.m.t,rng("t"));S.m.i=cl(S.m.i,rng("i"));
+  S.c.t=cl(S.c.t,rng("t"));S.c.i=cl(S.c.i,rng("i"));
+  change("a",S.c.a);
+}
+
+/* ---------- Hilfen ---------- */
+var FR={0:"",1:"⅓",2:"⅔"};
+function evTxt(n){
+  if(n===0)return "±0 EV";
+  var sg=n>0?"+":"−",a=Math.abs(n),w=Math.floor(a/3),r=a%3;
+  return sg+(w?w:"")+FR[r]+" EV";
+}
+function stopsTxt(x){
+  var t=x*3,n=Math.round(t);
+  if(Math.abs(t-n)<0.01){var w=Math.floor(n/3),r=n%3;return (w||!r?w:"")+(r?FR[r]:"")}
+  return (Math.round(x*10)/10).toString().replace(".",",");
+}
+function fill(sel,items,val){
+  var h="";for(var i=0;i<items.length;i++)h+='<option value="'+items[i].v+'">'+items[i].l+"</option>";
+  if(sel._h!==h){sel.innerHTML=h;sel._h=h}
+  sel.value=String(val);
+}
+function apItems(){var r=apR(),a=[];for(var i=r[0];i<=r[1];i++)a.push({v:i,l:"F"+AP[i]});return a}
+function shItems(max){var a=[];for(var i=0;i<=max;i++)a.push({v:i,l:SH[i].l});return a}
+var ISOI=ISO.map(function(v,i){return {v:i,l:isoLab(v)}});
+function nearestCam(sec){var b=0,d=1e9;for(var i=0;i<=N30;i++){var x=Math.abs(Math.log(SH[i].s/sec));if(x<d){d=x;b=i}}return b}
+
+/* ---------- Rendern ---------- */
+function render(){
+  var l=L(),r;
+  // Objektiv
+  var ls=$("lens");
+  fill(ls,LENS.map(function(x){return {v:x.id,l:x.name}}),S.lens);
+  var zoom=l.f1!==l.f2;
+  $("focalBox").style.display=zoom?"":"none";
+  var fr=$("focal");fr.min=l.f1;fr.max=l.f2;fr.step=l.id==="100400"?5:1;fr.value=S.f;
+  var feff=S.f*(S.tc?1.4:1);
+  $("focalTxt").textContent=S.f+" mm"+(S.tc?" → "+Math.round(feff)+" mm":"");
+  var tb=$("tcBtn");tb.disabled=!l.tc;tb.classList.toggle("on",S.tc);
+  tb.textContent=l.tc?("SEL14TC (1,4×) "+(S.tc?"an":"aus")):"SEL14TC passt nur ans 100-400";
+  r=apR();
+  $("lensInfo").textContent="Blendenbereich jetzt: F"+AP[r[0]]+" – F"+AP[r[1]]+" · Filter "+l.fil+" mm · "+(l.oss?"OSS + IBIS":"nur IBIS");
+
+  // Messung
+  fill($("mA"),apItems(),S.m.a);fill($("mT"),shItems(SH.length-1),S.m.t);fill($("mI"),ISOI,S.m.i);
+  // Neu
+  fill($("cA"),apItems(),S.c.a);fill($("cT"),shItems(SH.length-1),S.c.t);fill($("cI"),ISOI,S.c.i);
+  var eA=-(S.c.a-S.m.a),eT=S.c.t-S.m.t,eI=S.c.i-S.m.i;
+  [["evA",eA],["evT",eT],["evI",eI]].forEach(function(x){var e=$(x[0]);e.textContent=evTxt(x[1]);e.className="ev"+(x[1]?"":" z")});
+  var dev=eA+eT+eI;
+  $("expMsg").innerHTML=dev===0?'<div class="msg ok">Belichtung gleich wie gemessen</div>'
+    :'<div class="msg er">Grenze erreicht – Bild wird '+evTxt(dev)+" "+(dev>0?"heller":"dunkler")+"</div>";
+  $("modeT").classList.toggle("on",S.mode==="t");$("modeI").classList.toggle("on",S.mode==="i");
+  $("modeHint").textContent=S.mode==="t"
+    ?"Blende oder ISO ändern → Zeit zieht nach. Zeit ändern → Blende zieht nach (ISO bleibt)."
+    :"Blende oder Zeit ändern → ISO zieht nach. ISO ändern → Zeit zieht nach.";
+
+  // Freihand
+  var sec=SH[S.c.t].s,g1=1/feff,g2=1/(2*feff),stab=l.oss?"OSS + IBIS":"IBIS",h;
+  var lim="Faustregel 1/Brennweite: 1/"+Math.round(feff)+" s · bei 61 MP besser 1/"+Math.round(2*feff)+" s.";
+  if(sec>g1*1.06)h='<div class="msg er">Unter der Freihandgrenze! '+lim+" "+stab+" gibt Reserve, hilft aber nicht bei Bewegung im Motiv – sonst Stativ.</div>";
+  else if(sec>g2*1.06)h='<div class="msg wa">Knapp: '+lim+" Bei 61 MP zeigt sich Verwacklung schnell.</div>";
+  else h='<div class="msg ok">Freihand ok · '+lim+"</div>";
+  if(l.id==="90")h+='<div class="small mt">Makro: im Nahbereich wirkt der Stabi schwächer – lieber kürzer belichten.</div>';
+  $("handMsg").innerHTML=h;
+
+  renderFilter();
+  // Tabs
+  var tabs=document.querySelectorAll(".tab");for(var i=0;i<tabs.length;i++)tabs[i].classList.toggle("on",tabs[i].id===S.tab);
+  var nb=document.querySelectorAll("nav button");for(i=0;i<nb.length;i++)nb[i].classList.toggle("on",nb[i].getAttribute("data-tab")===S.tab);
+}
+
+var FIL=[
+ {k:"nd8",n:"ND8",st:3,t:"3 Stufen"},
+ {k:"nd64",n:"ND64",st:6,t:"6 Stufen"},
+ {k:"nd1000",n:"ND1000",st:10,t:"10 Stufen"},
+ {k:"cpl",n:"CPL",st:1.5,t:"ca. 1,5 Stufen"},
+ {k:"vnd",n:"ND2–32 var.",st:null,t:"1–5 Stufen"},
+ {k:"mist",n:"Black Mist 1/4",st:0,t:"≈ 0 Stufen"}
+];
+function buildFilBtns(){
+  var h="";FIL.forEach(function(f){h+='<button class="btn fbtn" data-f="'+f.k+'">'+f.n+"<small>"+f.t+"</small></button>"});
+  $("filBtns").innerHTML=h;
+}
+function renderFilter(){
+  fill($("fb"),shItems(SH.length-1),S.fb);
+  var st=0;
+  FIL.forEach(function(f){
+    var on=!!S.fil[f.k];
+    var b=document.querySelector('[data-f="'+f.k+'"]');if(b)b.classList.toggle("on",on);
+    if(on)st+=f.st===null?S.vs/3:f.st;
+  });
+  $("varBox").style.display=S.fil.vnd?"":"none";
+  $("varR").value=S.vs;
+  $("varTxt").textContent=stopsTxt(S.vs/3)+" Stufen (≈ ND"+Math.round(Math.pow(2,S.vs/3))+")";
+  $("fStops").textContent=st?stopsTxt(st)+" Stufen":"kein Filter";
+  var base=SH[S.fb].s,sec=base*Math.pow(2,st),sub="";
+  if(sec<=30*1.12){
+    var i=nearestCam(sec);
+    $("fRes").textContent=SH[i].l.replace('"',"″");
+    sub='<div class="small">Kamera-Einstellung (nächste 1/3-Stufe) · exakt '+fmtDur(sec)+"</div>";
+  }else{
+    $("fRes").textContent="BULB "+fmtDur(sec);
+    sub='<div class="msg wa">BULB: '+Math.round(sec)+" Sekunden halten"+(sec>=60?" ("+fmtDur(sec)+")":"")+"<br>Modus M · Zeit über 30″ hinaus → BULB</div>";
+  }
+  $("fSub").innerHTML=sub;
+}
+
+/* ---------- Events ---------- */
+buildFilBtns();
+$("lens").addEventListener("change",function(){S.lens=this.value;var l=L();S.f=l.f1;fixLens()});
+$("focal").addEventListener("input",function(){S.f=+this.value;fixLens()});
+$("tcBtn").addEventListener("click",function(){if(!L().tc)return;S.tc=!S.tc;fixLens()});
+["a","t","i"].forEach(function(p){
+  var k=p.toUpperCase();
+  $("m"+k).addEventListener("change",function(){S.m[p]=+this.value;S.c={a:S.m.a,t:S.m.t,i:S.m.i};save();render()});
+  $("c"+k).addEventListener("change",function(){change(p,+this.value)});
+});
+$("fb").addEventListener("change",function(){S.fb=+this.value;save();render()});
+document.addEventListener("click",function(e){
+  var b=e.target.closest("button");if(!b)return;
+  var p=b.getAttribute("data-p"),d=b.getAttribute("data-d");
+  if(p&&d){
+    if(p==="fb"){S.fb=cl(S.fb+(+d),rng("fb"));save();render()}
+    else change(p,S.c[p]+(+d));
+    return;
+  }
+  var f=b.getAttribute("data-f");
+  if(f){S.fil[f]=!S.fil[f];save();render();return}
+  var t=b.getAttribute("data-tab");
+  if(t){S.tab=t;save();render();window.scrollTo(0,0)}
+});
+$("varR").addEventListener("input",function(){S.vs=+this.value;save();render()});
+$("modeT").addEventListener("click",function(){S.mode="t";save();render()});
+$("modeI").addEventListener("click",function(){S.mode="i";save();render()});
+$("reset").addEventListener("click",function(){S.c={a:S.m.a,t:S.m.t,i:S.m.i};save();render()});
+
+fixLens();
+})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
