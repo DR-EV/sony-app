@@ -12,16 +12,31 @@
 :root{--bg:#000;--card:#111;--line:#444;--tx:#fff;--mu:#d0d0d0;--ac:#ffd400;--ok:#44e38a;--wa:#ffab40;--er:#ff5c5c}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%;background:#000}
-body{margin:0;background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:18px;line-height:1.4;padding:env(safe-area-inset-top) 0 calc(86px + env(safe-area-inset-bottom))}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:18px;line-height:1.4;padding:env(safe-area-inset-top) 0 calc(28px + env(safe-area-inset-bottom))}
 main{max-width:760px;margin:0 auto;padding:12px 14px}
 h1{font-size:22px;margin:6px 0 12px;color:var(--ac)}
 h2{font-size:20px;margin:0 0 10px}
 h3{font-size:18px;margin:14px 0 6px;color:var(--ac)}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:0 0 14px}
 .tab{display:none}.tab.on{display:block}
-nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:#0b0b0b;border-top:2px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:5}
-nav button{flex:1;min-height:70px;background:none;border:0;color:var(--mu);font-size:17px;font-weight:800;font-family:inherit}
-nav button.on{color:#000;background:var(--ac)}
+/* Feste Kopfzeile (nur auf Unterseiten) */
+header{position:fixed;top:0;left:0;right:0;z-index:20;background:#0b0b0b;border-bottom:2px solid var(--line);padding-top:env(safe-area-inset-top);display:none}
+body.hdr header{display:block}
+body.hdr main{padding-top:74px}
+.hrow{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:0 10px;min-height:62px}
+.hrow .ht{flex:1;margin:0;font-size:20px;font-weight:800;color:var(--ac)}
+#mbtn{width:62px;min-height:52px;border-radius:12px;border:2px solid var(--line);background:#222;color:var(--tx);font-size:26px;font-weight:800;padding:0}
+#mbtn:active{background:var(--ac);color:#000}
+#menu{display:none;border-top:1px solid var(--line);padding:4px 10px 14px}
+#menu.on{display:block}
+#menu .mw{max-width:760px;margin:0 auto}
+#menu button{display:block;width:100%;text-align:left;min-height:58px;margin-top:8px;border-radius:12px;border:2px solid var(--line);background:#161616;color:var(--tx);font-size:19px;font-weight:800;padding:0 14px}
+#menu button.on{background:var(--ac);color:#000;border-color:var(--ac)}
+/* Startseite */
+.home{display:block;width:100%;text-align:left;border-radius:16px;border:2px solid var(--line);background:var(--card);color:var(--tx);padding:16px;margin:0 0 12px;min-height:92px}
+.home:active{border-color:var(--ac);background:#1c1c1c}
+.home b{display:block;font-size:23px;font-weight:900;color:var(--ac);margin-bottom:5px}
+.home i{display:block;font-size:16px;font-weight:600;color:var(--mu);font-style:normal}
 button,select,input{font-family:inherit;touch-action:manipulation}
 select{-webkit-appearance:none;appearance:none;background:#000;color:var(--tx);border:2px solid var(--line);border-radius:12px;min-height:56px;padding:0 10px;font-size:20px;font-weight:800;width:100%;text-align:center;text-align-last:center}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
@@ -64,10 +79,29 @@ ul{margin:6px 0;padding-left:20px}li{margin:4px 0}
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 </head>
 <body>
+<header>
+  <div class="hrow"><div class="ht" id="htitle"></div><button id="mbtn" aria-expanded="false" aria-label="Menue">&#9776;</button></div>
+  <div id="menu"><div class="mw">
+    <button data-route="start">Start</button>
+    <button data-route="rechner">Rechner</button>
+    <button data-route="filter">Filter</button>
+    <button data-route="objektive">Objektive</button>
+    <button data-route="kamera">Kamera</button>
+  </div></div>
+</header>
 <main>
 
+<!-- ============ START ============ -->
+<section class="tab on" id="t-start">
+<h1>Sony A7R V</h1>
+<button class="home" data-route="rechner"><b>Rechner</b><i>Blende / Zeit / ISO</i></button>
+<button class="home" data-route="filter"><b>Filter</b><i>ND, CPL, BULB-Zeit</i></button>
+<button class="home" data-route="objektive"><b>Objektive</b><i>Daten &amp; Filtergewinde</i></button>
+<button class="home" data-route="kamera"><b>Kamera</b><i>Speicherpl&auml;tze, Tasten, Men&uuml;s</i></button>
+</section>
+
 <!-- ============ RECHNER ============ -->
-<section class="tab on" id="t-rechner">
+<section class="tab" id="t-rechner">
 <h1>Belichtungsrechner</h1>
 
 <div class="card">
@@ -243,16 +277,10 @@ ul{margin:6px 0;padding-left:20px}li{margin:4px 0}
 Blitz: Godox V860III-S (Sony-Schuh). Synchronzeit ohne HSS: 1/250 s.
 </div>
 
-<p class="small" style="text-align:center;opacity:.6;margin:18px 0 0">Version 3</p>
+<p class="small" style="text-align:center;opacity:.6;margin:18px 0 0">Version 4</p>
 </section>
 </main>
 
-<nav>
-  <button data-tab="t-rechner" class="on">Rechner</button>
-  <button data-tab="t-filter">Filter</button>
-  <button data-tab="t-obj">Objektive</button>
-  <button data-tab="t-kam">Kamera</button>
-</nav>
 
 <script>
 (function(){
@@ -384,10 +412,37 @@ function render(){
   $("handMsg").innerHTML=h;
 
   renderFilter();
-  // Tabs
-  var tabs=document.querySelectorAll(".tab");for(var i=0;i<tabs.length;i++)tabs[i].classList.toggle("on",tabs[i].id===S.tab);
-  var nb=document.querySelectorAll("nav button");for(i=0;i<nb.length;i++)nb[i].classList.toggle("on",nb[i].getAttribute("data-tab")===S.tab);
 }
+
+/* ---------- Navigation ueber location.hash (Zurueck-Geste funktioniert) ---------- */
+var ROUTES=[
+ {h:"start",id:"t-start",n:"Start"},
+ {h:"rechner",id:"t-rechner",n:"Rechner"},
+ {h:"filter",id:"t-filter",n:"Filter"},
+ {h:"objektive",id:"t-obj",n:"Objektive"},
+ {h:"kamera",id:"t-kam",n:"Kamera"}
+];
+function routeOf(h){
+  h=String(h||"").replace(/^#/,"");
+  for(var i=0;i<ROUTES.length;i++)if(ROUTES[i].h===h)return ROUTES[i];
+  return ROUTES[0];
+}
+function menuOpen(on){
+  $("menu").classList.toggle("on",on);
+  $("mbtn").setAttribute("aria-expanded",on?"true":"false");
+}
+function applyRoute(scroll){
+  var r=routeOf(location.hash),i;
+  var tabs=document.querySelectorAll(".tab");
+  for(i=0;i<tabs.length;i++)tabs[i].classList.toggle("on",tabs[i].id===r.id);
+  document.body.classList.toggle("hdr",r.h!=="start");
+  $("htitle").textContent=r.h==="start"?"":r.n;
+  var mi=document.querySelectorAll("#menu button");
+  for(i=0;i<mi.length;i++)mi[i].classList.toggle("on",mi[i].getAttribute("data-route")===r.h);
+  menuOpen(false);
+  if(scroll!==false)window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",function(){applyRoute(true)});
 
 var FIL=[
  {k:"nd8",n:"ND8",st:3,t:"3 Stufen"},
@@ -446,8 +501,19 @@ document.addEventListener("click",function(e){
   }
   var f=b.getAttribute("data-f");
   if(f){S.fil[f]=!S.fil[f];save();render();return}
-  var t=b.getAttribute("data-tab");
-  if(t){S.tab=t;save();render();window.scrollTo(0,0)}
+  if(b.id==="mbtn"){menuOpen(!$("menu").classList.contains("on"));return}
+  var r=b.getAttribute("data-route");
+  if(r){
+    menuOpen(false);
+    if(routeOf(location.hash).h===r)window.scrollTo(0,0);
+    else location.hash="#"+r;
+  }
+});
+// Menue schliesst bei Tipp daneben
+document.addEventListener("click",function(e){
+  if(!$("menu").classList.contains("on"))return;
+  if(e.target.closest&&(e.target.closest("#menu")||e.target.closest("#mbtn")))return;
+  menuOpen(false);
 });
 $("varR").addEventListener("input",function(){S.vs=+this.value;save();render()});
 $("modeT").addEventListener("click",function(){S.mode="t";save();render()});
@@ -455,6 +521,7 @@ $("modeI").addEventListener("click",function(){S.mode="i";save();render()});
 $("reset").addEventListener("click",function(){S.c={a:S.m.a,t:S.m.t,i:S.m.i};save();render()});
 
 fixLens();
+applyRoute(false);
 })();
 </script>
 <script>
