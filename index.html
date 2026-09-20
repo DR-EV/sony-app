@@ -280,10 +280,10 @@ function isoLab(v){return v<100||v>32000?v+" (erw.)":String(v)}
 
 /* ---------- Objektive ---------- */
 var LENS=[
- {id:"1635",name:"SEL1635GM2 · 16-35 F2.8",f1:16,f2:35,ap:function(){return 2.8},min:22,fil:82,oss:false,tc:false},
- {id:"2470",name:"SEL2470GM2 · 24-70 F2.8",f1:24,f2:70,ap:function(){return 2.8},min:22,fil:82,oss:false,tc:false},
- {id:"90",name:"SEL90M28G · 90 Makro F2.8",f1:90,f2:90,ap:function(){return 2.8},min:22,fil:62,oss:true,tc:false},
- {id:"100400",name:"SEL100400GM · 100-400",f1:100,f2:400,ap:function(f){return f<=135?4.5:(f<=250?5:5.6)},min:32,fil:77,oss:true,tc:true}
+ {id:"1635",name:"Weitwinkel 16-35 F2.8 GM",f1:16,f2:35,ap:function(){return 2.8},min:22,fil:82,oss:false,tc:false},
+ {id:"2470",name:"Standard 24-70 F2.8 GM",f1:24,f2:70,ap:function(){return 2.8},min:22,fil:82,oss:false,tc:false},
+ {id:"90",name:"Makro 90 F2.8 G",f1:90,f2:90,ap:function(){return 2.8},min:22,fil:62,oss:true,tc:false},
+ {id:"100400",name:"Tele 100-400 F4.5-5.6 GM",f1:100,f2:400,ap:function(f){return f<=135?4.5:(f<=250?5:5.6)},min:32,fil:77,oss:true,tc:true}
 ];
 function L(){for(var i=0;i<LENS.length;i++)if(LENS[i].id===S.lens)return LENS[i];return LENS[1]}
 

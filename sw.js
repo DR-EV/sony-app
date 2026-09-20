@@ -1,4 +1,4 @@
-const CACHE = 'sony-a7rv-v1';
+const CACHE = 'sony-a7rv-v2';
 const ASSETS = [
   './',
   './index.html',
