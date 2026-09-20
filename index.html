@@ -9,119 +9,236 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; style-src 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self'; manifest-src 'self'; worker-src 'self'; connect-src 'self'">
 <title>Sony A7R V</title>
 <style>
-:root{--bg:#000;--card:#111;--line:#444;--tx:#fff;--mu:#d0d0d0;--ac:#ffd400;--ok:#44e38a;--wa:#ffab40;--er:#ff5c5c}
+/* ---------- Farbwelt & Raster (alles an einer Stelle) ---------- */
+:root{
+  --bg:#0b0b0d; --bg2:#101014;
+  --card:#16161a; --card2:#1c1c22; --zeb:#1a1a20;
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.18);
+  --tx:#f5f3ef; --mu:#c9c6c0;
+  --ac:#ffb020; --ac2:#ffcf6a; --acd:#3a2a08; --acb:rgba(255,176,32,.38);
+  --ok:#4ade80; --okd:#0c2a1a;
+  --wa:#fb923c; --wad:#33210c;
+  --er:#f87171; --erd:#331414;
+  --r:16px; --r2:12px;
+  --s1:8px; --s2:16px; --s3:24px;
+  --sh:0 18px 40px rgba(0,0,0,.55);
+}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{-webkit-text-size-adjust:100%;background:#000}
-body{margin:0;background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:18px;line-height:1.4;padding:env(safe-area-inset-top) 0 calc(28px + env(safe-area-inset-bottom))}
-main{max-width:760px;margin:0 auto;padding:12px 14px}
-h1{font-size:22px;margin:6px 0 12px;color:var(--ac)}
-h2{font-size:20px;margin:0 0 10px}
-h3{font-size:18px;margin:14px 0 6px;color:var(--ac)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:0 0 14px}
-.tab{display:none}.tab.on{display:block}
-/* Feste Kopfzeile (nur auf Unterseiten) */
-header{position:fixed;top:0;left:0;right:0;z-index:20;background:#0b0b0b;border-bottom:2px solid var(--line);padding-top:env(safe-area-inset-top);display:none}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
+body{margin:0;background:transparent;color:var(--tx);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
+  font-size:17px;line-height:1.45;letter-spacing:-.005em;
+  padding:env(safe-area-inset-top) 0 calc(var(--s3) + env(safe-area-inset-bottom))}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(130% 55% at 50% 0%,rgba(255,150,30,.08),transparent 62%)}
+main{max-width:760px;margin:0 auto;padding:var(--s2) var(--s2)}
+
+/* ---------- Typografie ---------- */
+h1{font-size:28px;line-height:1.15;font-weight:800;margin:var(--s1) 0 var(--s2);color:var(--tx);letter-spacing:-.02em}
+h2{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;
+   color:var(--mu);margin:0 0 var(--s2)}
+h3{font-size:18px;font-weight:800;margin:var(--s2) 0 var(--s1);color:var(--ac2);letter-spacing:-.01em}
+.small{font-size:15px;color:var(--mu);line-height:1.45}
+.sub{font-size:16px;color:var(--mu);margin:-6px 0 var(--s2);font-weight:500}
+.path{font-weight:700;color:var(--ac2)}
+.mt{margin-top:var(--s2)}
+.num,select,.big,.ev,.vals b,.motv b,.scale span,.ap1 b,.prog,td{font-variant-numeric:tabular-nums}
+
+/* ---------- Icons ---------- */
+.sprite{display:none}
+.ic{width:24px;height:24px;flex:0 0 24px;fill:none;stroke:currentColor;
+    stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- Karten ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+      padding:var(--s2);margin:0 0 var(--s2)}
+.tab{display:none}
+.tab.on{display:block;animation:fade .18s ease-out}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ---------- Kopfzeile ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:20;display:none;
+  background:rgba(11,11,13,.72);
+  -webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px);
+  border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
 body.hdr header{display:block}
-body.hdr main{padding-top:74px}
-.hrow{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:0 10px;min-height:62px}
-.hrow .ht{flex:1;margin:0;font-size:20px;font-weight:800;color:var(--ac)}
-#mbtn{width:62px;min-height:52px;border-radius:12px;border:2px solid var(--line);background:#222;color:var(--tx);font-size:26px;font-weight:800;padding:0}
-#mbtn:active{background:var(--ac);color:#000}
-#menu{display:none;border-top:1px solid var(--line);padding:4px 10px 14px}
-#menu.on{display:block}
+body.hdr main{padding-top:78px}
+.hrow{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:10px;
+      padding:0 var(--s2);min-height:64px}
+.hic{display:flex;align-items:center;justify-content:center;width:38px;height:38px;
+     border-radius:11px;background:var(--acd);color:var(--ac);border:1px solid var(--acb);flex:0 0 38px}
+.hrow .ht{flex:1;margin:0;font-size:19px;font-weight:800;color:var(--tx);letter-spacing:-.01em}
+#mbtn{display:flex;align-items:center;justify-content:center;width:56px;height:56px;min-height:56px;
+  border-radius:var(--r2);border:1px solid var(--line2);background:var(--card2);color:var(--tx);padding:0}
+#mbtn:active{background:var(--ac);color:#14100a;border-color:var(--ac)}
+
+/* ---------- Menü ---------- */
+#menu{display:none;border-top:1px solid var(--line);padding:var(--s1) var(--s2) var(--s2);
+      background:rgba(16,16,20,.97);box-shadow:var(--sh)}
+#menu.on{display:block;animation:drop .18s ease-out}
+@keyframes drop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 #menu .mw{max-width:760px;margin:0 auto}
-#menu button{display:block;width:100%;text-align:left;min-height:58px;margin-top:8px;border-radius:12px;border:2px solid var(--line);background:#161616;color:var(--tx);font-size:19px;font-weight:800;padding:0 14px}
-#menu button.on{background:var(--ac);color:#000;border-color:var(--ac)}
-/* Startseite */
-.hero{display:block;width:100%;height:auto;max-height:35vh;object-fit:contain;border:0;margin:6px auto 16px}
-.home{display:block;width:100%;text-align:left;border-radius:16px;border:2px solid var(--line);background:var(--card);color:var(--tx);padding:16px;margin:0 0 12px;min-height:92px}
-.home:active{border-color:var(--ac);background:#1c1c1c}
-.home b{display:block;font-size:23px;font-weight:900;color:var(--ac);margin-bottom:5px}
-.home i{display:block;font-size:16px;font-weight:600;color:var(--mu);font-style:normal}
+#menu button{display:flex;align-items:center;gap:12px;width:100%;text-align:left;min-height:56px;
+  margin-top:var(--s1);border-radius:var(--r2);border:1px solid var(--line);
+  background:var(--card2);color:var(--tx);font-size:17px;font-weight:700;padding:0 14px}
+#menu button .ic{color:var(--mu)}
+#menu button.on{background:var(--acd);border-color:var(--acb);color:var(--ac2)}
+#menu button.on .ic{color:var(--ac)}
+
+/* ---------- Startseite ---------- */
+.herowrap{position:relative;isolation:isolate;display:flex;justify-content:center;
+          margin:var(--s1) 0 var(--s3)}
+.herowrap::before{content:"";position:absolute;z-index:-1;left:50%;top:52%;
+  transform:translate(-50%,-50%);width:100%;padding-bottom:100%;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,170,40,.24),rgba(255,130,20,.10) 42%,transparent 72%)}
+.hero{display:block;width:100%;height:auto;max-height:35vh;object-fit:contain;border:0;
+      filter:drop-shadow(0 16px 26px rgba(0,0,0,.55))}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}
+@media(min-width:620px){.tiles{grid-template-columns:repeat(3,1fr)}}
+.tile{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;
+  text-align:left;min-height:56px;padding:14px;border-radius:var(--r);
+  border:1px solid var(--line);background:linear-gradient(180deg,var(--card2),var(--card));
+  color:var(--tx);transition:transform .15s ease,border-color .15s ease}
+.tile:active{transform:scale(.975);border-color:var(--acb)}
+.ticon{display:flex;align-items:center;justify-content:center;width:40px;height:40px;
+  border-radius:12px;background:var(--acd);color:var(--ac);border:1px solid var(--acb);margin-bottom:2px}
+.tile b{font-size:19px;font-weight:800;color:var(--tx);letter-spacing:-.01em}
+.tile i{font-style:normal;font-size:15px;font-weight:500;color:var(--mu);line-height:1.3}
+.tprog{position:absolute;top:12px;right:12px;font-size:15px;font-weight:800;color:var(--ac);
+  background:var(--acd);border:1px solid var(--acb);border-radius:999px;padding:3px 9px;
+  font-variant-numeric:tabular-nums}
+
+/* ---------- Formelemente ---------- */
 button,select,input{font-family:inherit;touch-action:manipulation}
-select{-webkit-appearance:none;appearance:none;background:#000;color:var(--tx);border:2px solid var(--line);border-radius:12px;min-height:56px;padding:0 10px;font-size:20px;font-weight:800;width:100%;text-align:center;text-align-last:center}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.lab{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:0 0 6px;font-weight:800;color:var(--mu)}
-.small{font-size:15px;color:var(--mu)}
-.stp{display:grid;grid-template-columns:66px 1fr 66px;gap:8px;align-items:center;margin-bottom:14px}
-.stp button{min-height:62px;border-radius:12px;border:2px solid var(--line);background:#222;color:var(--tx);font-size:32px;font-weight:800;padding:0}
-.stp button:active{background:var(--ac);color:#000}
-.stp select{font-size:28px;min-height:62px}
-.ev{font-weight:900;font-size:20px;color:var(--ac)}
-.ev.z{color:var(--mu)}
-.seg{display:flex;gap:8px}
-.seg button,.btn{flex:1;min-height:56px;border-radius:12px;border:2px solid var(--line);background:#222;color:var(--tx);font-size:17px;font-weight:800;padding:6px 8px}
-.seg button.on,.btn.on{background:var(--ac);color:#000;border-color:var(--ac)}
-.btn:disabled{opacity:.35}
+select{-webkit-appearance:none;appearance:none;background:var(--bg2);color:var(--tx);
+  border:1px solid var(--line2);border-radius:var(--r2);min-height:56px;padding:0 10px;
+  font-size:19px;font-weight:700;width:100%;text-align:center;text-align-last:center}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s1)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s1)}
+.lab{display:flex;justify-content:space-between;align-items:center;gap:var(--s1);
+     margin:0 0 var(--s1);font-weight:700;color:var(--mu);font-size:15px}
+.seg{display:flex;gap:var(--s1)}
+.seg button,.btn{flex:1;min-height:56px;border-radius:var(--r2);border:1px solid var(--line2);
+  background:var(--card2);color:var(--tx);font-size:17px;font-weight:700;padding:6px 10px;
+  transition:background .15s ease,border-color .15s ease}
+.seg button.on,.btn.on{background:var(--acd);color:var(--ac2);border-color:var(--acb)}
+.btn:active{border-color:var(--ac)}
+.btn:disabled{opacity:.4}
 input[type=range]{width:100%;height:44px;accent-color:var(--ac);margin:0}
-.msg{border-radius:12px;padding:12px;font-weight:700;margin-top:10px;font-size:17px}
-.msg.er{background:#3a0d0d;border:2px solid var(--er)}
-.msg.wa{background:#3a2600;border:2px solid var(--wa)}
-.msg.ok{background:#0c2e1a;border:2px solid var(--ok)}
-.big{font-size:40px;font-weight:900;color:var(--ac);line-height:1.1}
-.fbtn{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:66px}
-.fbtn small{font-size:14px;font-weight:700;opacity:.85}
-.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* ---------- Rechner ---------- */
+.vals{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s1);margin:0 0 var(--s2)}
+.vals div{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r2);
+          padding:12px 4px;text-align:center}
+.vals b{display:block;font-size:24px;font-weight:800;color:var(--ac);letter-spacing:-.02em}
+.vals i{display:block;font-style:normal;font-size:15px;color:var(--mu);font-weight:600;margin-top:2px}
+.stp{display:grid;grid-template-columns:60px 1fr 60px;gap:10px;align-items:center;margin-bottom:var(--s2)}
+.stp button{width:60px;height:60px;min-height:60px;border-radius:50%;border:1px solid var(--line2);
+  background:var(--card2);color:var(--tx);font-size:28px;font-weight:700;padding:0;line-height:1}
+.stp button:active{background:var(--ac);color:#14100a;border-color:var(--ac)}
+.stp select{font-size:24px;min-height:60px;font-weight:800}
+.ev{font-size:15px;font-weight:800;color:var(--ac);background:var(--acd);
+    border:1px solid var(--acb);border-radius:999px;padding:4px 10px;white-space:nowrap}
+.ev.z{color:var(--mu);background:rgba(255,255,255,.05);border-color:var(--line)}
+
+/* ---------- Meldungen ---------- */
+.msg{border-radius:var(--r2);padding:12px 14px;font-weight:700;margin-top:10px;font-size:16px;
+     border:1px solid}
+.msg.er{background:var(--erd);border-color:var(--er);color:#ffd9d9}
+.msg.wa{background:var(--wad);border-color:var(--wa);color:#ffe4cb}
+.msg.ok{background:var(--okd);border-color:var(--ok);color:#ccf5de}
+
+/* ---------- Filter: Anzeige wie ein Kameradisplay ---------- */
+.disp{background:linear-gradient(180deg,#131318,#0d0d11);border:1px solid var(--line2);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.big{font-size:42px;font-weight:800;color:var(--ac);line-height:1.1;letter-spacing:-.02em;margin-top:2px}
+.fbtn{display:flex;flex-direction:column;align-items:center;justify-content:center;
+      min-height:66px;gap:2px;border-radius:999px}
+.fbtn small{font-size:15px;font-weight:600;opacity:.85}
+
+/* ---------- Tabellen ---------- */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--r2)}
 table{width:100%;border-collapse:collapse;font-size:16px}
-th,td{border-bottom:1px solid var(--line);padding:9px 6px;text-align:left;vertical-align:top}
-th{color:var(--ac)}
-.tl th:first-child,.tl td:first-child{position:sticky;left:0;background:var(--card);color:var(--mu);font-weight:800;min-width:110px}
+th,td{border-bottom:1px solid var(--line);padding:11px 10px;text-align:left;vertical-align:top}
+th{color:var(--ac2);font-size:15px;text-transform:uppercase;letter-spacing:.06em;font-weight:800}
+tbody tr:nth-child(even) td{background:var(--zeb)}
+.tl th:first-child,.tl td:first-child{position:sticky;left:0;background:var(--card);
+  color:var(--mu);font-weight:700;min-width:112px}
+.tl tbody tr:nth-child(even) td:first-child{background:var(--zeb)}
 .tl td{min-width:120px}
-.kv td:first-child{color:var(--mu);font-weight:700;width:44%}
-ul{margin:6px 0;padding-left:20px}li{margin:4px 0}
-.path{font-weight:700}
-.mt{margin-top:12px}
-/* Spickzettel: Skalen */
-.apr{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:10px 0 4px}
+.kv{table-layout:fixed}
+.kv td{overflow-wrap:break-word}
+.kv td:first-child{color:var(--mu);font-weight:600;width:44%}
+ul{margin:var(--s1) 0;padding-left:20px}
+li{margin:5px 0}
+
+/* ---------- Spickzettel ---------- */
+.apr{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:var(--s2) 0 4px}
 .ap1{text-align:center}
-.ring{width:36px;height:36px;margin:0 auto;border-radius:50%;border:2px solid var(--line);background:#000;display:flex;align-items:center;justify-content:center}
-.ring i{display:block;border-radius:50%;background:var(--ac)}
-.ap1 b{display:block;font-size:13px;font-weight:800;color:var(--mu);margin-top:5px}
-.scale{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
-.scale span{background:#000;border:2px solid var(--line);border-radius:9px;padding:5px 8px;font-size:15px;font-weight:800}
-.bar{height:7px;border-radius:4px;background:linear-gradient(90deg,var(--ac),#3a3a3a);margin:10px 0 8px}
-.ends{display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:14px;color:var(--mu);font-weight:600}
+.ring{width:38px;height:38px;margin:0 auto;border-radius:50%;border:1px solid var(--line2);
+      background:var(--bg2);display:flex;align-items:center;justify-content:center}
+.ring i{display:block;border-radius:50%;background:var(--ac);
+        box-shadow:0 0 10px rgba(255,176,32,.35)}
+.ap1 b{display:block;font-size:15px;font-weight:700;color:var(--mu);margin-top:6px}
+.scale{display:flex;flex-wrap:wrap;gap:var(--s1);margin:var(--s2) 0 4px}
+.scale span{background:var(--bg2);border:1px solid var(--line2);border-radius:999px;
+            padding:7px 12px;font-size:16px;font-weight:700}
+.bar{height:6px;border-radius:999px;margin:var(--s2) 0 10px;
+     background:linear-gradient(90deg,var(--ac),rgba(255,176,32,.15))}
+.ends{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);font-size:15px;
+      color:var(--mu);font-weight:500;line-height:1.4}
 .ends div:last-child{text-align:right}
-.merk{background:#2a2200;border:2px solid var(--ac);border-radius:12px;padding:12px;font-weight:800;font-size:16px}
-/* Spickzettel: Motive */
-.motv{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
-.motv div{background:#000;border:2px solid var(--line);border-radius:12px;padding:8px 4px;text-align:center}
-.motv b{display:block;font-size:20px;font-weight:900;color:var(--ac)}
-.motv i{display:block;font-style:normal;font-size:13px;color:var(--mu);font-weight:700;margin-top:3px}
+.merk{background:var(--acd);border:1px solid var(--acb);border-radius:var(--r);
+      padding:14px var(--s2);font-weight:700;font-size:16px;color:var(--ac2)}
+.motv{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s1);margin-top:var(--s2)}
+.motv div{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r2);
+          padding:10px 4px;text-align:center}
+.motv b{display:block;font-size:20px;font-weight:800;color:var(--ac);letter-spacing:-.01em}
+.motv i{display:block;font-style:normal;font-size:15px;color:var(--mu);font-weight:600;margin-top:3px}
 .hint{color:var(--wa)}
-/* Hausaufgabe */
-details.hw{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:0 0 10px;overflow:hidden}
-details.hw[open]{border-color:var(--ac)}
-details.hw>summary{list-style:none;display:flex;align-items:center;gap:10px;padding:12px 14px;min-height:64px;font-size:18px;font-weight:800}
+
+/* ---------- Hausaufgabe ---------- */
+details.hw{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+           margin:0 0 10px;overflow:hidden}
+details.hw[open]{border-color:var(--acb);background:var(--card2)}
+details.hw>summary{list-style:none;display:flex;align-items:center;gap:12px;
+  padding:12px var(--s2);min-height:64px;font-size:17px;font-weight:700}
 details.hw>summary::-webkit-details-marker{display:none}
-.hwn{flex:0 0 34px;height:34px;border-radius:50%;background:#222;color:var(--ac);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900}
-.hwt{flex:1}
+.hwn{flex:0 0 34px;height:34px;border-radius:50%;background:var(--acd);color:var(--ac);
+  border:1px solid var(--acb);display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
+.hwt{flex:1;line-height:1.3}
 details.hw.done .hwt{color:var(--ok);text-decoration:line-through}
-.hwa{flex:0 0 18px;color:var(--mu);font-size:15px;display:inline-block;transition:transform .15s}
+details.hw.done .hwn{background:var(--okd);color:var(--ok);border-color:rgba(74,222,128,.4)}
+.hwa{flex:0 0 16px;color:var(--mu);font-size:15px;display:inline-block;transition:transform .18s ease}
 details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
 .hwc{flex:0 0 30px;width:30px;height:30px;margin:0;accent-color:var(--ac)}
-.hwb{padding:0 14px 14px;font-size:16px;line-height:1.5;color:var(--mu)}
+.hwb{padding:0 var(--s2) var(--s2);font-size:16px;line-height:1.55;color:var(--mu)}
 .hwb b{color:var(--tx)}
-.prog{font-size:22px;font-weight:900;color:var(--ac)}
+.prog{font-size:24px;font-weight:800;color:var(--ac);letter-spacing:-.01em}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
 </style>
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#0b0b0d">
 <meta name="apple-mobile-web-app-title" content="A7R V">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 </head>
 <body>
+<svg class="sprite" aria-hidden="true" focusable="false"><symbol id="i-start" viewBox="0 0 24 24"><path d="M3.5 11.2 12 4.3l8.5 6.9"/><path d="M6.2 10.2v9.5h11.6v-9.5"/></symbol><symbol id="i-rechner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><path d="M12 3.6v8.4l7.3 4.2M12 12l-7.3 4.2M12 12l7.3-4.2"/></symbol><symbol id="i-filter" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.8"/><path d="M12 3.6v4.6M12 15.8v4.6"/></symbol><symbol id="i-objektive" viewBox="0 0 24 24"><rect x="2.8" y="7.6" width="13.2" height="8.8" rx="2"/><path d="M6.5 7.6v8.8M9.9 7.6v8.8"/><path d="m16 9.8 5.2-2.6v9.6L16 14.2z"/></symbol><symbol id="i-kamera" viewBox="0 0 24 24"><path d="M3.6 8.3h3.1l1.5-2.2h5.6l1.5 2.2h3.1A1.6 1.6 0 0 1 20 9.9v7.5a1.6 1.6 0 0 1-1.6 1.6H3.6A1.6 1.6 0 0 1 2 17.4V9.9a1.6 1.6 0 0 1 1.6-1.6z"/><circle cx="11" cy="13.4" r="3.3"/></symbol><symbol id="i-spickzettel" viewBox="0 0 24 24"><rect x="3.2" y="4.8" width="17.6" height="14.4" rx="2.4"/><path d="M3.2 9.3h17.6M7.2 12.9h8.6M7.2 16.1h5.6"/></symbol><symbol id="i-hausaufgabe" viewBox="0 0 24 24"><path d="m3.4 7.3 1.6 1.6 2.8-3.2M3.4 13.3 5 14.9l2.8-3.2M3.4 19.3 5 20.9l2.8-3.2"/><path d="M11.5 7.4h9.1M11.5 13.4h9.1M11.5 19.4h6.6"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7.5h16M4 12h16M4 16.5h16"/></symbol></svg>
 <header>
-  <div class="hrow"><div class="ht" id="htitle"></div><button id="mbtn" aria-expanded="false" aria-label="Menue">&#9776;</button></div>
+  <div class="hrow"><span class="hic"><svg class="ic" aria-hidden="true"><use id="hicon" href="#i-start"/></svg></span><div class="ht" id="htitle"></div><button id="mbtn" aria-expanded="false" aria-label="Men&uuml;"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg></button></div>
   <div id="menu"><div class="mw">
-    <button data-route="start">Start</button>
-    <button data-route="rechner">Rechner</button>
-    <button data-route="filter">Filter</button>
-    <button data-route="objektive">Objektive</button>
-    <button data-route="kamera">Kamera</button>
-    <button data-route="spickzettel">Spickzettel</button>
-    <button data-route="hausaufgabe">Hausaufgabe</button>
+    <button data-route="start"><svg class="ic" aria-hidden="true"><use href="#i-start"/></svg><span>Start</span></button>
+    <button data-route="rechner"><svg class="ic" aria-hidden="true"><use href="#i-rechner"/></svg><span>Rechner</span></button>
+    <button data-route="filter"><svg class="ic" aria-hidden="true"><use href="#i-filter"/></svg><span>Filter</span></button>
+    <button data-route="objektive"><svg class="ic" aria-hidden="true"><use href="#i-objektive"/></svg><span>Objektive</span></button>
+    <button data-route="kamera"><svg class="ic" aria-hidden="true"><use href="#i-kamera"/></svg><span>Kamera</span></button>
+    <button data-route="spickzettel"><svg class="ic" aria-hidden="true"><use href="#i-spickzettel"/></svg><span>Spickzettel</span></button>
+    <button data-route="hausaufgabe"><svg class="ic" aria-hidden="true"><use href="#i-hausaufgabe"/></svg><span>Hausaufgabe</span></button>
   </div></div>
 </header>
 <main>
@@ -129,13 +246,16 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
 <!-- ============ START ============ -->
 <section class="tab on" id="t-start">
 <h1>Sony A7R V</h1>
-<img class="hero" src="kamera.png" alt="Sony A7R V mit Hochformatgriff VG-C4EM" width="800" height="609">
-<button class="home" data-route="rechner"><b>Rechner</b><i>Blende / Zeit / ISO</i></button>
-<button class="home" data-route="filter"><b>Filter</b><i>ND, CPL, BULB-Zeit</i></button>
-<button class="home" data-route="objektive"><b>Objektive</b><i>Daten &amp; Filtergewinde</i></button>
-<button class="home" data-route="kamera"><b>Kamera</b><i>Speicherpl&auml;tze, Tasten, Men&uuml;s</i></button>
-<button class="home" data-route="spickzettel"><b>Spickzettel</b><i>Was bewirkt was &middot; Startwerte nach Motiv</i></button>
-<button class="home" data-route="hausaufgabe"><b>Hausaufgabe</b><i>Wo finde ich das an der Kamera?</i></button>
+<p class="sub">Mein Begleiter f&uuml;r drau&szlig;en</p>
+<div class="herowrap"><img class="hero" src="kamera.png" alt="Sony A7R V mit Hochformatgriff VG-C4EM" width="800" height="609"></div>
+<div class="tiles">
+<button class="tile" data-route="rechner"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-rechner"/></svg></span><b>Rechner</b><i>Blende / Zeit / ISO</i></button>
+<button class="tile" data-route="filter"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-filter"/></svg></span><b>Filter</b><i>ND, CPL, BULB-Zeit</i></button>
+<button class="tile" data-route="objektive"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-objektive"/></svg></span><b>Objektive</b><i>Daten &amp; Filtergewinde</i></button>
+<button class="tile" data-route="kamera"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-kamera"/></svg></span><b>Kamera</b><i>Speicherpl&auml;tze, Tasten, Men&uuml;s</i></button>
+<button class="tile" data-route="spickzettel"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-spickzettel"/></svg></span><b>Spickzettel</b><i>Was bewirkt was &middot; Startwerte nach Motiv</i></button>
+<button class="tile" data-route="hausaufgabe"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-hausaufgabe"/></svg></span><b>Hausaufgabe</b><i>Wo finde ich das an der Kamera?</i><span class="tprog" id="tileProg"></span></button>
+</div>
 </section>
 
 <!-- ============ RECHNER ============ -->
@@ -164,6 +284,11 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
 
 <div class="card">
   <h2>Neue Einstellung</h2>
+  <div class="vals">
+    <div><b id="vA"></b><i>Blende</i></div>
+    <div><b id="vT"></b><i>Zeit</i></div>
+    <div><b id="vI"></b><i>ISO</i></div>
+  </div>
   <div class="lab"><span>Ausgleich über</span></div>
   <div class="seg" style="margin-bottom:14px">
     <button id="modeT" class="on">Zeit zieht nach</button>
@@ -201,7 +326,7 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
   </div>
 </div>
 
-<div class="card">
+<div class="card disp">
   <div class="lab"><span>Filter gesamt</span><span class="ev" id="fStops"></span></div>
   <div class="small">Zeit mit Filter</div>
   <div class="big" id="fRes"></div>
@@ -315,7 +440,7 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
 Blitz: Godox V860III-S (Sony-Schuh). Synchronzeit ohne HSS: 1/250 s.
 </div>
 
-<p class="small" style="text-align:center;opacity:.6;margin:18px 0 0">Version 7</p>
+<p class="small" style="text-align:center;opacity:.6;margin:18px 0 0">Version 8</p>
 </section>
 <!-- ============ SPICKZETTEL ============ -->
 <section class="tab" id="t-spick">
@@ -493,6 +618,9 @@ function render(){
   fill($("mA"),apItems(),S.m.a);fill($("mT"),shItems(SH.length-1),S.m.t);fill($("mI"),ISOI,S.m.i);
   // Neu
   fill($("cA"),apItems(),S.c.a);fill($("cT"),shItems(SH.length-1),S.c.t);fill($("cI"),ISOI,S.c.i);
+  $("vA").textContent="F"+AP[S.c.a];
+  $("vT").textContent=SH[S.c.t].l.replace('"',"″").replace("BULB ","");
+  $("vI").textContent=String(ISO[S.c.i]);
   var eA=-(S.c.a-S.m.a),eT=S.c.t-S.m.t,eI=S.c.i-S.m.i;
   [["evA",eA],["evT",eT],["evI",eI]].forEach(function(x){var e=$(x[0]);e.textContent=evTxt(x[1]);e.className="ev"+(x[1]?"":" z")});
   var dev=eA+eT+eI;
@@ -540,6 +668,7 @@ function applyRoute(scroll){
   for(i=0;i<tabs.length;i++)tabs[i].classList.toggle("on",tabs[i].id===r.id);
   document.body.classList.toggle("hdr",r.h!=="start");
   $("htitle").textContent=r.h==="start"?"":r.n;
+  $("hicon").setAttribute("href","#i-"+r.h);
   var mi=document.querySelectorAll("#menu button");
   for(i=0;i<mi.length;i++)mi[i].classList.toggle("on",mi[i].getAttribute("data-route")===r.h);
   menuOpen(false);
@@ -646,6 +775,7 @@ function hwRender(){
     if(on)n++;
   }
   $("hwProg").textContent=n+" von "+d.length+" erledigt";
+  var tp=$("tileProg");if(tp)tp.textContent=n+" / "+d.length;
 }
 (function(){
   var c=document.querySelectorAll(".hwc");
