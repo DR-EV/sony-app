@@ -346,6 +346,57 @@ details.sit[open] .sita{color:var(--ac);transform:rotate(90deg)}
 #t-grund .card p{margin:0 0 10px}
 #t-grund .card p:last-of-type{margin-bottom:0}
 
+/* ---------- Fehlersuche ---------- */
+.cau{border-top:1px solid var(--line);padding-top:var(--s2);margin-top:var(--s2)}
+.caun{font-size:17px;font-weight:800;color:var(--ac2);margin-bottom:4px}
+ol.stp2{margin:0;padding-left:0;list-style:none;counter-reset:s2}
+ol.stp2>li{counter-increment:s2;position:relative;padding-left:32px;margin:0 0 10px;
+           font-size:16px;line-height:1.5}
+ol.stp2>li::before{content:counter(s2);position:absolute;left:0;top:0;width:22px;height:22px;
+  border-radius:50%;background:var(--acd);border:1px solid var(--acb);color:var(--ac);
+  font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* ---------- Checkliste ---------- */
+.ckrow{display:flex;align-items:flex-start;gap:12px;padding:12px 0;min-height:56px;
+       border-bottom:1px solid var(--line);font-size:16px;line-height:1.45}
+.ckrow:last-child{border-bottom:0}
+.ckrow input{flex:0 0 30px;width:30px;height:30px;margin:0;accent-color:var(--ac)}
+.ckrow span{flex:1;padding-top:3px}
+.ckrow input:checked+span{color:var(--ok);text-decoration:line-through}
+/* ---------- Eingabefelder ---------- */
+input[type=date],input[type=number],input[type=text],textarea{
+  -webkit-appearance:none;appearance:none;width:100%;min-height:56px;border-radius:var(--r2);
+  border:1px solid var(--line2);background:var(--bg2);color:var(--tx);
+  font-family:inherit;font-size:17px;font-weight:600;padding:12px 14px}
+textarea{min-height:150px;line-height:1.5;resize:vertical}
+input::placeholder,textarea::placeholder{color:var(--mu)}
+/* ---------- Sonnenstand ---------- */
+.snrow{display:flex;align-items:baseline;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}
+.snrow:last-child{border-bottom:0}
+.snrow .n{flex:1;font-size:16px;color:var(--mu);font-weight:600}
+.snrow .v{font-size:20px;font-weight:800;color:var(--ac);font-variant-numeric:tabular-nums;white-space:nowrap}
+.snrow .v.sm{font-size:17px;color:var(--tx)}
+.moonw{display:flex;align-items:center;gap:16px;margin-bottom:var(--s2)}
+.moonw svg{flex:0 0 64px}
+/* ---------- Sterne ---------- */
+.stbox{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r2);
+       padding:14px 10px;text-align:center}
+.stbox.alt{border-style:dashed;opacity:.75}
+.stbox b{display:block;font-size:30px;font-weight:800;color:var(--ac);
+         letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stbox.alt b{color:var(--mu)}
+.stbox i{display:block;font-style:normal;font-size:15px;color:var(--mu);font-weight:600;margin-top:4px;line-height:1.3}
+/* ---------- Notizen ---------- */
+.ntrow{border:1px solid var(--line);border-radius:var(--r2);background:var(--bg2);
+       padding:12px 14px;margin-bottom:10px}
+.ntrow .h{display:flex;align-items:baseline;gap:10px}
+.ntrow .t{flex:1;font-size:17px;font-weight:800;color:var(--tx)}
+.ntrow .d{font-size:15px;color:var(--mu);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ntrow .b{font-size:16px;color:var(--mu);line-height:1.5;margin-top:6px;white-space:pre-wrap;
+          overflow-wrap:break-word}
+.ntdel{min-height:56px;width:100%;margin-top:10px;border-radius:var(--r2);
+  border:1px solid rgba(248,113,113,.45);background:var(--erd);color:#ffd9d9;
+  font-size:16px;font-weight:700;font-family:inherit}
+
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
@@ -357,7 +408,7 @@ details.sit[open] .sita{color:var(--ac);transform:rotate(90deg)}
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 </head>
 <body>
-<svg class="sprite" aria-hidden="true" focusable="false"><symbol id="i-start" viewBox="0 0 24 24"><path d="M3.5 11.2 12 4.3l8.5 6.9"/><path d="M6.2 10.2v9.5h11.6v-9.5"/></symbol><symbol id="i-rechner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><path d="M12 3.6v8.4l7.3 4.2M12 12l-7.3 4.2M12 12l7.3-4.2"/></symbol><symbol id="i-filter" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.8"/><path d="M12 3.6v4.6M12 15.8v4.6"/></symbol><symbol id="i-objektive" viewBox="0 0 24 24"><rect x="2.8" y="7.6" width="13.2" height="8.8" rx="2"/><path d="M6.5 7.6v8.8M9.9 7.6v8.8"/><path d="m16 9.8 5.2-2.6v9.6L16 14.2z"/></symbol><symbol id="i-kamera" viewBox="0 0 24 24"><path d="M3.6 8.3h3.1l1.5-2.2h5.6l1.5 2.2h3.1A1.6 1.6 0 0 1 20 9.9v7.5a1.6 1.6 0 0 1-1.6 1.6H3.6A1.6 1.6 0 0 1 2 17.4V9.9a1.6 1.6 0 0 1 1.6-1.6z"/><circle cx="11" cy="13.4" r="3.3"/></symbol><symbol id="i-spickzettel" viewBox="0 0 24 24"><rect x="3.2" y="4.8" width="17.6" height="14.4" rx="2.4"/><path d="M3.2 9.3h17.6M7.2 12.9h8.6M7.2 16.1h5.6"/></symbol><symbol id="i-hausaufgabe" viewBox="0 0 24 24"><path d="m3.4 7.3 1.6 1.6 2.8-3.2M3.4 13.3 5 14.9l2.8-3.2M3.4 19.3 5 20.9l2.8-3.2"/><path d="M11.5 7.4h9.1M11.5 13.4h9.1M11.5 19.4h6.6"/></symbol><symbol id="i-gestaltung" viewBox="0 0 24 24"><rect x="3.2" y="5" width="17.6" height="14" rx="2"/><path d="M9.1 5v14M14.9 5v14M3.2 9.7h17.6M3.2 14.3h17.6"/></symbol><symbol id="i-symbole" viewBox="0 0 24 24"><circle cx="7.5" cy="7.5" r="3.4"/><rect x="13.6" y="4.1" width="6.8" height="6.8" rx="1.6"/><rect x="3.6" y="13.4" width="6.8" height="6.8" rx="1.6"/><path d="m17 13.2 3.4 6.8h-6.8z"/></symbol><symbol id="i-situationen" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></symbol><symbol id="i-grundlagen" viewBox="0 0 24 24"><path d="M12 6.6C10.2 5.2 7.8 4.6 4.4 4.6v12.8c3.4 0 5.8.6 7.6 2 1.8-1.4 4.2-2 7.6-2V4.6c-3.4 0-5.8.6-7.6 2z"/><path d="M12 6.6v12.8"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7.5h16M4 12h16M4 16.5h16"/></symbol><symbol id="i-einfach" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M9.7 9.5a2.4 2.4 0 0 1 4.7.6c0 1.6-2.3 1.9-2.3 3.4"/><path d="M12 17.2h.01"/></symbol></svg>
+<svg class="sprite" aria-hidden="true" focusable="false"><symbol id="i-start" viewBox="0 0 24 24"><path d="M3.5 11.2 12 4.3l8.5 6.9"/><path d="M6.2 10.2v9.5h11.6v-9.5"/></symbol><symbol id="i-rechner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><path d="M12 3.6v8.4l7.3 4.2M12 12l-7.3 4.2M12 12l7.3-4.2"/></symbol><symbol id="i-filter" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.8"/><path d="M12 3.6v4.6M12 15.8v4.6"/></symbol><symbol id="i-objektive" viewBox="0 0 24 24"><rect x="2.8" y="7.6" width="13.2" height="8.8" rx="2"/><path d="M6.5 7.6v8.8M9.9 7.6v8.8"/><path d="m16 9.8 5.2-2.6v9.6L16 14.2z"/></symbol><symbol id="i-kamera" viewBox="0 0 24 24"><path d="M3.6 8.3h3.1l1.5-2.2h5.6l1.5 2.2h3.1A1.6 1.6 0 0 1 20 9.9v7.5a1.6 1.6 0 0 1-1.6 1.6H3.6A1.6 1.6 0 0 1 2 17.4V9.9a1.6 1.6 0 0 1 1.6-1.6z"/><circle cx="11" cy="13.4" r="3.3"/></symbol><symbol id="i-spickzettel" viewBox="0 0 24 24"><rect x="3.2" y="4.8" width="17.6" height="14.4" rx="2.4"/><path d="M3.2 9.3h17.6M7.2 12.9h8.6M7.2 16.1h5.6"/></symbol><symbol id="i-hausaufgabe" viewBox="0 0 24 24"><path d="m3.4 7.3 1.6 1.6 2.8-3.2M3.4 13.3 5 14.9l2.8-3.2M3.4 19.3 5 20.9l2.8-3.2"/><path d="M11.5 7.4h9.1M11.5 13.4h9.1M11.5 19.4h6.6"/></symbol><symbol id="i-gestaltung" viewBox="0 0 24 24"><rect x="3.2" y="5" width="17.6" height="14" rx="2"/><path d="M9.1 5v14M14.9 5v14M3.2 9.7h17.6M3.2 14.3h17.6"/></symbol><symbol id="i-symbole" viewBox="0 0 24 24"><circle cx="7.5" cy="7.5" r="3.4"/><rect x="13.6" y="4.1" width="6.8" height="6.8" rx="1.6"/><rect x="3.6" y="13.4" width="6.8" height="6.8" rx="1.6"/><path d="m17 13.2 3.4 6.8h-6.8z"/></symbol><symbol id="i-situationen" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></symbol><symbol id="i-grundlagen" viewBox="0 0 24 24"><path d="M12 6.6C10.2 5.2 7.8 4.6 4.4 4.6v12.8c3.4 0 5.8.6 7.6 2 1.8-1.4 4.2-2 7.6-2V4.6c-3.4 0-5.8.6-7.6 2z"/><path d="M12 6.6v12.8"/></symbol><symbol id="i-fehlersuche" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.6"/><path d="m15.4 15.4 4.6 4.6"/><path d="M10.5 7.4v4M10.5 13.6h.01"/></symbol><symbol id="i-checkliste" viewBox="0 0 24 24"><path d="m3.6 7.2 1.6 1.6 2.8-3.2M3.6 13.2l1.6 1.6 2.8-3.2M3.6 19.2l1.6 1.6 2.8-3.2"/><path d="M11.6 7.4h8.8M11.6 13.4h8.8M11.6 19.4h6"/></symbol><symbol id="i-bildbesprechung" viewBox="0 0 24 24"><rect x="3.2" y="4.6" width="17.6" height="12.4" rx="2"/><path d="m7.4 21 2.6-4M16.6 21 14 17"/><circle cx="12" cy="10.8" r="2.6"/></symbol><symbol id="i-sonnenstand" viewBox="0 0 24 24"><circle cx="12" cy="12.6" r="4"/><path d="M12 5.2v-2M12 22v-2M4.6 12.6h-2M21.4 12.6h2M6.8 7.4 5.4 6M17.2 17.8l1.4 1.4M17.2 7.4 18.6 6M6.8 17.8 5.4 19.2"/></symbol><symbol id="i-schaerfentiefe" viewBox="0 0 24 24"><path d="M3 18.4h18"/><circle cx="6.4" cy="12.4" r="2.6"/><circle cx="12" cy="11" r="3.4"/><circle cx="18.4" cy="12.4" r="2"/><path d="M8.6 21h6.8"/></symbol><symbol id="i-sterne" viewBox="0 0 24 24"><path d="m12 3.4 1.9 4.2 4.6.5-3.4 3.1.9 4.5L12 13.5l-4 2.2.9-4.5L5.5 8.1l4.6-.5z"/><path d="M19.4 17.6h.01M5 19.8h.01M17.8 4.6h.01"/></symbol><symbol id="i-glossar" viewBox="0 0 24 24"><rect x="4" y="3.6" width="16" height="16.8" rx="2"/><path d="M8 3.6v16.8M11 8h6M11 12h6M11 16h4"/></symbol><symbol id="i-notizen" viewBox="0 0 24 24"><path d="M19.4 5.6v13.2a1.6 1.6 0 0 1-1.6 1.6H6.2a1.6 1.6 0 0 1-1.6-1.6V5.2a1.6 1.6 0 0 1 1.6-1.6h8.2z"/><path d="M8.4 9.6h7.2M8.4 13.2h7.2M8.4 16.6h4.4"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7.5h16M4 12h16M4 16.5h16"/></symbol><symbol id="i-einfach" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M9.7 9.5a2.4 2.4 0 0 1 4.7.6c0 1.6-2.3 1.9-2.3 3.4"/><path d="M12 17.2h.01"/></symbol></svg>
 <header>
   <div class="hrow"><span class="hic"><svg class="ic" aria-hidden="true"><use id="hicon" href="#i-start"/></svg></span><div class="ht" id="htitle"></div><button id="mbtn" aria-expanded="false" aria-label="Men&uuml;"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg></button></div>
   <div id="menu"><div class="mw">
@@ -370,6 +421,14 @@ details.sit[open] .sita{color:var(--ac);transform:rotate(90deg)}
     <button data-route="filter"><svg class="ic" aria-hidden="true"><use href="#i-filter"/></svg><span>Filter</span></button>
     <button data-route="rechner"><svg class="ic" aria-hidden="true"><use href="#i-rechner"/></svg><span>Rechner</span></button>
     <button data-route="kamera"><svg class="ic" aria-hidden="true"><use href="#i-kamera"/></svg><span>Kamera</span></button>
+    <button data-route="fehlersuche"><svg class="ic" aria-hidden="true"><use href="#i-fehlersuche"/></svg><span>Fehlersuche</span></button>
+    <button data-route="checkliste"><svg class="ic" aria-hidden="true"><use href="#i-checkliste"/></svg><span>Checkliste</span></button>
+    <button data-route="bildbesprechung"><svg class="ic" aria-hidden="true"><use href="#i-bildbesprechung"/></svg><span>Bildbesprechung</span></button>
+    <button data-route="sonnenstand"><svg class="ic" aria-hidden="true"><use href="#i-sonnenstand"/></svg><span>Sonnenstand</span></button>
+    <button data-route="schaerfentiefe"><svg class="ic" aria-hidden="true"><use href="#i-schaerfentiefe"/></svg><span>Sch&auml;rfentiefe</span></button>
+    <button data-route="sterne"><svg class="ic" aria-hidden="true"><use href="#i-sterne"/></svg><span>Sterne</span></button>
+    <button data-route="glossar"><svg class="ic" aria-hidden="true"><use href="#i-glossar"/></svg><span>Glossar</span></button>
+    <button data-route="notizen"><svg class="ic" aria-hidden="true"><use href="#i-notizen"/></svg><span>Notizen</span></button>
     <button data-route="spickzettel"><svg class="ic" aria-hidden="true"><use href="#i-spickzettel"/></svg><span>Spickzettel</span></button>
     <button data-route="hausaufgabe"><svg class="ic" aria-hidden="true"><use href="#i-hausaufgabe"/></svg><span>Hausaufgabe</span></button>
     <button data-route="einfach"><svg class="ic" aria-hidden="true"><use href="#i-einfach"/></svg><span>Einfach erkl&auml;rt</span></button>
@@ -391,6 +450,14 @@ details.sit[open] .sita{color:var(--ac);transform:rotate(90deg)}
 <button class="tile" data-route="filter"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-filter"/></svg></span><b>Filter</b><i>ND und CPL umrechnen</i></button>
 <button class="tile" data-route="rechner"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-rechner"/></svg></span><b>Rechner</b><i>Blende, Zeit und ISO umrechnen</i></button>
 <button class="tile" data-route="kamera"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-kamera"/></svg></span><b>Kamera</b><i>Meine Einstellungen und Tasten</i></button>
+<button class="tile" data-route="fehlersuche"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-fehlersuche"/></svg></span><b>Fehlersuche</b><i>Was ist schiefgelaufen</i></button>
+<button class="tile" data-route="checkliste"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-checkliste"/></svg></span><b>Checkliste</b><i>Vor dem Losgehen</i></button>
+<button class="tile" data-route="bildbesprechung"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-bildbesprechung"/></svg></span><b>Bildbesprechung</b><i>Mein Bild selbst pr&uuml;fen</i></button>
+<button class="tile" data-route="sonnenstand"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-sonnenstand"/></svg></span><b>Sonnenstand</b><i>Gold, Blau, Dunkelheit, Mond</i></button>
+<button class="tile" data-route="schaerfentiefe"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-schaerfentiefe"/></svg></span><b>Sch&auml;rfentiefe</b><i>Von wo bis wo ist es scharf</i></button>
+<button class="tile" data-route="sterne"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-sterne"/></svg></span><b>Sterne</b><i>L&auml;ngste Zeit ohne Striche</i></button>
+<button class="tile" data-route="glossar"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-glossar"/></svg></span><b>Glossar</b><i>Begriffe von A bis Z</i></button>
+<button class="tile" data-route="notizen"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-notizen"/></svg></span><b>Notizen</b><i>Mitschreiben im Kurs</i></button>
 </div>
 </section>
 
@@ -595,7 +662,7 @@ details.sit[open] .sita{color:var(--ac);transform:rotate(90deg)}
 Blitz: Godox V860III-S (Sony-Schuh). Synchronzeit ohne HSS: 1/250 s.
 </div>
 
-<p class="small" style="text-align:center;opacity:.6;margin:18px 0 0">Version 11</p>
+<p class="small" style="text-align:center;opacity:.6;margin:18px 0 0">Version 12</p>
 </section>
 <!-- ============ SPICKZETTEL ============ -->
 <section class="tab" id="t-spick">
@@ -827,6 +894,239 @@ Blitz: Godox V860III-S (Sony-Schuh). Synchronzeit ohne HSS: 1/250 s.
 <details class="sit" data-sit="panorama"><summary><span class="sitt"><b>Panorama</b><i>Mehrere Bilder zu einem breiten</i></span><span class="sita">▸</span></summary><div class="sitb"><ol><li><span class="st">Objektiv</span>Standard <b>24-70</b> bei etwa <b>35 mm</b>. Mit 16 mm verzieht es die Ränder zu stark.</li><li><span class="st">Moduswahlrad &amp; Blende</span>Moduswahlrad auf <b>M</b>. Alle Teilbilder müssen exakt gleich belichtet sein.</li><li><span class="st">Fokusmodus &uuml;ber C3</span><b>AF-S</b>: einmal scharf stellen, dann auf <b>MF</b> umschalten.</li><li><span class="st">Fokusfeld &uuml;ber C2</span><b>Spot M</b> für das eine Scharfstellen am Anfang.</li><li><span class="st">Weitere Schritte</span><ul><li>Belichtung einmal messen und in M fest einstellen – Blende, Zeit und ISO nicht mehr ändern.</li><li>Weißabgleich fest wählen, nicht auf AWB lassen.</li><li>Stativ waagerecht ausrichten, Wasserwaage über <b>DISP</b> prüfen.</li><li>Von links nach rechts drehen und jedes Bild etwa ein Drittel überlappen lassen.</li></ul></li></ol><div class="warnb"><span class="k">Achtung</span>Bleibt etwas auf Automatik, werden die Teilbilder unterschiedlich hell und die Nahtstellen sieht man später.</div><div class="moreb"><span class="k">Mehr Wirkung</span>Im Hochformat fotografieren und mehr Bilder machen – das gibt ein höheres, detailreicheres Panorama.</div></div></details>
 </section>
 
+<!-- ============ FEHLERSUCHE ============ -->
+<section class="tab" id="t-fehler">
+<h1>Fehlersuche</h1>
+<p class="sub">Was ist am Bild schiefgelaufen &ndash; und was hilft dagegen.</p>
+<div class="card" id="f-unscharf"><h3 style="margin-top:0">Das Bild ist unscharf</h3><svg class="sk" viewBox="0 0 200 130" role="img" aria-label="Skizze"><rect class="f" x="6" y="10" width="58" height="62" rx="4"/><circle class="d" cx="33" cy="41" r="15"/><circle class="a" cx="37" cy="44" r="15"/><text x="8" y="88" class="tx">verwackelt</text><text x="8" y="100" class="tx">Doppelkonturen</text><rect class="f" x="71" y="10" width="58" height="62" rx="4"/><circle class="d" cx="92" cy="46" r="14"/><circle class="a" cx="116" cy="28" r="8"/><text x="73" y="88" class="tx">falsch fokussiert</text><text x="73" y="100" class="tx">anderes ist scharf</text><rect class="f" x="136" y="10" width="58" height="62" rx="4"/><path class="d" d="M148 41h34M150 47h30M152 35h28"/><path class="a" d="M142 66h46M142 16h46"/><text x="138" y="88" class="tx">Bewegung</text><text x="138" y="100" class="tx">nur Motiv weich</text></svg><div class="cau"><div class="caun">Verwackelt</div><p class="small" style="margin:0 0 8px">Das ganze Bild ist gleichmäßig weich, Kanten haben oft Doppelkonturen. Auch der Hintergrund ist unscharf.</p><ol class="stp2"><li>Kürzere Zeit wählen. Faustregel: 1 geteilt durch die Brennweite, bei deiner A7R V wegen der 61 Megapixel lieber noch eine Stufe kürzer.</li><li>Reicht das Licht nicht, ISO hochdrehen – Körnung ist besser als Wackeln.</li><li>SteadyShot prüfen: <span class="path">Aufnahme › Bildstabilisierung › SteadyShot</span>. Auf dem Stativ ausschalten, aus der Hand einschalten.</li><li>Kamera abstützen: Geländer, Mauer, Ellenbogen an den Körper. Beim 100-400 hilft der Griff am Objektiv.</li></ol></div><div class="cau"><div class="caun">Falsch fokussiert</div><p class="small" style="margin:0 0 8px">Irgendetwas im Bild ist knackscharf – nur nicht dein Motiv. Oft der Hintergrund oder etwas davor.</p><ol class="stp2"><li>Fokusfeld über <b>C2</b> auf <b>Spot M</b> oder <b>Spot S</b> stellen.</li><li>Den Punkt mit dem Joystick gezielt auf das Motiv legen, bei Menschen und Tieren auf das Auge.</li><li>Mit <b>C4</b> die Fokuslupe aufrufen und vor dem Auslösen prüfen.</li><li>Bei Rahmen, Gittern oder Ästen im Vordergrund findet <b>Breit</b> fast immer das Falsche.</li></ol></div><div class="cau"><div class="caun">Bewegungsunschärfe</div><p class="small" style="margin:0 0 8px">Nur das Motiv ist weich, alles ringsum ist scharf. Typisch bei Tieren, Kindern und Sport.</p><ol class="stp2"><li>Zeit verkürzen. Richtwerte: gehende Menschen 1/250, laufender Hund 1/1000, Vogel im Flug 1/1600 bis 1/2000.</li><li>Reicht das Licht nicht, Blende öffnen und dann erst ISO hochdrehen.</li><li>In Modus <b>S</b> wechseln und die Zeit fest vorgeben – dann kann die Kamera sie nicht mehr verlängern.</li><li>Mit Serie Hi mehrere Bilder machen, eines sitzt meist.</li></ol></div></div>
+<div class="card" id="f-dunkel"><h3 style="margin-top:0">Das Bild ist zu dunkel</h3><svg class="sk" viewBox="0 0 200 130" role="img" aria-label="Skizze"><path class="f" d="M14 96h172M14 96V22"/><path class="a" d="M14 96c8 0 10-50 22-50s16 44 26 44 14-10 24-10 12 12 22 12h78"/><text x="16" y="112" class="tx">alles links = zu dunkel</text></svg><div class="cau"><div class="caun">Kamera hat sich vom Licht täuschen lassen</div><p class="small" style="margin:0 0 8px">Viel Helles im Bild – Himmel, Schnee, Sand – lässt die Kamera zu dunkel belichten.</p><ol class="stp2"><li>Belichtungskorrektur über <b>C1</b> ins <b>Plus</b> drehen, bei Schnee und hellem Sand ruhig +1 bis +2.</li><li>Messmodus prüfen: <span class="path">Belichtung/Farbe › Messung › Messmodus</span>. <b>Multi</b> ist der Normalfall.</li><li>Soll nur ein kleiner Teil stimmen, zum Beispiel ein Gesicht, auf <b>Spot</b> stellen und den Punkt daraufsetzen.</li><li>Bei Gegenlicht wird dein Motiv fast immer zu dunkel – hier hilft nur die Korrektur über C1 ins Plus.</li><li>Ergebnis am <b>Histogramm</b> prüfen, nicht am Display – das sieht draußen immer zu dunkel aus.</li></ol></div></div>
+<div class="card" id="f-hell"><h3 style="margin-top:0">Das Bild ist zu hell, die Lichter sind weg</h3><svg class="sk" viewBox="0 0 200 130" role="img" aria-label="Skizze"><path class="f" d="M14 96h172M14 96V22"/><path class="a" d="M14 96h74c10 0 12-8 22-8s14-42 26-42 16 50 30 50h20"/><path class="bad" d="M176 96V22"/><text x="14" y="112" class="tx">klebt rechts = Lichter weg</text></svg><div class="cau"><div class="caun">Überbelichtet</div><p class="small" style="margin:0 0 8px">Weiße Stellen ohne jede Zeichnung – dort ist nichts mehr zu retten, auch nicht in der Bearbeitung.</p><ol class="stp2"><li><b>Zebra</b> einschalten: <span class="path">Belichtung/Farbe › Zebra-Anzeige</span>. Es streift genau die Stellen, die zu hell sind.</li><li>Belichtungskorrektur über <b>C1</b> ins <b>Minus</b> drehen, bis das Zebra verschwindet.</li><li>Histogramm mit <b>DISP</b> einblenden: Die Kurve darf den rechten Rand nicht berühren.</li><li>Bei hellem Himmel im Bild lieber etwas zu dunkel belichten – dunkle Stellen lassen sich später aufhellen, weiße nicht.</li><li>Messmodus <b>Highlight</b> achtet von sich aus auf die hellsten Stellen.</li></ol></div></div>
+<div class="card" id="f-farben"><h3 style="margin-top:0">Die Farben stimmen nicht</h3><svg class="sk" viewBox="0 0 200 130" role="img" aria-label="Skizze"><rect class="g" x="10" y="16" width="40" height="40" rx="4"/><text x="12" y="70" class="tx">zu blau</text><rect class="g2" x="58" y="16" width="40" height="40" rx="4"/><text x="60" y="70" class="tx">zu gelb</text><rect class="f" x="106" y="16" width="40" height="40" rx="4"/><text x="108" y="70" class="tx">neutral</text><circle class="s" cx="174" cy="36" r="14"/><text x="152" y="70" class="tx">Kreativlook</text><text x="10" y="98" class="tx">Weißabgleich sagt, welche Farbe</text><text x="10" y="112" class="tx">das Licht hat</text></svg><div class="cau"><div class="caun">Weißabgleich passt nicht</div><p class="small" style="margin:0 0 8px">Alles zieht ins Blaue oder ins Gelbe, obwohl die Belichtung stimmt.</p><ol class="stp2"><li>Weißabgleich auf <b>AWB</b> stellen: <span class="path">Belichtung/Farbe › Weißabgleich › Weißabgleich</span>.</li><li>Bei Kunstlicht oder Schatten eine feste Vorgabe wählen statt AWB.</li><li>Wenn du <b>RAW</b> fotografierst, kannst du den Weißabgleich später verlustfrei ändern – das ist der bequemste Weg.</li></ol></div><div class="cau"><div class="caun">Kreativlook steht noch falsch</div><p class="small" style="margin:0 0 8px">Die Farben sind zu kräftig, zu flau oder schwarzweiß, obwohl du nichts umgestellt hast.</p><ol class="stp2"><li>Nachsehen unter <span class="path">Belichtung/Farbe › Farbe/Ton › Kreativer Look</span>.</li><li>Für den Normalfall auf <b>ST</b> zurückstellen. <b>VV</b> ist kräftig, <b>BW</b> ist schwarzweiß.</li><li>Im Zweifel den aktuellen Speicherplatz noch einmal frisch abrufen – Moduswahlrad auf 1, 2 oder 3.</li></ol></div></div>
+<div class="card" id="f-hintergrund"><h3 style="margin-top:0">Der Hintergrund ist zu unruhig</h3><svg class="sk" viewBox="0 0 200 130" role="img" aria-label="Skizze"><rect class="f" x="6" y="14" width="88" height="62" rx="4"/><path class="d" d="M14 20v50"/><path class="d" d="M24 20v50"/><path class="d" d="M34 20v50"/><path class="d" d="M44 20v50"/><path class="d" d="M54 20v50"/><path class="d" d="M64 20v50"/><path class="d" d="M74 20v50"/><path class="d" d="M84 20v50"/><circle class="a" cx="50" cy="46" r="13"/><text x="8" y="92" class="tx">F8 · alles sichtbar</text><rect class="f" x="106" y="14" width="88" height="62" rx="4"/><circle class="g" cx="118" cy="32" r="8"/><circle class="g" cx="140" cy="58" r="8"/><circle class="g" cx="162" cy="32" r="8"/><circle class="g" cx="184" cy="58" r="8"/><circle class="a" cx="150" cy="46" r="13"/><text x="108" y="92" class="tx">F2.8 · ruhig</text></svg><div class="cau"><div class="caun">Zu viel Schärfentiefe oder schlechter Standort</div><p class="small" style="margin:0 0 8px">Äste, Zäune und Passanten hinter dem Motiv ziehen den Blick weg.</p><ol class="stp2"><li>Blende öffnen: kleinere Zahl, also Richtung <b>F2.8</b>. Der Hintergrund wird weich.</li><li>Standort wechseln: zwei Schritte zur Seite bringen oft mehr als jede Einstellung.</li><li>Tiefer gehen und gegen den Himmel fotografieren statt gegen Gebüsch.</li><li>Längere Brennweite nehmen und weiter weggehen – das <b>24-70</b> bei 70 mm oder das <b>90 Makro</b> lassen den Hintergrund viel weicher werden.</li><li>Mehr Abstand zwischen Motiv und Hintergrund schaffen.</li></ol></div></div>
+<div class="card" id="f-ausloesen"><h3 style="margin-top:0">Die Kamera löst nicht aus</h3><svg class="sk" viewBox="0 0 200 130" role="img" aria-label="Skizze"><path class="f" d="M40 30h3.1l1.5-2.2h5.6l1.5 2.2h3.1A1.6 1.6 0 0 1 56.4 32v7.5a1.6 1.6 0 0 1-1.6 1.6H40a1.6 1.6 0 0 1-1.6-1.6V32A1.6 1.6 0 0 1 40 30z" transform="translate(50,20) scale(1.6)"/><path class="bad" d="M150 40 178 68M178 40l-28 28"/><text x="10" y="104" class="tx">Fokus · Karte · Lautlos</text></svg><div class="cau"><div class="caun">Autofokus findet nichts</div><p class="small" style="margin:0 0 8px">Du drückst ab, aber nichts passiert. Meist bei glatten Flächen, im Dunkeln oder bei sehr nahen Motiven.</p><ol class="stp2"><li>Auf eine kontrastreiche Kante zielen statt auf eine glatte Fläche wie Himmel, Wasser oder eine weiße Wand.</li><li>Prüfen, ob du die <b>Naheinstellgrenze</b> unterschreitest: Das 90 Makro kommt auf 0,28 m heran, das 100-400 erst auf 0,98 m.</li><li>Im Dunkeln über <b>C3</b> auf <b>MF</b> wechseln und mit <b>C4</b> von Hand scharf stellen.</li></ol></div><div class="cau"><div class="caun">Karte fehlt, ist voll oder gesperrt</div><p class="small" style="margin:0 0 8px">Die Kamera zeigt eine Meldung oder gar keine Bildnummer mehr an.</p><ol class="stp2"><li>Beide Slots prüfen – die A7R V hat zwei. <span class="path">Aufnahme › Medien › Aufn.-Medien-Einst.</span></li><li>Schreibschutzschieber an der SD-Karte prüfen.</li><li>Karte in der Kamera formatieren, nicht am Rechner.</li></ol></div><div class="cau"><div class="caun">Es ist nur leise</div><p class="small" style="margin:0 0 8px">Die Kamera nimmt auf, du hörst es nur nicht.</p><ol class="stp2"><li>Lautlos-Modus prüfen: <span class="path">Aufnahme › Verschluss/Lautlos › Lautlose Modus-Einstlg.</span></li><li>Auf die Bildnummer im Sucher achten – zählt sie hoch, hat die Kamera ausgelöst.</li></ol></div></div>
+<div class="card" id="f-flau"><h3 style="margin-top:0">Die Bilder wirken flau bei Sonne</h3><svg class="sk" viewBox="0 0 200 130" role="img" aria-label="Skizze"><rect class="f" x="6" y="14" width="88" height="62" rx="4"/><path class="d" d="M10 40h80M10 50h80M10 60h80"/><text x="8" y="92" class="tx">ohne Polfilter</text><rect class="f" x="106" y="14" width="88" height="62" rx="4"/><path class="a" d="M110 32c20-10 48-10 80 0"/><path class="f" d="M110 60h80"/><text x="108" y="92" class="tx">mit Polfilter</text><text x="8" y="116" class="tx">dreh ihn, bis der Effekt am stärksten ist</text></svg><div class="cau"><div class="caun">Dunst und Spiegelungen nehmen den Kontrast</div><p class="small" style="margin:0 0 8px">Der Himmel ist blass, nasses Laub und Wasser glänzen milchig.</p><ol class="stp2"><li>Den <b>Polfilter (CPL)</b> aus deinem Nano-X-Set aufsetzen. Das 82-mm-Set passt direkt ans <b>16-35</b> und ans <b>24-70</b>.</li><li>Ans <b>90 Makro</b> mit Step-up-Ring 62→82, ans <b>100-400</b> mit 77→82.</li><li>Den Filter drehen und dabei durch den Sucher schauen, bis Spiegelungen und Dunst am schwächsten sind.</li><li>Am stärksten wirkt er im rechten Winkel zur Sonne, also wenn die Sonne seitlich steht.</li><li>Er kostet etwa 1,5 Blendenstufen Licht – bei wenig Licht wieder abnehmen.</li><li>Bei sehr weitem Blickwinkel wie 16 mm kann der Himmel ungleichmäßig dunkel werden.</li></ol></div></div>
+</section>
+
+<!-- ============ CHECKLISTE ============ -->
+<section class="tab" id="t-check">
+<h1>Checkliste</h1>
+<p class="sub">Kurz durchgehen, bevor du losgehst.</p>
+<div class="card">
+<label class="ckrow"><input type="checkbox" class="ckc"><span>Beide Akkus geladen – auch der zweite im VG-C4EM</span></label>
+<label class="ckrow"><input type="checkbox" class="ckc"><span>Speicherkarten in beiden Slots, in der Kamera formatiert</span></label>
+<label class="ckrow"><input type="checkbox" class="ckc"><span>Speicherplatz auf Standard zurückgestellt (Moduswahlrad 1, 2 oder 3)</span></label>
+<label class="ckrow"><input type="checkbox" class="ckc"><span>Belichtungskorrektur über C1 auf 0 zurückgedreht</span></label>
+<label class="ckrow"><input type="checkbox" class="ckc"><span>ISO Auto aktiv, Unter- und Obergrenze passend zum Vorhaben</span></label>
+<label class="ckrow"><input type="checkbox" class="ckc"><span>Weißabgleich auf AWB</span></label>
+<label class="ckrow"><input type="checkbox" class="ckc"><span>Dateiformat auf RAW + JPEG</span></label>
+<label class="ckrow"><input type="checkbox" class="ckc"><span>Objektive eingepackt und Gegenlichtblenden dabei</span></label>
+<label class="ckrow"><input type="checkbox" class="ckc"><span>Filter dabei: ND-Set, CPL, Step-up-Ringe</span></label>
+<label class="ckrow"><input type="checkbox" class="ckc"><span>Stativ eingepackt</span></label>
+<label class="ckrow"><input type="checkbox" class="ckc"><span>Fernauslöser über die Creators' App am Handy getestet</span></label>
+<label class="ckrow"><input type="checkbox" class="ckc"><span>Frontlinsen und hintere Linsen sauber</span></label>
+<label class="ckrow"><input type="checkbox" class="ckc"><span>GPS-Standortverknüpfung aktiv, Bluetooth zum Handy verbunden</span></label>
+</div>
+<div class="card">
+  <div class="prog" id="ckProg"></div>
+  <button class="btn mt" id="ckReset" style="width:100%">Haken zur&uuml;cksetzen</button>
+  <p class="small mt">Die Haken werden nicht gespeichert. Beim n&auml;chsten &Ouml;ffnen der App ist die Liste wieder leer.</p>
+</div>
+</section>
+
+<!-- ============ BILDBESPRECHUNG ============ -->
+<section class="tab" id="t-bespr">
+<h1>Bildbesprechung</h1>
+<p class="sub">Neun Fragen, die ich mir vor der Gruppe selbst stelle.</p>
+<div class="card"><h3 style="margin-top:0">1 &middot; Was war meine Absicht?</h3><p style="margin:0">Was wollte ich zeigen? Und erkennt man das im Bild, ohne dass ich es erkläre?</p></div>
+<div class="card"><h3 style="margin-top:0">2 &middot; Wo bleibt das Auge zuerst hängen?</h3><p style="margin:0">Schau das Bild kurz an und weg. Woran bleibt der Blick hängen – und ist das wirklich mein Motiv?</p></div>
+<div class="card"><h3 style="margin-top:0">3 &middot; Stört etwas am Rand?</h3><p style="margin:0">Ein Mülleimer, ein halber Arm, ein heller Fleck. Hätte ich das beim Fotografieren wegschneiden können?</p></div>
+<div class="card"><h3 style="margin-top:0">4 &middot; Ist der Horizont gerade?</h3><p style="margin:0">Besonders bei Wasser fällt jede Schräge sofort auf.</p></div>
+<div class="card"><h3 style="margin-top:0">5 &middot; Hätte ein anderer Standpunkt mehr gebracht?</h3><p style="margin:0">Tiefer, höher, zwei Schritte zur Seite, Hoch- statt Querformat?</p></div>
+<div class="card"><h3 style="margin-top:0">6 &middot; War die Blende richtig?</h3><p style="margin:0">Passt die Schärfentiefe zu dem, was ich zeigen wollte – oder ist zu viel oder zu wenig scharf?</p></div>
+<div class="card"><h3 style="margin-top:0">7 &middot; Ist das Wichtigste scharf?</h3><p style="margin:0">Bei Menschen und Tieren: Sitzt die Schärfe auf dem Auge?</p></div>
+<div class="card"><h3 style="margin-top:0">8 &middot; Stimmen Lichter und Tiefen?</h3><p style="margin:0">Sind helle Stellen noch gezeichnet, sind dunkle Stellen nicht einfach schwarz?</p></div>
+<div class="card"><h3 style="margin-top:0">9 &middot; Was mache ich beim nächsten Mal anders?</h3><p style="margin:0">Ein konkreter Satz. Der ist mehr wert als die ganze übrige Liste.</p></div>
+</section>
+
+<!-- ============ SONNENSTAND ============ -->
+<section class="tab" id="t-sonne">
+<h1>Sonnenstand</h1>
+<p class="sub">Offline gerechnet &ndash; ohne Internet, ohne Standortfreigabe.</p>
+<div class="card">
+  <h2>Ort und Datum</h2>
+  <div class="lab"><span>Datum</span></div>
+  <input type="date" id="snDate">
+  <div class="g2 mt">
+    <div><div class="lab"><span>Breite &deg;N</span></div><input type="number" id="snLat" step="0.0001" inputmode="decimal"></div>
+    <div><div class="lab"><span>L&auml;nge &deg;O</span></div><input type="number" id="snLng" step="0.0001" inputmode="decimal"></div>
+  </div>
+  <button class="btn mt" id="snReset" style="width:100%">Zur&uuml;ck auf Sankt Wendel &amp; heute</button>
+</div>
+<div class="card disp">
+  <h2>Sonne</h2>
+  <div id="snSun"></div>
+</div>
+<div class="card">
+  <h2>Mond</h2>
+  <div id="snMoon"></div>
+</div>
+<div class="card">
+  <h2>Wof&uuml;r die Zeitfenster gut sind</h2>
+  <table class="kv">
+  <tr><td>Goldene Stunde</td><td>Warmes, flaches Licht mit langen Schatten. Landschaft und Portr&auml;t.</td></tr>
+  <tr><td>Blaue Stunde</td><td>K&uuml;hles, gleichm&auml;&szlig;iges Licht. Stadt, Wasser, Architektur mit Kunstlicht.</td></tr>
+  <tr><td>Astronomische Dunkelheit</td><td>Sonne mehr als 18&deg; unter dem Horizont. Erst dann sind Sterne und Milchstra&szlig;e richtig zu sehen.</td></tr>
+  </table>
+  <p class="small mt">Blaue Stunde hier: Sonne zwischen 8&deg; und 4&deg; unter dem Horizont. Goldene Stunde: von Sonnenauf- bzw. -untergang bis 6&deg; &uuml;ber dem Horizont.</p>
+</div>
+</section>
+
+<!-- ============ SCHAERFENTIEFE ============ -->
+<section class="tab" id="t-dof">
+<h1>Sch&auml;rfentiefe</h1>
+<p class="sub">Von wo bis wo ist es scharf &ndash; gerechnet f&uuml;r deine Objektive.</p>
+<div class="card">
+  <div class="lab"><span>Objektiv</span></div>
+  <select id="dfLens"></select>
+  <div id="dfFocalBox" class="mt">
+    <div class="lab"><span>Brennweite</span><span id="dfFocalTxt" style="color:var(--tx)"></span></div>
+    <input type="range" id="dfFocal">
+  </div>
+  <div class="g2 mt">
+    <div><div class="lab"><span>Blende</span></div><select id="dfAp"></select></div>
+    <div><div class="lab"><span>Entfernung</span></div><select id="dfDist"></select></div>
+  </div>
+</div>
+<div class="card disp">
+  <h2>Ergebnis</h2>
+  <div class="vals">
+    <div><b id="dfNear"></b><i>Nahgrenze</i></div>
+    <div><b id="dfFar"></b><i>Ferngrenze</i></div>
+    <div><b id="dfTot"></b><i>Tiefe</i></div>
+  </div>
+  <div class="lab mt"><span>Hyperfokaldistanz</span><span class="ev" id="dfHyp"></span></div>
+  <div class="small">Stell auf diese Entfernung scharf, dann ist von der H&auml;lfte davon bis unendlich alles scharf.</div>
+  <div id="dfMsg"></div>
+</div>
+<div class="card">
+  <h2>Landschaft: wohin fokussieren bei F8</h2>
+  <div class="tw"><table class="tl" id="dfTable"></table></div>
+  <p class="small mt">Stell auf die Entfernung in der Spalte &bdquo;fokussieren auf&ldquo; scharf &ndash; dann reicht die Sch&auml;rfe von der Nahgrenze bis unendlich.</p>
+</div>
+<div class="card">
+  <p class="small" style="margin:0"><b>Warum 0,015 mm statt der &uuml;blichen 0,03 mm?</b> Der Zerstreuungskreis sagt, wie gro&szlig; ein Unsch&auml;rfefleck sein darf, damit er noch als Punkt durchgeht. Die &uuml;bliche Angabe f&uuml;r Vollformat stammt aus der Zeit von Abz&uuml;gen in Postkartengr&ouml;&szlig;e. Deine A7R V l&ouml;st mit <b>61 Megapixeln</b> so fein auf, dass du beim Vergr&ouml;&szlig;ern auf 100 % jeden dieser Flecken siehst. Mit dem strengeren Wert bekommst du Zahlen, die auch am Bildschirm noch halten.</p>
+</div>
+</section>
+
+<!-- ============ STERNE ============ -->
+<section class="tab" id="t-sterne">
+<h1>Sterne</h1>
+<p class="sub">L&auml;ngste Belichtung, bevor aus Punkten Striche werden.</p>
+<div class="card">
+  <div class="g2">
+    <div><div class="lab"><span>Brennweite</span></div><select id="stFocal"></select></div>
+    <div><div class="lab"><span>Blende</span></div><select id="stAp"></select></div>
+  </div>
+</div>
+<div class="card disp">
+  <h2>Ergebnis</h2>
+  <div class="g2">
+    <div class="stbox"><b id="stNPF"></b><i>NPF &ndash; passend zu deiner Kamera</i></div>
+    <div class="stbox alt"><b id="st500"></b><i>500er-Regel &ndash; zu gro&szlig;z&uuml;gig</i></div>
+  </div>
+  <p class="small mt" id="stHint"></p>
+</div>
+<div class="card">
+  <h2>Alle deine Brennweiten bei Offenblende</h2>
+  <div class="tw"><table class="tl" id="stTable"></table></div>
+</div>
+<div class="card">
+  <h2>Startwerte f&uuml;r die Nacht</h2>
+  <table class="kv">
+  <tr><td>Modus</td><td><b>M</b> &ndash; Blende, Zeit und ISO fest</td></tr>
+  <tr><td>Blende</td><td>ganz offen, beim 16-35 also <b>F2.8</b></td></tr>
+  <tr><td>ISO</td><td><b>3200</b> als Startwert, bei dunklem Himmel bis 6400</td></tr>
+  <tr><td>Fokus</td><td><b>MF</b> von Hand auf unendlich, dann mit <b>C4</b> an einem hellen Stern pr&uuml;fen</td></tr>
+  <tr><td>Stativ</td><td>Pflicht. SteadyShot <b>aus</b>, Selbstausl&ouml;ser 2 s</td></tr>
+  <tr><td>Langzeit-RM</td><td><b>aus</b>, sonst wartest du nach jedem Bild noch einmal genauso lange</td></tr>
+  </table>
+  <p class="small mt">Der Autofokus findet nachts nichts. Die Unendlich-Markierung am Objektiv ist nicht genau genug &ndash; pr&uuml;f die Sch&auml;rfe immer mit der Fokuslupe.</p>
+</div>
+</section>
+
+<!-- ============ GLOSSAR ============ -->
+<section class="tab" id="t-glossar">
+<h1>Glossar</h1>
+<p class="sub">Begriffe von A bis Z, in ein bis zwei S&auml;tzen.</p>
+<div class="card">
+  <input type="search" id="glSearch" placeholder="Begriff suchen &hellip;" aria-label="Begriff suchen" autocomplete="off">
+  <p class="small mt" id="glCount"></p>
+</div>
+<div id="glList">
+<details class="gi" data-gt="belichtung wie hell oder dunkel ein bild geworden ist. sie ergibt sich aus blende, zeit und iso zusammen."><summary><span>Belichtung</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Wie hell oder dunkel ein Bild geworden ist. Sie ergibt sich aus Blende, Zeit und ISO zusammen.</p></div></details>
+<details class="gi" data-gt="belichtungskorrektur damit sagst du der kamera, sie soll heller oder dunkler belichten, als sie selbst meint. bei dir liegt sie auf c1."><summary><span>Belichtungskorrektur</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Damit sagst du der Kamera, sie soll heller oder dunkler belichten, als sie selbst meint. Bei dir liegt sie auf C1.</p></div></details>
+<details class="gi" data-gt="belichtungsreihe die kamera macht mehrere bilder hintereinander, jedes etwas heller oder dunkler. so hast du bei schwierigem licht eine auswahl."><summary><span>Belichtungsreihe</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Die Kamera macht mehrere Bilder hintereinander, jedes etwas heller oder dunkler. So hast du bei schwierigem Licht eine Auswahl.</p></div></details>
+<details class="gi" data-gt="beugung ab etwa f16 wird das ganze bild wieder weicher, auch dort, wo du scharf gestellt hast. deshalb ist bei f11 schluss."><summary><span>Beugung</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Ab etwa F16 wird das ganze Bild wieder weicher, auch dort, wo du scharf gestellt hast. Deshalb ist bei F11 Schluss.</p></div></details>
+<details class="gi" data-gt="bildstabilisator technik, die das zittern deiner hände ausgleicht. in der kamera heißt sie ibis oder steadyshot, im objektiv oss."><summary><span>Bildstabilisator</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Technik, die das Zittern deiner Hände ausgleicht. In der Kamera heißt sie IBIS oder SteadyShot, im Objektiv OSS.</p></div></details>
+<details class="gi" data-gt="blende das verstellbare loch im objektiv, durch das licht fällt. kleine zahl heißt großes loch und wenig schärfe vor und hinter dem motiv."><summary><span>Blende</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Das verstellbare Loch im Objektiv, durch das Licht fällt. Kleine Zahl heißt großes Loch und wenig Schärfe vor und hinter dem Motiv.</p></div></details>
+<details class="gi" data-gt="blendenstufe ein schritt, der das licht verdoppelt oder halbiert. er gilt für blende, zeit und iso gleichermaßen."><summary><span>Blendenstufe</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Ein Schritt, der das Licht verdoppelt oder halbiert. Er gilt für Blende, Zeit und ISO gleichermaßen.</p></div></details>
+<details class="gi" data-gt="bokeh das aussehen der unscharfen bereiche, vor allem der lichtpunkte im hintergrund. weich und rund gilt als schön."><summary><span>Bokeh</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Das Aussehen der unscharfen Bereiche, vor allem der Lichtpunkte im Hintergrund. Weich und rund gilt als schön.</p></div></details>
+<details class="gi" data-gt="brennweite die zahl in millimetern auf dem objektiv. sie sagt, wie viel vom motiv ins bild passt: kleine zahl viel, große zahl wenig."><summary><span>Brennweite</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Die Zahl in Millimetern auf dem Objektiv. Sie sagt, wie viel vom Motiv ins Bild passt: kleine Zahl viel, große Zahl wenig.</p></div></details>
+<details class="gi" data-gt="crop ein ausschnitt aus dem bild. die kamera kann das schon beim fotografieren tun, das kostet aber auflösung."><summary><span>Crop</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Ein Ausschnitt aus dem Bild. Die Kamera kann das schon beim Fotografieren tun, das kostet aber Auflösung.</p></div></details>
+<details class="gi" data-gt="dynamikumfang der abstand zwischen der hellsten und der dunkelsten stelle, die eine kamera noch mit zeichnung aufnehmen kann."><summary><span>Dynamikumfang</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Der Abstand zwischen der hellsten und der dunkelsten Stelle, die eine Kamera noch mit Zeichnung aufnehmen kann.</p></div></details>
+<details class="gi" data-gt="ev die maßeinheit für helligkeit. ein ev mehr heißt doppelt so viel licht, ein ev weniger heißt halb so viel."><summary><span>EV</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Die Maßeinheit für Helligkeit. Ein EV mehr heißt doppelt so viel Licht, ein EV weniger heißt halb so viel.</p></div></details>
+<details class="gi" data-gt="freihandgrenze die längste zeit, die du ohne stativ noch scharf hinbekommst. faustregel: 1 geteilt durch die brennweite."><summary><span>Freihandgrenze</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Die längste Zeit, die du ohne Stativ noch scharf hinbekommst. Faustregel: 1 geteilt durch die Brennweite.</p></div></details>
+<details class="gi" data-gt="gegenlicht die lichtquelle steht hinter dem motiv und leuchtet dir entgegen. das motiv wird dann leicht zu dunkel."><summary><span>Gegenlicht</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Die Lichtquelle steht hinter dem Motiv und leuchtet dir entgegen. Das Motiv wird dann leicht zu dunkel.</p></div></details>
+<details class="gi" data-gt="histogramm eine kurve, die zeigt, wie viel dunkles und helles im bild steckt. links dunkel, rechts hell."><summary><span>Histogramm</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Eine Kurve, die zeigt, wie viel Dunkles und Helles im Bild steckt. Links dunkel, rechts hell.</p></div></details>
+<details class="gi" data-gt="hyperfokaldistanz die entfernung, auf die du scharf stellst, damit von der halben strecke bis unendlich alles scharf ist."><summary><span>Hyperfokaldistanz</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Die Entfernung, auf die du scharf stellst, damit von der halben Strecke bis unendlich alles scharf ist.</p></div></details>
+<details class="gi" data-gt="iso wie empfindlich die kamera auf licht reagiert. hohe werte helfen im dunkeln, bringen aber körnung mit."><summary><span>ISO</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Wie empfindlich die Kamera auf Licht reagiert. Hohe Werte helfen im Dunkeln, bringen aber Körnung mit.</p></div></details>
+<details class="gi" data-gt="jpeg ein fertiges bild, das die kamera schon bearbeitet hat. klein und sofort verwendbar, aber wenig spielraum zum nachbearbeiten."><summary><span>JPEG</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Ein fertiges Bild, das die Kamera schon bearbeitet hat. Klein und sofort verwendbar, aber wenig Spielraum zum Nachbearbeiten.</p></div></details>
+<details class="gi" data-gt="kreativlook voreingestellte farbstimmungen der sony, zum beispiel st für neutral oder vv für kräftig. sie wirken nur auf jpeg."><summary><span>Kreativlook</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Voreingestellte Farbstimmungen der Sony, zum Beispiel ST für neutral oder VV für kräftig. Sie wirken nur auf JPEG.</p></div></details>
+<details class="gi" data-gt="langzeitbelichtung eine aufnahme, die spürbar länger dauert als ein augenblick. bewegung wird dabei zu weichen schlieren."><summary><span>Langzeitbelichtung</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Eine Aufnahme, die spürbar länger dauert als ein Augenblick. Bewegung wird dabei zu weichen Schlieren.</p></div></details>
+<details class="gi" data-gt="lichtstärke die größte blendenöffnung, die ein objektiv schafft. f2.8 lässt mehr licht herein als f5.6."><summary><span>Lichtstärke</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Die größte Blendenöffnung, die ein Objektiv schafft. F2.8 lässt mehr Licht herein als F5.6.</p></div></details>
+<details class="gi" data-gt="messmethode wie die kamera die helligkeit misst: über das ganze bild, nur in der mitte oder nur in einem kleinen punkt."><summary><span>Messmethode</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Wie die Kamera die Helligkeit misst: über das ganze Bild, nur in der Mitte oder nur in einem kleinen Punkt.</p></div></details>
+<details class="gi" data-gt="offenblende die größte öffnung, die ein objektiv hat. bei deinen gm-objektiven ist das f2.8."><summary><span>Offenblende</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Die größte Öffnung, die ein Objektiv hat. Bei deinen GM-Objektiven ist das F2.8.</p></div></details>
+<details class="gi" data-gt="panning du ziehst die kamera mit einem fahrenden motiv mit. das motiv wird scharf, der hintergrund verwischt zu streifen."><summary><span>Panning</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Du ziehst die Kamera mit einem fahrenden Motiv mit. Das Motiv wird scharf, der Hintergrund verwischt zu Streifen.</p></div></details>
+<details class="gi" data-gt="peaking die kamera malt scharfe kanten farbig an. das hilft beim scharfstellen von hand."><summary><span>Peaking</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Die Kamera malt scharfe Kanten farbig an. Das hilft beim Scharfstellen von Hand.</p></div></details>
+<details class="gi" data-gt="polfilter eine drehbare scheibe vor dem objektiv. sie nimmt spiegelungen weg und macht den himmel kräftiger."><summary><span>Polfilter</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Eine drehbare Scheibe vor dem Objektiv. Sie nimmt Spiegelungen weg und macht den Himmel kräftiger.</p></div></details>
+<details class="gi" data-gt="rauschen feines korn oder farbflecken im bild. es nimmt zu, je höher der iso-wert ist."><summary><span>Rauschen</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Feines Korn oder Farbflecken im Bild. Es nimmt zu, je höher der ISO-Wert ist.</p></div></details>
+<details class="gi" data-gt="raw die rohdatei mit allen bilddaten, ohne bearbeitung durch die kamera. große datei, dafür viel spielraum."><summary><span>RAW</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Die Rohdatei mit allen Bilddaten, ohne Bearbeitung durch die Kamera. Große Datei, dafür viel Spielraum.</p></div></details>
+<details class="gi" data-gt="schärfentiefe der bereich vor und hinter dem motiv, der noch scharf aussieht. die blende steuert ihn."><summary><span>Schärfentiefe</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Der Bereich vor und hinter dem Motiv, der noch scharf aussieht. Die Blende steuert ihn.</p></div></details>
+<details class="gi" data-gt="streulicht licht, das seitlich ins objektiv fällt und den kontrast wegnimmt. die gegenlichtblende hält es ab."><summary><span>Streulicht</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Licht, das seitlich ins Objektiv fällt und den Kontrast wegnimmt. Die Gegenlichtblende hält es ab.</p></div></details>
+<details class="gi" data-gt="telekonverter ein zwischenstück zwischen kamera und objektiv, das das bild vergrößert. es kostet licht."><summary><span>Telekonverter</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Ein Zwischenstück zwischen Kamera und Objektiv, das das Bild vergrößert. Es kostet Licht.</p></div></details>
+<details class="gi" data-gt="verschlusszeit wie lange die kamera licht sammelt. kurz friert bewegung ein, lang lässt sie verwischen."><summary><span>Verschlusszeit</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Wie lange die Kamera Licht sammelt. Kurz friert Bewegung ein, lang lässt sie verwischen.</p></div></details>
+<details class="gi" data-gt="vignettierung die bildecken sind dunkler als die mitte. tritt vor allem bei offener blende auf."><summary><span>Vignettierung</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Die Bildecken sind dunkler als die Mitte. Tritt vor allem bei offener Blende auf.</p></div></details>
+<details class="gi" data-gt="weißabgleich die einstellung, mit der die kamera weiß auch wirklich weiß aussehen lässt, egal welche farbe das licht hat."><summary><span>Weißabgleich</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Die Einstellung, mit der die Kamera weiß auch wirklich weiß aussehen lässt, egal welche Farbe das Licht hat.</p></div></details>
+<details class="gi" data-gt="zebra schräge streifen, die die kamera über zu helle stellen legt. so siehst du sofort, wo die zeichnung verloren geht."><summary><span>Zebra</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Schräge Streifen, die die Kamera über zu helle Stellen legt. So siehst du sofort, wo die Zeichnung verloren geht.</p></div></details>
+<details class="gi" data-gt="zerstreuungskreis der größte unschärfefleck, den man noch als punkt durchgehen lässt. er entscheidet, was als scharf gilt."><summary><span>Zerstreuungskreis</span><span class="gia">▸</span></summary><div class="gib"><p class="qtext">Der größte Unschärfefleck, den man noch als Punkt durchgehen lässt. Er entscheidet, was als scharf gilt.</p></div></details>
+</div>
+</section>
+
+<!-- ============ NOTIZEN ============ -->
+<section class="tab" id="t-notiz">
+<h1>Notizen</h1>
+<p class="sub">Zum Mitschreiben im Kurs.</p>
+<div class="card">
+  <div class="lab"><span>Titel</span></div>
+  <input type="text" id="ntTitle" placeholder="z.&nbsp;B. Kursabend 3" autocomplete="off">
+  <div class="lab mt"><span>Notiz</span></div>
+  <textarea id="ntText" rows="7" placeholder="Hier mitschreiben &hellip;"></textarea>
+  <div class="g2 mt">
+    <button class="btn" id="ntSave">Speichern</button>
+    <button class="btn" id="ntClear">Feld leeren</button>
+  </div>
+  <div id="ntMsg"></div>
+</div>
+<div class="card">
+  <div class="lab"><span>Gespeicherte Notizen</span><span class="ev" id="ntCount"></span></div>
+  <div id="ntList"></div>
+  <button class="btn mt" id="ntExport" style="width:100%">Alle als Textdatei sichern</button>
+</div>
+<div class="card">
+  <p class="small" style="margin:0"><b>Wichtig:</b> Die Notizen liegen nur in diesem Browser auf diesem Ger&auml;t. Sie werden nirgendwo hochgeladen und sind auf deinen anderen Ger&auml;ten nicht zu sehen. Wenn du die App vom Home-Bildschirm l&ouml;schst oder die Website-Daten in Safari l&ouml;schst, sind sie weg. Sichere Wichtiges &uuml;ber die Schaltfl&auml;che oben als Textdatei.</p>
+</div>
+</section>
+
 </main>
 
 <div id="qsheet" aria-hidden="true">
@@ -987,6 +1287,14 @@ var ROUTES=[
  {h:"filter",id:"t-filter",n:"Filter"},
  {h:"objektive",id:"t-obj",n:"Objektive"},
  {h:"kamera",id:"t-kam",n:"Kamera"},
+ {h:"fehlersuche",id:"t-fehler",n:"Fehlersuche"},
+ {h:"checkliste",id:"t-check",n:"Checkliste"},
+ {h:"bildbesprechung",id:"t-bespr",n:"Bildbesprechung"},
+ {h:"sonnenstand",id:"t-sonne",n:"Sonnenstand"},
+ {h:"schaerfentiefe",id:"t-dof",n:"Schärfentiefe"},
+ {h:"sterne",id:"t-sterne",n:"Sterne"},
+ {h:"glossar",id:"t-glossar",n:"Glossar"},
+ {h:"notizen",id:"t-notiz",n:"Notizen"},
  {h:"spickzettel",id:"t-spick",n:"Spickzettel"},
  {h:"hausaufgabe",id:"t-hw",n:"Hausaufgabe"},
  {h:"einfach",id:"t-gloss",n:"Einfach erklärt"}
@@ -1386,6 +1694,327 @@ var GSORT=GLOSS.slice().sort(function(a,b){return a.t.localeCompare(b.t,"de")});
   }
   $("sysearch").addEventListener("input",sfilter);
   sfilter();
+})();
+
+
+/* ================= Sonne und Mond ================= */
+/* Sonne und Mond, offline gerechnet (Algorithmus nach Meeus) */
+var rad=Math.PI/180, dayMs=86400000, J1970=2440588, J2000=2451545, eps=rad*23.4397;
+function toJulian(d){return d.valueOf()/dayMs-0.5+J1970}
+function fromJulian(j){return isNaN(j)?null:new Date((j+0.5-J1970)*dayMs)}
+function toDays(d){return toJulian(d)-J2000}
+function rightAscension(l,b){return Math.atan2(Math.sin(l)*Math.cos(eps)-Math.tan(b)*Math.sin(eps),Math.cos(l))}
+function declination(l,b){return Math.asin(Math.sin(b)*Math.cos(eps)+Math.cos(b)*Math.sin(eps)*Math.sin(l))}
+function altitude(H,phi,dec){return Math.asin(Math.sin(phi)*Math.sin(dec)+Math.cos(phi)*Math.cos(dec)*Math.cos(H))}
+function siderealTime(d,lw){return rad*(280.16+360.9856235*d)-lw}
+function solarMeanAnomaly(d){return rad*(357.5291+0.98560028*d)}
+function eclipticLongitude(M){
+  var C=rad*(1.9148*Math.sin(M)+0.02*Math.sin(2*M)+0.0003*Math.sin(3*M));
+  return M+C+rad*102.9372+Math.PI;
+}
+function sunCoords(d){var M=solarMeanAnomaly(d),L=eclipticLongitude(M);
+  return {dec:declination(L,0),ra:rightAscension(L,0)};}
+var J0=0.0009;
+function julianCycle(d,lw){return Math.round(d-J0-lw/(2*Math.PI))}
+function approxTransit(Ht,lw,n){return J0+(Ht+lw)/(2*Math.PI)+n}
+function solarTransitJ(ds,M,L){return J2000+ds+0.0053*Math.sin(M)-0.0069*Math.sin(2*L)}
+function hourAngle(h,phi,d){return Math.acos((Math.sin(h)-Math.sin(phi)*Math.sin(d))/(Math.cos(phi)*Math.cos(d)))}
+
+var SUN_ANGLES=[[-0.833,"sunrise","sunset"],[6,"goldEndM","goldStartE"],
+  [-4,"blueEndM","blueStartE"],[-8,"blueStartM","blueEndE"],[-18,"astroEndM","astroStartE"]];
+
+function sunTimes(date,lat,lng){
+  var lw=rad*-lng, phi=rad*lat, d=toDays(date),
+      n=julianCycle(d,lw), ds=approxTransit(0,lw,n),
+      M=solarMeanAnomaly(ds), L=eclipticLongitude(M), dec=declination(L,0),
+      Jnoon=solarTransitJ(ds,M,L), res={solarNoon:fromJulian(Jnoon)};
+  for(var i=0;i<SUN_ANGLES.length;i++){
+    var a=SUN_ANGLES[i], w=hourAngle(a[0]*rad,phi,dec);
+    var Jset=solarTransitJ(approxTransit(w,lw,n),M,L), Jrise=Jnoon-(Jset-Jnoon);
+    res[a[1]]=fromJulian(Jrise); res[a[2]]=fromJulian(Jset);
+  }
+  return res;
+}
+function moonCoords(d){
+  var L=rad*(218.316+13.176396*d), M=rad*(134.963+13.064993*d), F=rad*(93.272+13.229350*d),
+      l=L+rad*6.289*Math.sin(M), b=rad*5.128*Math.sin(F), dt=385001-20905*Math.cos(M);
+  return {ra:rightAscension(l,b),dec:declination(l,b),dist:dt};
+}
+function moonIllumination(date){
+  var d=toDays(date), s=sunCoords(d), m=moonCoords(d), sdist=149598000,
+    phi=Math.acos(Math.sin(s.dec)*Math.sin(m.dec)+Math.cos(s.dec)*Math.cos(m.dec)*Math.cos(s.ra-m.ra)),
+    inc=Math.atan2(sdist*Math.sin(phi),m.dist-sdist*Math.cos(phi)),
+    angle=Math.atan2(Math.cos(s.dec)*Math.sin(s.ra-m.ra),
+          Math.sin(s.dec)*Math.cos(m.dec)-Math.cos(s.dec)*Math.sin(m.dec)*Math.cos(s.ra-m.ra));
+  return {fraction:(1+Math.cos(inc))/2, phase:0.5+0.5*inc*(angle<0?-1:1)/Math.PI};
+}
+function moonAlt(date,lat,lng){
+  var lw=rad*-lng, phi=rad*lat, d=toDays(date), c=moonCoords(d),
+      H=siderealTime(d,lw)-c.ra, h=altitude(H,phi,c.dec);
+  return h+rad*0.017/Math.tan(h+rad*10.26/(h+rad*5.10));
+}
+function hoursLater(date,h){return new Date(date.valueOf()+h*dayMs/24)}
+function moonTimes(date,lat,lng){
+  var t=new Date(date); t.setHours(0,0,0,0);
+  var hc=0.133*rad, h0=moonAlt(t,lat,lng)-hc, rise,set,ye=0;
+  for(var i=1;i<=24;i+=2){
+    var h1=moonAlt(hoursLater(t,i),lat,lng)-hc, h2=moonAlt(hoursLater(t,i+1),lat,lng)-hc,
+        a=(h0+h2)/2-h1, b=(h2-h0)/2, xe=-b/(2*a), roots=0, x1=0,x2=0,dx;
+    ye=(a*xe+b)*xe+h1;
+    var dd=b*b-4*a*h1;
+    if(dd>=0){ dx=Math.sqrt(dd)/(Math.abs(a)*2); x1=xe-dx; x2=xe+dx;
+      if(Math.abs(x1)<=1)roots++;
+      if(Math.abs(x2)<=1)roots++;
+      if(x1<-1)x1=x2; }
+    if(roots===1){ if(h0<0)rise=i+x1; else set=i+x1; }
+    else if(roots===2){ rise=i+(ye<0?x2:x1); set=i+(ye<0?x1:x2); }
+    if(rise!==undefined&&set!==undefined)break;
+    h0=h2;
+  }
+  var r={};
+  if(rise!==undefined)r.rise=hoursLater(t,rise);
+  if(set!==undefined)r.set=hoursLater(t,set);
+  if(rise===undefined&&set===undefined)r[ye>0?"up":"down"]=true;
+  return r;
+}
+
+/* ---------- Bereich Sonnenstand ---------- */
+var SN_DEF={lat:49.4675,lng:7.1683};
+function hhmm(d){return d?d.toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"}):"—"}
+function dauer(ms){
+  if(!isFinite(ms)||ms<=0)return "—";
+  var m=Math.round(ms/60000);return Math.floor(m/60)+" h "+String(m%60).padStart(2,"0")+" min";
+}
+function snRow(n,v,sm){return '<div class="snrow"><span class="n">'+n+'</span><span class="v'+(sm?" sm":"")+'">'+v+'</span></div>'}
+function moonName(ph){
+  if(ph<0.03||ph>0.97)return "Neumond";
+  if(ph<0.22)return "zunehmende Sichel";
+  if(ph<0.28)return "erstes Viertel";
+  if(ph<0.47)return "zunehmender Mond";
+  if(ph<0.53)return "Vollmond";
+  if(ph<0.72)return "abnehmender Mond";
+  if(ph<0.78)return "letztes Viertel";
+  return "abnehmende Sichel";
+}
+function moonSVG(frac,ph){
+  // einfache Darstellung: beleuchteter Anteil als Ellipse über der Scheibe
+  var r=28,cx=32,cy=32,k=Math.abs(2*frac-1)*r, waxing=ph<0.5;
+  var sweep1=waxing?1:0, sweep2=(frac>0.5)?(waxing?1:0):(waxing?0:1);
+  var d='M'+cx+' '+(cy-r)+'A'+r+' '+r+' 0 0 '+sweep1+' '+cx+' '+(cy+r)+
+        'A'+k+' '+r+' 0 0 '+sweep2+' '+cx+' '+(cy-r)+'Z';
+  return '<svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">'
+    +'<circle cx="32" cy="32" r="28" fill="#1c1c22" stroke="rgba(255,255,255,.18)"/>'
+    +'<path d="'+d+'" fill="#ffb020"/></svg>';
+}
+function snRender(){
+  var lat=parseFloat($("snLat").value), lng=parseFloat($("snLng").value), dv=$("snDate").value;
+  if(isNaN(lat)||isNaN(lng)||!dv){$("snSun").innerHTML='<div class="msg wa">Bitte Datum, Breite und Länge angeben.</div>';$("snMoon").innerHTML="";return}
+  lat=Math.max(-89.5,Math.min(89.5,lat)); lng=Math.max(-180,Math.min(180,lng));
+  var parts=dv.split("-"), date=new Date(+parts[0],+parts[1]-1,+parts[2],12,0,0);
+  var t=sunTimes(date,lat,lng);
+  var h='';
+  h+=snRow("Sonnenaufgang",hhmm(t.sunrise));
+  h+=snRow("Sonnenuntergang",hhmm(t.sunset));
+  h+=snRow("Tageslänge",dauer(t.sunset-t.sunrise),true);
+  h+=snRow("Höchster Stand",hhmm(t.solarNoon),true);
+  h+=snRow("Goldene Stunde morgens",hhmm(t.sunrise)+" – "+hhmm(t.goldEndM),true);
+  h+=snRow("Goldene Stunde abends",hhmm(t.goldStartE)+" – "+hhmm(t.sunset),true);
+  h+=snRow("Blaue Stunde morgens",hhmm(t.blueStartM)+" – "+hhmm(t.blueEndM),true);
+  h+=snRow("Blaue Stunde abends",hhmm(t.blueStartE)+" – "+hhmm(t.blueEndE),true);
+  h+=snRow("Astronomische Dunkelheit",(t.astroStartE?hhmm(t.astroStartE):"—")+" – "+(t.astroEndM?hhmm(t.astroEndM):"—"),true);
+  if(!t.astroStartE||!t.astroEndM)
+    h+='<div class="msg wa">An diesem Datum wird es hier nicht astronomisch dunkel – die Sonne bleibt zu hoch.</div>';
+  $("snSun").innerHTML=h;
+
+  var ill=moonIllumination(date), mt=moonTimes(date,lat,lng);
+  var m='<div class="moonw">'+moonSVG(ill.fraction,ill.phase)
+    +'<div><div style="font-size:19px;font-weight:800">'+moonName(ill.phase)+'</div>'
+    +'<div class="small">'+Math.round(ill.fraction*100)+' % beleuchtet</div></div></div>';
+  m+=snRow("Mondaufgang",mt.up?"geht nicht unter":(mt.rise?hhmm(mt.rise):"—"));
+  m+=snRow("Monduntergang",mt.down?"bleibt unter dem Horizont":(mt.set?hhmm(mt.set):"—"));
+  $("snMoon").innerHTML=m;
+}
+(function(){
+  function heute(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+  function setDef(){$("snDate").value=heute();$("snLat").value=SN_DEF.lat;$("snLng").value=SN_DEF.lng;snRender()}
+  setDef();
+  ["snDate","snLat","snLng"].forEach(function(id){
+    $(id).addEventListener("input",snRender);$(id).addEventListener("change",snRender);
+  });
+  $("snReset").addEventListener("click",setDef);
+})();
+
+/* ================= Schärfentiefe und Hyperfokal ================= */
+var COC=0.015;                       // Zerstreuungskreis, streng für 61 Megapixel
+var DIST=[0.3,0.5,0.75,1,1.5,2,3,5,7,10,15,20,30,50,100];
+function hyperfocal(f,N){return f*f/(N*COC)+f}          // mm
+function dofLimits(f,N,s){                               // s in mm
+  var H=hyperfocal(f,N);
+  var near=s*(H-f)/(H+s-2*f);
+  var far=(H-s)>0 ? s*(H-f)/(H-s) : Infinity;
+  return {H:H,near:near,far:far};
+}
+function mStr(mm){
+  if(!isFinite(mm))return "∞";
+  var m=mm/1000;
+  if(m<1)return Math.round(m*100)+" cm";
+  if(m<10)return (Math.round(m*10)/10).toString().replace(".",",")+" m";
+  return Math.round(m)+" m";
+}
+var DF={lens:"1635",f:16,ap:8,dist:5};
+function dfLensObj(){for(var i=0;i<LENS.length;i++)if(LENS[i].id===DF.lens)return LENS[i];return LENS[0]}
+function dfApList(){
+  var l=dfLensObj(),lo=AP.indexOf(l.ap(DF.f)),hi=AP.indexOf(l.min),a=[];
+  for(var i=lo;i<=hi;i++)a.push({v:AP[i],l:"F"+AP[i]});
+  return a;
+}
+function dfRender(){
+  var l=dfLensObj(), zoom=l.f1!==l.f2;
+  fill($("dfLens"),LENS.map(function(x){return {v:x.id,l:x.name}}),DF.lens);
+  $("dfFocalBox").style.display=zoom?"":"none";
+  var fr=$("dfFocal");fr.min=l.f1;fr.max=l.f2;fr.step=l.id==="100400"?5:1;fr.value=DF.f;
+  $("dfFocalTxt").textContent=DF.f+" mm";
+  var aps=dfApList();
+  if(aps.map(function(x){return x.v}).indexOf(DF.ap)<0)DF.ap=aps[0].v;
+  fill($("dfAp"),aps,DF.ap);
+  fill($("dfDist"),DIST.map(function(d){return {v:d,l:(d<1?Math.round(d*100)+" cm":String(d).replace(".",",")+" m")}}),DF.dist);
+
+  var r=dofLimits(DF.f,DF.ap,DF.dist*1000);
+  var unter=DF.dist*1000<l.min*0+ (l.id==="90"?280:(l.id==="100400"?980:(l.id==="1635"?220:210)));
+  $("dfNear").textContent=mStr(r.near);
+  $("dfFar").textContent=mStr(r.far);
+  $("dfTot").textContent=isFinite(r.far)?mStr(r.far-r.near):"∞";
+  $("dfHyp").textContent=mStr(r.H);
+  $("dfMsg").innerHTML = unter
+    ? '<div class="msg wa">Näher als die Naheinstellgrenze dieses Objektivs – so nah kann es nicht scharf stellen.</div>'
+    : (isFinite(r.far)?'':'<div class="msg ok">Von '+mStr(r.near)+' bis unendlich scharf.</div>');
+}
+(function(){
+  var rows=[["1635",[16,24,35]],["2470",[24,35]]];
+  var h='<thead><tr><th>Objektiv</th><th>Brennweite</th><th>fokussieren auf</th><th>scharf ab</th></tr></thead><tbody>';
+  rows.forEach(function(r){
+    var name=LENS.filter(function(x){return x.id===r[0]})[0].name;
+    r[1].forEach(function(f){
+      var H=hyperfocal(f,8);
+      h+='<tr><td>'+name.split(" ")[0]+'</td><td>'+f+' mm</td><td><b>'+mStr(H)+'</b></td><td>'+mStr(H/2)+' bis ∞</td></tr>';
+    });
+  });
+  $("dfTable").innerHTML=h+'</tbody>';
+  $("dfLens").addEventListener("change",function(){DF.lens=this.value;var l=dfLensObj();DF.f=l.f1;dfRender()});
+  $("dfFocal").addEventListener("input",function(){DF.f=+this.value;dfRender()});
+  $("dfAp").addEventListener("change",function(){DF.ap=+this.value;dfRender()});
+  $("dfDist").addEventListener("change",function(){DF.dist=+this.value;dfRender()});
+  dfRender();
+})();
+
+/* ================= Sterne: NPF gegen 500er-Regel ================= */
+var PIXEL=3.76;                       // Pixelabstand der A7R V in Mikrometern
+function npf(f,N){return (35*N+30*PIXEL)/f}
+function rule500(f){return 500/f}
+function sek(x){return (x>=10?Math.round(x):Math.round(x*10)/10).toString().replace(".",",")+" s"}
+var ST={f:16,ap:2.8};
+var ST_FOCAL=[14,16,20,24,28,35,50,70,85,100,135,200,300,400];
+function stRender(){
+  fill($("stFocal"),ST_FOCAL.map(function(f){return {v:f,l:f+" mm"}}),ST.f);
+  fill($("stAp"),AP.filter(function(a){return a<=11}).map(function(a){return {v:a,l:"F"+a}}),ST.ap);
+  var n=npf(ST.f,ST.ap), r=rule500(ST.f);
+  $("stNPF").textContent=sek(n);
+  $("st500").textContent=sek(r);
+  $("stHint").innerHTML="Die 500er-Regel gäbe dir hier <b>"+sek(r)+"</b> – das ist "
+    +(Math.round(r/n*10)/10).toString().replace(".",",")+"-mal so lang. "
+    +"Bei 61 Megapixeln siehst du die Strichspuren schon lange vorher. Nimm die NPF-Zeit.";
+}
+(function(){
+  var h='<thead><tr><th>Objektiv</th><th>Brennweite</th><th>Blende</th><th>NPF</th><th>500er</th></tr></thead><tbody>';
+  [["1635",16,2.8],["1635",35,2.8],["2470",24,2.8],["2470",70,2.8],
+   ["90",90,2.8],["100400",100,4.5],["100400",400,5.6]].forEach(function(r){
+    var name=LENS.filter(function(x){return x.id===r[0]})[0].name.split(" ")[0];
+    h+='<tr><td>'+name+'</td><td>'+r[1]+' mm</td><td>F'+r[2]+'</td><td><b>'+sek(npf(r[1],r[2]))+'</b></td><td>'+sek(rule500(r[1]))+'</td></tr>';
+  });
+  $("stTable").innerHTML=h+'</tbody>';
+  $("stFocal").addEventListener("change",function(){ST.f=+this.value;stRender()});
+  $("stAp").addEventListener("change",function(){ST.ap=+this.value;stRender()});
+  stRender();
+})();
+
+/* ================= Checkliste (bewusst nicht gespeichert) ================= */
+(function(){
+  var boxes=document.querySelectorAll(".ckc");
+  function ckRender(){
+    var n=0;for(var i=0;i<boxes.length;i++)if(boxes[i].checked)n++;
+    $("ckProg").textContent=n+" von "+boxes.length+" erledigt";
+  }
+  for(var i=0;i<boxes.length;i++)boxes[i].addEventListener("change",ckRender);
+  $("ckReset").addEventListener("click",function(){
+    for(var j=0;j<boxes.length;j++)boxes[j].checked=false;ckRender();
+  });
+  ckRender();
+})();
+
+/* ================= Glossar: Suche ================= */
+(function(){
+  var items=document.querySelectorAll("#glList details");
+  function glFilter(){
+    var q=$("glSearch").value.toLowerCase().trim(),n=0;
+    for(var i=0;i<items.length;i++){
+      var hit=!q||items[i].getAttribute("data-gt").indexOf(q)>=0;
+      items[i].style.display=hit?"":"none";if(hit)n++;
+    }
+    $("glCount").textContent=q?(n+" von "+items.length+" Begriffen"):(items.length+" Begriffe");
+  }
+  $("glSearch").addEventListener("input",glFilter);
+  glFilter();
+})();
+
+/* ================= Notizen (nur auf diesem Gerät) ================= */
+(function(){
+  var NK="sonyA7RV_notes",NOTES=[];
+  try{NOTES=JSON.parse(localStorage.getItem(NK)||"[]")||[]}catch(e){NOTES=[]}
+  function save(){try{localStorage.setItem(NK,JSON.stringify(NOTES));return true}catch(e){return false}}
+  function dstr(ts){var d=new Date(ts);
+    return d.toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit",year:"numeric"})+" "+
+           d.toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"});}
+  function ntRender(){
+    var h="";
+    for(var i=0;i<NOTES.length;i++){
+      h+='<div class="ntrow"><div class="h"><span class="t">'+esc(NOTES[i].t)+'</span>'
+       + '<span class="d">'+dstr(NOTES[i].ts)+'</span></div>'
+       + '<div class="b">'+esc(NOTES[i].b)+'</div>'
+       + '<button class="ntdel" data-del="'+i+'">Diese Notiz löschen</button></div>';
+    }
+    $("ntList").innerHTML=h||'<p class="small" style="margin:0">Noch keine Notiz gespeichert.</p>';
+    $("ntCount").textContent=NOTES.length+(NOTES.length===1?" Notiz":" Notizen");
+  }
+  $("ntSave").addEventListener("click",function(){
+    var t=$("ntTitle").value.trim(), b=$("ntText").value.trim();
+    if(!b){$("ntMsg").innerHTML='<div class="msg wa">Die Notiz ist leer.</div>';return}
+    NOTES.unshift({t:t||"Ohne Titel",b:b,ts:Date.now()});
+    if(save()){$("ntMsg").innerHTML='<div class="msg ok">Gespeichert.</div>';
+      $("ntTitle").value="";$("ntText").value="";}
+    else {NOTES.shift();$("ntMsg").innerHTML='<div class="msg er">Speichern nicht möglich – der Speicher des Browsers ist voll oder gesperrt.</div>';}
+    ntRender();
+  });
+  $("ntClear").addEventListener("click",function(){
+    $("ntTitle").value="";$("ntText").value="";$("ntMsg").innerHTML="";
+  });
+  $("ntList").addEventListener("click",function(e){
+    var b=e.target.closest("[data-del]");if(!b)return;
+    NOTES.splice(+b.getAttribute("data-del"),1);save();ntRender();
+  });
+  $("ntExport").addEventListener("click",function(){
+    if(!NOTES.length){$("ntMsg").innerHTML='<div class="msg wa">Es gibt noch nichts zu sichern.</div>';return}
+    var txt=NOTES.map(function(n){return n.t+"\n"+dstr(n.ts)+"\n\n"+n.b+"\n\n----------\n"}).join("\n");
+    try{
+      var blob=new Blob([txt],{type:"text/plain;charset=utf-8"});
+      var url=URL.createObjectURL(blob), a=document.createElement("a");
+      a.href=url;a.download="sony-notizen.txt";document.body.appendChild(a);a.click();
+      document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(url)},2000);
+      $("ntMsg").innerHTML='<div class="msg ok">Textdatei erstellt.</div>';
+    }catch(err){
+      $("ntMsg").innerHTML='<div class="msg wa">Das Sichern als Datei geht in diesem Browser nicht. Markiere den Text oben und kopiere ihn von Hand.</div>';
+    }
+  });
+  ntRender();
 })();
 
 document.addEventListener("click",function(e){
