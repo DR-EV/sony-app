@@ -1,9 +1,10 @@
-const CACHE = 'sony-a7rv-v5';
+const CACHE = 'sony-a7rv-v6';
 const NET_TIMEOUT = 3000;
 const ASSETS = [
   './',
   './index.html',
   './manifest.webmanifest',
+  './kamera.png',
   './icon-180.png',
   './icon-512.png'
 ];
