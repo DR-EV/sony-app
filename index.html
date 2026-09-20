@@ -242,6 +242,8 @@ ul{margin:6px 0;padding-left:20px}li{margin:4px 0}
 <div class="card small">
 Blitz: Godox V860III-S (Sony-Schuh). Synchronzeit ohne HSS: 1/250 s.
 </div>
+
+<p class="small" style="text-align:center;opacity:.6;margin:18px 0 0">Version 3</p>
 </section>
 </main>
 
@@ -457,8 +459,24 @@ fixLens();
 </script>
 <script>
 if ('serviceWorker' in navigator) {
+  // Nach dem Aktivieren eines neuen Workers einmal neu laden (Schutz vor Endlosschleife)
+  // Erstbesuch: clients.claim() loest controllerchange aus - dann kein Reload noetig
+  var reloaded = !navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange', function () {
+    if (reloaded) return;
+    reloaded = true;
+    try { sessionStorage.setItem('swReloaded', '1'); } catch (e) {}
+    window.location.reload();
+  });
+  try {
+    if (sessionStorage.getItem('swReloaded') === '1') { reloaded = true; }  // bereits einmal neu geladen
+    sessionStorage.removeItem('swReloaded');
+  } catch (e) {}
+
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('sw.js').catch(function () {});
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' })
+      .then(function (reg) { return reg.update(); })
+      .catch(function () {});
   });
 }
 </script>
