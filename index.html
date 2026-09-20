@@ -168,7 +168,7 @@ tbody tr:nth-child(even) td{background:var(--zeb)}
 .tl td{min-width:120px}
 .kv{table-layout:fixed}
 .kv td{overflow-wrap:break-word}
-.kv td:first-child{color:var(--mu);font-weight:600;width:44%}
+.kv td:first-child{color:var(--mu);font-weight:600;width:52%}
 ul{margin:var(--s1) 0;padding-left:20px}
 li{margin:5px 0}
 
@@ -217,6 +217,66 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
 .hwb b{color:var(--tx)}
 .prog{font-size:24px;font-weight:800;color:var(--ac);letter-spacing:-.01em}
 
+/* ---------- Einfach erklärt: "?"-Tasten ---------- */
+.q{position:relative;display:inline-flex;align-items:center;justify-content:center;
+   width:26px;height:26px;min-height:26px;padding:0;margin-left:5px;vertical-align:middle;
+   border-radius:50%;border:1px solid var(--acb);background:var(--acd);color:var(--ac);
+   font-size:15px;font-weight:800;line-height:1;flex:0 0 26px}
+.q::after{content:"";position:absolute;inset:-15px}   /* Tippfläche auf 56 px vergrößert */
+.q:active{background:var(--ac);color:#14100a}
+/* ---------- Erklär-Kästchen ---------- */
+#qsheet{display:none;position:fixed;inset:0;z-index:60}
+#qsheet.on{display:block}
+.qback{position:absolute;inset:0;background:rgba(0,0,0,.62);
+  -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);animation:fade .18s ease-out}
+.qcard{position:absolute;left:0;right:0;bottom:0;max-width:760px;margin:0 auto;
+  background:var(--card2);border:1px solid var(--line2);border-bottom:0;
+  border-radius:20px 20px 0 0;box-shadow:var(--sh);
+  padding:var(--s2) var(--s2) calc(var(--s3) + env(safe-area-inset-bottom));
+  max-height:82vh;overflow-y:auto;animation:up .2s ease-out}
+@keyframes up{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+.qhead{display:flex;align-items:center;gap:10px;margin-bottom:var(--s2)}
+.qhead h3{flex:1;margin:0;font-size:22px;color:var(--tx)}
+#qclose{width:56px;height:56px;min-height:56px;flex:0 0 56px;border-radius:50%;
+  border:1px solid var(--line2);background:var(--card);color:var(--tx);font-size:20px;padding:0}
+#qclose:active{background:var(--ac);color:#14100a}
+.qlabel{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;
+  color:var(--ac);margin:var(--s2) 0 6px}
+.qtext{font-size:17px;line-height:1.55;margin:0;color:var(--tx)}
+/* ---------- Seite "Einfach erklärt" ---------- */
+input[type=search]{-webkit-appearance:none;appearance:none;width:100%;min-height:56px;
+  border-radius:var(--r2);border:1px solid var(--line2);background:var(--bg2);color:var(--tx);
+  font-size:17px;font-weight:600;padding:0 14px}
+input[type=search]::placeholder{color:var(--mu)}
+details.gi{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  margin:0 0 10px;overflow:hidden}
+details.gi[open]{border-color:var(--acb);background:var(--card2)}
+details.gi>summary{list-style:none;display:flex;align-items:center;gap:12px;
+  padding:12px var(--s2);min-height:60px;font-size:18px;font-weight:700}
+details.gi>summary::-webkit-details-marker{display:none}
+details.gi>summary span{flex:1}
+.gia{flex:0 0 16px;color:var(--mu);font-size:15px;display:inline-block;transition:transform .18s ease}
+details.gi[open] .gia{color:var(--ac);transform:rotate(90deg)}
+.gib{padding:0 var(--s2) var(--s2)}
+/* ---------- Erklärblöcke im Text ---------- */
+.expl{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--ac);
+  border-radius:var(--r2);padding:var(--s2);margin:var(--s2) 0;font-size:16px;line-height:1.55}
+.expl h4{margin:0 0 8px;font-size:17px;color:var(--ac2);font-weight:800}
+.expl dl{margin:0}
+.expl dt{font-weight:800;color:var(--tx);margin-top:10px}
+.expl dd{margin:2px 0 0;color:var(--mu)}
+.expl .rule{margin-top:var(--s2);padding-top:10px;border-top:1px solid var(--line);
+  font-weight:700;color:var(--ac2)}
+.why{margin:8px 0 var(--s2);font-size:16px;line-height:1.55;color:var(--mu)}
+.why b{color:var(--ac2)}
+details.howto{background:var(--acd);border:1px solid var(--acb);border-radius:var(--r);
+  margin:0 0 var(--s2);overflow:hidden}
+details.howto>summary{list-style:none;display:flex;align-items:center;gap:10px;
+  padding:14px var(--s2);min-height:60px;font-size:17px;font-weight:800;color:var(--ac2)}
+details.howto>summary::-webkit-details-marker{display:none}
+details.howto ol{margin:0;padding:0 var(--s2) var(--s2) 38px;font-size:16px;line-height:1.55}
+details.howto li{margin:8px 0}
+
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
@@ -228,7 +288,7 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 </head>
 <body>
-<svg class="sprite" aria-hidden="true" focusable="false"><symbol id="i-start" viewBox="0 0 24 24"><path d="M3.5 11.2 12 4.3l8.5 6.9"/><path d="M6.2 10.2v9.5h11.6v-9.5"/></symbol><symbol id="i-rechner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><path d="M12 3.6v8.4l7.3 4.2M12 12l-7.3 4.2M12 12l7.3-4.2"/></symbol><symbol id="i-filter" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.8"/><path d="M12 3.6v4.6M12 15.8v4.6"/></symbol><symbol id="i-objektive" viewBox="0 0 24 24"><rect x="2.8" y="7.6" width="13.2" height="8.8" rx="2"/><path d="M6.5 7.6v8.8M9.9 7.6v8.8"/><path d="m16 9.8 5.2-2.6v9.6L16 14.2z"/></symbol><symbol id="i-kamera" viewBox="0 0 24 24"><path d="M3.6 8.3h3.1l1.5-2.2h5.6l1.5 2.2h3.1A1.6 1.6 0 0 1 20 9.9v7.5a1.6 1.6 0 0 1-1.6 1.6H3.6A1.6 1.6 0 0 1 2 17.4V9.9a1.6 1.6 0 0 1 1.6-1.6z"/><circle cx="11" cy="13.4" r="3.3"/></symbol><symbol id="i-spickzettel" viewBox="0 0 24 24"><rect x="3.2" y="4.8" width="17.6" height="14.4" rx="2.4"/><path d="M3.2 9.3h17.6M7.2 12.9h8.6M7.2 16.1h5.6"/></symbol><symbol id="i-hausaufgabe" viewBox="0 0 24 24"><path d="m3.4 7.3 1.6 1.6 2.8-3.2M3.4 13.3 5 14.9l2.8-3.2M3.4 19.3 5 20.9l2.8-3.2"/><path d="M11.5 7.4h9.1M11.5 13.4h9.1M11.5 19.4h6.6"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7.5h16M4 12h16M4 16.5h16"/></symbol></svg>
+<svg class="sprite" aria-hidden="true" focusable="false"><symbol id="i-start" viewBox="0 0 24 24"><path d="M3.5 11.2 12 4.3l8.5 6.9"/><path d="M6.2 10.2v9.5h11.6v-9.5"/></symbol><symbol id="i-rechner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><path d="M12 3.6v8.4l7.3 4.2M12 12l-7.3 4.2M12 12l7.3-4.2"/></symbol><symbol id="i-filter" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.8"/><path d="M12 3.6v4.6M12 15.8v4.6"/></symbol><symbol id="i-objektive" viewBox="0 0 24 24"><rect x="2.8" y="7.6" width="13.2" height="8.8" rx="2"/><path d="M6.5 7.6v8.8M9.9 7.6v8.8"/><path d="m16 9.8 5.2-2.6v9.6L16 14.2z"/></symbol><symbol id="i-kamera" viewBox="0 0 24 24"><path d="M3.6 8.3h3.1l1.5-2.2h5.6l1.5 2.2h3.1A1.6 1.6 0 0 1 20 9.9v7.5a1.6 1.6 0 0 1-1.6 1.6H3.6A1.6 1.6 0 0 1 2 17.4V9.9a1.6 1.6 0 0 1 1.6-1.6z"/><circle cx="11" cy="13.4" r="3.3"/></symbol><symbol id="i-spickzettel" viewBox="0 0 24 24"><rect x="3.2" y="4.8" width="17.6" height="14.4" rx="2.4"/><path d="M3.2 9.3h17.6M7.2 12.9h8.6M7.2 16.1h5.6"/></symbol><symbol id="i-hausaufgabe" viewBox="0 0 24 24"><path d="m3.4 7.3 1.6 1.6 2.8-3.2M3.4 13.3 5 14.9l2.8-3.2M3.4 19.3 5 20.9l2.8-3.2"/><path d="M11.5 7.4h9.1M11.5 13.4h9.1M11.5 19.4h6.6"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7.5h16M4 12h16M4 16.5h16"/></symbol><symbol id="i-einfach" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M9.7 9.5a2.4 2.4 0 0 1 4.7.6c0 1.6-2.3 1.9-2.3 3.4"/><path d="M12 17.2h.01"/></symbol></svg>
 <header>
   <div class="hrow"><span class="hic"><svg class="ic" aria-hidden="true"><use id="hicon" href="#i-start"/></svg></span><div class="ht" id="htitle"></div><button id="mbtn" aria-expanded="false" aria-label="Men&uuml;"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg></button></div>
   <div id="menu"><div class="mw">
@@ -239,6 +299,7 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
     <button data-route="kamera"><svg class="ic" aria-hidden="true"><use href="#i-kamera"/></svg><span>Kamera</span></button>
     <button data-route="spickzettel"><svg class="ic" aria-hidden="true"><use href="#i-spickzettel"/></svg><span>Spickzettel</span></button>
     <button data-route="hausaufgabe"><svg class="ic" aria-hidden="true"><use href="#i-hausaufgabe"/></svg><span>Hausaufgabe</span></button>
+    <button data-route="einfach"><svg class="ic" aria-hidden="true"><use href="#i-einfach"/></svg><span>Einfach erkl&auml;rt</span></button>
   </div></div>
 </header>
 <main>
@@ -255,12 +316,23 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
 <button class="tile" data-route="kamera"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-kamera"/></svg></span><b>Kamera</b><i>Speicherpl&auml;tze, Tasten, Men&uuml;s</i></button>
 <button class="tile" data-route="spickzettel"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-spickzettel"/></svg></span><b>Spickzettel</b><i>Was bewirkt was &middot; Startwerte nach Motiv</i></button>
 <button class="tile" data-route="hausaufgabe"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-hausaufgabe"/></svg></span><b>Hausaufgabe</b><i>Wo finde ich das an der Kamera?</i><span class="tprog" id="tileProg"></span></button>
+<button class="tile" data-route="einfach"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-einfach"/></svg></span><b>Einfach erkl&auml;rt</b><i>Alle Fachbegriffe in Alltagssprache</i></button>
 </div>
 </section>
 
 <!-- ============ RECHNER ============ -->
 <section class="tab" id="t-rechner">
 <h1>Belichtungsrechner</h1>
+
+<details class="howto">
+<summary><span class="hwa">&#9656;</span>So benutzt du den Rechner</summary>
+<ol>
+<li><b>Ablesen:</b> Trag unter &bdquo;Messung&ldquo; ein, was deine Kamera gerade anzeigt – Blende, Zeit und ISO aus dem Sucher.</li>
+<li><b>Ändern:</b> Stell unter &bdquo;Neue Einstellung&ldquo; den Wert um, der dir wichtig ist – zum Beispiel eine kleinere Blendenzahl für einen unscharfen Hintergrund.</li>
+<li><b>Übertragen:</b> Die App zieht einen anderen Wert automatisch nach, damit das Bild gleich hell bleibt. Diese Werte stellst du an der Kamera ein.</li>
+</ol>
+<p class="small" style="padding:0 16px 16px">Grüner Hinweis heißt: Die Helligkeit stimmt. Roter Hinweis heißt: Die Kamera kann nicht weiter, das Bild würde heller oder dunkler.</p>
+</details>
 
 <div class="card">
   <div class="lab"><span>Objektiv</span></div>
@@ -269,21 +341,22 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
     <div class="lab"><span>Brennweite</span><span id="focalTxt" style="color:var(--tx)"></span></div>
     <input type="range" id="focal">
   </div>
-  <div class="mt"><button class="btn" id="tcBtn" style="width:100%">SEL14TC (1,4×) aus</button></div>
+  <div class="lab mt"><span>Telekonverter<button class="q" data-q="telekonverter" aria-label="Einfach erklärt">?</button></span></div>
+  <div><button class="btn" id="tcBtn" style="width:100%">SEL14TC (1,4×) aus</button></div>
   <div class="small mt" id="lensInfo"></div>
 </div>
 
 <div class="card">
   <h2>Messung (was die Kamera zeigt)</h2>
   <div class="g3">
-    <div><div class="lab"><span>Blende</span></div><select id="mA"></select></div>
-    <div><div class="lab"><span>Zeit</span></div><select id="mT"></select></div>
-    <div><div class="lab"><span>ISO</span></div><select id="mI"></select></div>
+    <div><div class="lab"><span>Blende<button class="q" data-q="blende" aria-label="Einfach erklärt">?</button></span></div><select id="mA"></select></div>
+    <div><div class="lab"><span>Zeit<button class="q" data-q="zeit" aria-label="Einfach erklärt">?</button></span></div><select id="mT"></select></div>
+    <div><div class="lab"><span>ISO<button class="q" data-q="iso" aria-label="Einfach erklärt">?</button></span></div><select id="mI"></select></div>
   </div>
 </div>
 
 <div class="card">
-  <h2>Neue Einstellung</h2>
+  <h2>Neue Einstellung<button class="q" data-q="ev" aria-label="Einfach erklärt">?</button></h2>
   <div class="vals">
     <div><b id="vA"></b><i>Blende</i></div>
     <div><b id="vT"></b><i>Zeit</i></div>
@@ -295,13 +368,13 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
     <button id="modeI">ISO zieht nach</button>
   </div>
 
-  <div class="lab"><span>Blende</span><span class="ev" id="evA"></span></div>
+  <div class="lab"><span>Blende<button class="q" data-q="blende" aria-label="Einfach erklärt">?</button></span><span class="ev" id="evA"></span></div>
   <div class="stp"><button data-p="a" data-d="-1">−</button><select id="cA" data-p="a"></select><button data-p="a" data-d="1">+</button></div>
 
-  <div class="lab"><span>Zeit</span><span class="ev" id="evT"></span></div>
+  <div class="lab"><span>Zeit<button class="q" data-q="zeit" aria-label="Einfach erklärt">?</button></span><span class="ev" id="evT"></span></div>
   <div class="stp"><button data-p="t" data-d="-1">−</button><select id="cT" data-p="t"></select><button data-p="t" data-d="1">+</button></div>
 
-  <div class="lab"><span>ISO</span><span class="ev" id="evI"></span></div>
+  <div class="lab"><span>ISO<button class="q" data-q="iso" aria-label="Einfach erklärt">?</button></span><span class="ev" id="evI"></span></div>
   <div class="stp"><button data-p="i" data-d="-1">−</button><select id="cI" data-p="i"></select><button data-p="i" data-d="1">+</button></div>
 
   <div id="expMsg"></div>
@@ -315,10 +388,10 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
 <section class="tab" id="t-filter">
 <h1>Filter-Rechner</h1>
 <div class="card">
-  <div class="lab"><span>Zeit ohne Filter</span></div>
+  <div class="lab"><span>Zeit ohne Filter<button class="q" data-q="zeit" aria-label="Einfach erklärt">?</button></span></div>
   <div class="stp"><button data-p="fb" data-d="-1">−</button><select id="fb"></select><button data-p="fb" data-d="1">+</button></div>
 
-  <div class="lab"><span>Filter (kombinierbar)</span></div>
+  <div class="lab"><span>Filter (kombinierbar)<button class="q" data-q="nd" aria-label="Einfach erklärt">?</button><button class="q" data-q="cpl" aria-label="Einfach erklärt">?</button></span></div>
   <div class="g2" id="filBtns"></div>
   <div id="varBox" class="mt">
     <div class="lab"><span>ND2–32 variabel</span><span id="varTxt" style="color:var(--tx)"></span></div>
@@ -328,7 +401,7 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
 
 <div class="card disp">
   <div class="lab"><span>Filter gesamt</span><span class="ev" id="fStops"></span></div>
-  <div class="small">Zeit mit Filter</div>
+  <div class="small">Zeit mit Filter<button class="q" data-q="bulb" aria-label="Einfach erklärt">?</button></div>
   <div class="big" id="fRes"></div>
   <div id="fSub" class="mt"></div>
 </div>
@@ -360,12 +433,12 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
 <thead><tr><th></th><th>16-35 GM II</th><th>24-70 GM II</th><th>90 Macro G</th><th>100-400 GM</th></tr></thead>
 <tbody>
 <tr><td>Modell</td><td>SEL1635GM2</td><td>SEL2470GM2</td><td>SEL90M28G</td><td>SEL100400GM</td></tr>
-<tr><td>Lichtstärke</td><td>F2.8 durchgehend</td><td>F2.8 durchgehend</td><td>F2.8</td><td>F4.5–5.6 *</td></tr>
-<tr><td>Kleinste Blende</td><td>F22</td><td>F22</td><td>F22</td><td>F32</td></tr>
-<tr><td>Filtergewinde</td><td>82 mm</td><td>82 mm</td><td>62 mm</td><td>77 mm</td></tr>
-<tr><td>Naheinstell­grenze</td><td>0,22 m (AF)<br>0,19 m (MF)</td><td>0,21 m (24 mm)<br>0,30 m (70 mm)</td><td>0,28 m<br>(1:1)</td><td>0,98 m</td></tr>
-<tr><td>Bildstabi</td><td>nein – nur IBIS</td><td>nein – nur IBIS</td><td>OSS + IBIS</td><td>OSS + IBIS</td></tr>
-<tr><td>mit SEL14TC</td><td>passt nicht</td><td>passt nicht</td><td>passt nicht</td><td><b>140–560 mm</b><br>F6.3–8<br>kleinste F45<br>Naheinst. unverändert</td></tr>
+<tr><td>Lichtstärke<button class="q" data-q="lichtstaerke" aria-label="Einfach erklärt">?</button></td><td>F2.8 durchgehend</td><td>F2.8 durchgehend</td><td>F2.8</td><td>F4.5–5.6 *</td></tr>
+<tr><td>Kleinste Blende<button class="q" data-q="blende" aria-label="Einfach erklärt">?</button></td><td>F22</td><td>F22</td><td>F22</td><td>F32</td></tr>
+<tr><td>Filtergewinde<button class="q" data-q="filtergewinde" aria-label="Einfach erklärt">?</button></td><td>82 mm</td><td>82 mm</td><td>62 mm</td><td>77 mm</td></tr>
+<tr><td>Naheinstell­grenze<button class="q" data-q="naheinstellgrenze" aria-label="Einfach erklärt">?</button></td><td>0,22 m (AF)<br>0,19 m (MF)</td><td>0,21 m (24 mm)<br>0,30 m (70 mm)</td><td>0,28 m<br>(1:1)</td><td>0,98 m</td></tr>
+<tr><td>Bildstabi<button class="q" data-q="ibis" aria-label="Einfach erklärt">?</button><button class="q" data-q="oss" aria-label="Einfach erklärt">?</button></td><td>nein – nur IBIS</td><td>nein – nur IBIS</td><td>OSS + IBIS</td><td>OSS + IBIS</td></tr>
+<tr><td>mit SEL14TC<button class="q" data-q="telekonverter" aria-label="Einfach erklärt">?</button></td><td>passt nicht</td><td>passt nicht</td><td>passt nicht</td><td><b>140–560 mm</b><br>F6.3–8<br>kleinste F45<br>Naheinst. unverändert</td></tr>
 <tr><td>Filtersatz</td><td><b style="color:var(--ok)">82-mm-Set direkt</b> (Set 1 + 2)</td><td><b style="color:var(--ok)">82-mm-Set direkt</b> (Set 1 + 2)</td><td>Step-up 62→82</td><td>Step-up 77→82</td></tr>
 </tbody>
 </table>
@@ -381,11 +454,19 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
 <div class="card">
 <h2>Speicherplätze (Moduswahlrad 1 / 2 / 3)</h2>
 <h3>1 · Landschaft</h3>
-<table class="kv"><tr><td>Modus</td><td>A · F8</td></tr><tr><td>ISO</td><td>Auto 100–3200</td></tr><tr><td>Fokusmodus</td><td>AF-S</td></tr><tr><td>Fokusfeld</td><td>Spot M</td></tr><tr><td>Motiverkennung</td><td>aus</td></tr><tr><td>Bildfolge</td><td>Einzelbild</td></tr></table>
+<table class="kv"><tr><td>Modus<button class="q" data-q="modusa" aria-label="Einfach erklärt">?</button></td><td>A · F8</td></tr><tr><td>ISO<button class="q" data-q="iso" aria-label="Einfach erklärt">?</button></td><td>Auto 100–3200</td></tr><tr><td>Fokusmodus<button class="q" data-q="fokusmodus" aria-label="Einfach erklärt">?</button></td><td>AF-S<button class="q" data-q="afs" aria-label="Einfach erklärt">?</button></td></tr><tr><td>Fokusfeld<button class="q" data-q="fokusfeld" aria-label="Einfach erklärt">?</button></td><td>Spot M</td></tr><tr><td>Motiverkennung<button class="q" data-q="motiverkennung" aria-label="Einfach erklärt">?</button></td><td>aus</td></tr><tr><td>Bildfolge<button class="q" data-q="bildfolge" aria-label="Einfach erklärt">?</button></td><td>Einzelbild</td></tr></table>
+<p class="why"><b>Warum so?</b> F8 macht von vorne bis hinten scharf. AF-S reicht, weil nichts weglaufen kann. Spot M, weil ich selbst bestimme, worauf es ankommt – meist der Vordergrund. Motiverkennung aus, damit die Kamera nicht plötzlich auf einen Vogel springt.</p>
 <h3>2 · Schnappschuss / Wildlife</h3>
-<table class="kv"><tr><td>Modus</td><td>A · F5.6</td></tr><tr><td>ISO</td><td>Auto 100–12800</td></tr><tr><td>Fokusmodus</td><td>AF-C</td></tr><tr><td>Fokusfeld</td><td>Breit</td></tr><tr><td>Motiverkennung</td><td>an · Tier/Vogel</td></tr><tr><td>Bildfolge</td><td>Serie Hi</td></tr></table>
+<table class="kv"><tr><td>Modus<button class="q" data-q="modusa" aria-label="Einfach erklärt">?</button></td><td>A · F5.6</td></tr><tr><td>ISO<button class="q" data-q="iso" aria-label="Einfach erklärt">?</button></td><td>Auto 100–12800</td></tr><tr><td>Fokusmodus<button class="q" data-q="fokusmodus" aria-label="Einfach erklärt">?</button></td><td>AF-C<button class="q" data-q="afc" aria-label="Einfach erklärt">?</button></td></tr><tr><td>Fokusfeld<button class="q" data-q="fokusfeld" aria-label="Einfach erklärt">?</button></td><td>Breit</td></tr><tr><td>Motiverkennung<button class="q" data-q="motiverkennung" aria-label="Einfach erklärt">?</button></td><td>an · Tier/Vogel</td></tr><tr><td>Bildfolge<button class="q" data-q="bildfolge" aria-label="Einfach erklärt">?</button></td><td>Serie Hi</td></tr></table>
+<p class="why"><b>Warum so?</b> F5.6 lässt genug Licht herein und hält das Tier trotzdem ganz scharf. AF-C folgt der Bewegung, Breit plus Tier-/Vogelerkennung findet das Auge von allein. Serie Hi, weil der richtige Moment nur Sekundenbruchteile dauert.</p>
 <h3>3 · Wenig Licht</h3>
-<table class="kv"><tr><td>Modus</td><td>A · F4</td></tr><tr><td>ISO</td><td>Auto 100–12800</td></tr><tr><td>Fokusmodus</td><td>AF-C</td></tr><tr><td>Fokusfeld</td><td>Spot M</td></tr><tr><td>Motiverkennung</td><td>an</td></tr></table>
+<table class="kv"><tr><td>Modus<button class="q" data-q="modusa" aria-label="Einfach erklärt">?</button></td><td>A · F4</td></tr><tr><td>ISO<button class="q" data-q="iso" aria-label="Einfach erklärt">?</button></td><td>Auto 100–12800</td></tr><tr><td>Fokusmodus<button class="q" data-q="fokusmodus" aria-label="Einfach erklärt">?</button></td><td>AF-C<button class="q" data-q="afc" aria-label="Einfach erklärt">?</button></td></tr><tr><td>Fokusfeld<button class="q" data-q="fokusfeld" aria-label="Einfach erklärt">?</button></td><td>Spot M</td></tr><tr><td>Motiverkennung<button class="q" data-q="motiverkennung" aria-label="Einfach erklärt">?</button></td><td>an</td></tr></table>
+<p class="why"><b>Warum so?</b> F4 holt viel Licht herein, ohne dass die Schärfe zu knapp wird. ISO darf bis 12800 steigen – lieber etwas Korn als ein verwackeltes Bild. Spot M, weil der Autofokus im Dunkeln sonst leicht danebengreift.</p>
+</div>
+
+<div class="card">
+<h2>Fokusfeld verstehen</h2>
+<div class="expl"><h4>Fokusfeld = wo im Bild die Kamera scharf stellt</h4><dl><dt>Breit</dt><dd>Kamera sucht selbst aus. F&uuml;r Schnappsch&uuml;sse und Tiere mit Motiverkennung.</dd><dt>Feld</dt><dd>Ich lege einen mittelgro&szlig;en Bereich fest, darin sucht die Kamera.</dd><dt>Mitte fix</dt><dd>Immer die Bildmitte. Gut f&uuml;r den Anfang: Motiv in die Mitte, Ausl&ouml;ser halb dr&uuml;cken, halten, Bild ausrichten, abdr&uuml;cken.</dd><dt>Spot S / M / L</dt><dd>Kleiner Punkt, den ich mit dem Joystick verschiebe. Ich bestimme genau, was scharf wird. F&uuml;r Landschaft und Makro.</dd><dt>Erweiterter Spot</dt><dd>Wie Spot, nimmt bei Bedarf die Umgebung dazu.</dd><dt>Tracking</dt><dd>Verfolgt das Motiv. Nur mit AF-C. F&uuml;r Tiere und V&ouml;gel in Bewegung.</dd></dl><p class="rule">Faustregel: Steht still &rarr; Spot M. Bewegt sich &rarr; Breit oder Tracking mit Motiverkennung.</p></div>
 </div>
 
 <div class="card">
@@ -403,14 +484,14 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
 <h2>Kursbegriff → Sony</h2>
 <table>
 <thead><tr><th>Kurs</th><th>A7R V</th></tr></thead>
-<tr><td>Matrix / Mehrfeld</td><td>Multi</td></tr>
+<tr><td>Matrix / Mehrfeld<button class="q" data-q="messmodus" aria-label="Einfach erklärt">?</button></td><td>Multi</td></tr>
 <tr><td>Selektiv</td><td>Mitte oder Spot</td></tr>
 <tr><td>Integral</td><td>Bildfeld-Durchschn.</td></tr>
 <tr><td>Sportmessung</td><td>gibt es bei Sony nicht</td></tr>
-<tr><td>Blendenautomatik</td><td>Modus S</td></tr>
-<tr><td>Zeitautomatik</td><td>Modus A</td></tr>
+<tr><td>Blendenautomatik<button class="q" data-q="moduss" aria-label="Einfach erklärt">?</button></td><td>Modus S</td></tr>
+<tr><td>Zeitautomatik<button class="q" data-q="modusa" aria-label="Einfach erklärt">?</button></td><td>Modus A</td></tr>
 <tr><td>Programmautomatik</td><td>Modus P</td></tr>
-<tr><td>Manuell</td><td>Modus M</td></tr>
+<tr><td>Manuell<button class="q" data-q="modusm" aria-label="Einfach erklärt">?</button></td><td>Modus M</td></tr>
 </table>
 </div>
 
@@ -419,19 +500,19 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
 <table class="kv">
 <tr><td>Speicherplatz sichern</td><td class="path">Aufnahme › Aufnahmemodus › Kamera-Einst.-Speicher → 1/2/3</td></tr>
 <tr><td>Speicherplatz abrufen</td><td class="path">Moduswahlrad auf 1, 2 oder 3</td></tr>
-<tr><td>Belichtungskorrektur</td><td class="path">Belichtung/Farbe › Belichtungskorr. › Belichtungskorr.</td></tr>
+<tr><td>Belichtungskorrektur<button class="q" data-q="belichtungskorrektur" aria-label="Einfach erklärt">?</button></td><td class="path">Belichtung/Farbe › Belichtungskorr. › Belichtungskorr.</td></tr>
 <tr><td>ISO / ISO Auto Min–Max</td><td class="path">Belichtung/Farbe › Belichtung › ISO → ISO AUTO, dann nach rechts: Min./Max.</td></tr>
-<tr><td>Messmodus</td><td class="path">Belichtung/Farbe › Messung › Messmodus</td></tr>
+<tr><td>Messmodus<button class="q" data-q="messmodus" aria-label="Einfach erklärt">?</button></td><td class="path">Belichtung/Farbe › Messung › Messmodus</td></tr>
 <tr><td>Fokusmodus</td><td class="path">Fokus (AF/MF) › AF/MF › Fokusmodus</td></tr>
 <tr><td>Fokusfeld</td><td class="path">Fokus (AF/MF) › Fokusfeld › Fokusfeld</td></tr>
 <tr><td>Motiverkennung</td><td class="path">Fokus (AF/MF) › Motiverkennung › Motiverk. bei AF / Erkennungsziel</td></tr>
-<tr><td>Fokuslupe</td><td class="path">Fokus (AF/MF) › Fokus-Assistent › Fokusvergrößerung</td></tr>
+<tr><td>Fokuslupe<button class="q" data-q="fokuslupe" aria-label="Einfach erklärt">?</button></td><td class="path">Fokus (AF/MF) › Fokus-Assistent › Fokusvergrößerung</td></tr>
 <tr><td>Bildfolge</td><td class="path">Aufnahme › Bildfolgemodus › Bildfolgemodus</td></tr>
 <tr><td>Tasten belegen</td><td class="path">Einstellung › Bedienungsanpassung › Ben.-def. Key/Wählr.-Einst.</td></tr>
 <tr><td>SteadyShot</td><td class="path">Aufnahme › Bildstabilisierung › SteadyShot</td></tr>
-<tr><td>Langzeit-RM</td><td class="path">Aufnahme › Bildqualität › Langzeit-RM</td></tr>
+<tr><td>Langzeit-RM<button class="q" data-q="langzeitrm" aria-label="Einfach erklärt">?</button></td><td class="path">Aufnahme › Bildqualität › Langzeit-RM</td></tr>
 <tr><td>Verschlusstyp</td><td class="path">Aufnahme › Verschluss/Lautlos › Verschlusstyp</td></tr>
-<tr><td>BULB</td><td class="path">Modus M, Zeit über 30″ hinaus drehen</td></tr>
+<tr><td>BULB<button class="q" data-q="bulb" aria-label="Einfach erklärt">?</button></td><td class="path">Modus M, Zeit über 30″ hinaus drehen</td></tr>
 </table>
 <p class="small">Bezeichnungen können je nach Firmware leicht abweichend abgekürzt sein.</p>
 </div>
@@ -440,7 +521,7 @@ details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
 Blitz: Godox V860III-S (Sony-Schuh). Synchronzeit ohne HSS: 1/250 s.
 </div>
 
-<p class="small" style="text-align:center;opacity:.6;margin:18px 0 0">Version 8</p>
+<p class="small" style="text-align:center;opacity:.6;margin:18px 0 0">Version 9</p>
 </section>
 <!-- ============ SPICKZETTEL ============ -->
 <section class="tab" id="t-spick">
@@ -449,31 +530,31 @@ Blitz: Godox V860III-S (Sony-Schuh). Synchronzeit ohne HSS: 1/250 s.
 <h2 class="mt">Was bewirkt was</h2>
 
 <div class="card">
-  <h3 style="margin-top:0">Blende</h3>
+  <h3 style="margin-top:0">Blende<button class="q" data-q="blende" aria-label="Einfach erklärt">?</button></h3>
   <div class="apr"><div class="ap1"><div class="ring"><i style="width:30px;height:30px"></i></div><b>F2.8</b></div><div class="ap1"><div class="ring"><i style="width:25px;height:25px"></i></div><b>F4</b></div><div class="ap1"><div class="ring"><i style="width:20px;height:20px"></i></div><b>F5.6</b></div><div class="ap1"><div class="ring"><i style="width:16px;height:16px"></i></div><b>F8</b></div><div class="ap1"><div class="ring"><i style="width:12px;height:12px"></i></div><b>F11</b></div><div class="ap1"><div class="ring"><i style="width:9px;height:9px"></i></div><b>F16</b></div><div class="ap1"><div class="ring"><i style="width:6px;height:6px"></i></div><b>F22</b></div></div>
   <div class="bar"></div>
   <div class="ends">
-    <div>gro&szlig;e &Ouml;ffnung &middot; viel Licht &middot; wenig Sch&auml;rfentiefe (Hintergrund unscharf)</div>
+    <div>gro&szlig;e &Ouml;ffnung &middot; viel Licht &middot; wenig Sch&auml;rfentiefe (Hintergrund unscharf)<button class="q" data-q="schaerfentiefe" aria-label="Einfach erklärt">?</button></div>
     <div>kleine &Ouml;ffnung &middot; wenig Licht &middot; viel Sch&auml;rfentiefe (alles scharf)</div>
   </div>
 </div>
 
 <div class="card">
-  <h3 style="margin-top:0">Zeit</h3>
+  <h3 style="margin-top:0">Zeit<button class="q" data-q="zeit" aria-label="Einfach erklärt">?</button></h3>
   <div class="scale"><span>1/1000</span><span>1/500</span><span>1/250</span><span>1/125</span><span>1/60</span><span>1/30</span><span>1/15</span><span>1/8</span><span>1/4</span><span>1/2</span></div>
   <div class="bar"></div>
-  <div class="ends"><div>kurz &middot; friert Bewegung ein</div><div>lang &middot; Bewegungsunsch&auml;rfe, Stativ</div></div>
+  <div class="ends"><div>kurz &middot; friert Bewegung ein</div><div>lang &middot; Bewegungsunsch&auml;rfe, Stativ<button class="q" data-q="stativ" aria-label="Einfach erklärt">?</button></div></div>
 </div>
 
 <div class="card">
-  <h3 style="margin-top:0">ISO</h3>
+  <h3 style="margin-top:0">ISO<button class="q" data-q="iso" aria-label="Einfach erklärt">?</button></h3>
   <div class="scale"><span>100</span><span>200</span><span>400</span><span>800</span><span>1600</span><span>3200</span><span>6400</span><span>12800</span><span>25600</span></div>
   <div class="bar"></div>
-  <div class="ends"><div>niedrig &middot; sauberes Bild</div><div>hoch &middot; mehr Bildrauschen</div></div>
+  <div class="ends"><div>niedrig &middot; sauberes Bild</div><div>hoch &middot; mehr Bildrauschen<button class="q" data-q="bildrauschen" aria-label="Einfach erklärt">?</button></div></div>
   <p class="small mt">A7R V: ISO 100&ndash;32000 normal, 50 und bis 102400 erweitert.</p>
 </div>
 
-<div class="merk">Jeder Schritt in diesen Reihen = 1 Blendenstufe (doppeltes bzw. halbes Licht).</div>
+<div class="merk">Jeder Schritt in diesen Reihen = 1 Blendenstufe<button class="q" data-q="blendenstufe" aria-label="Einfach erklärt">?</button> (doppeltes bzw. halbes Licht).</div>
 
 <h2 class="mt" style="margin-top:20px">Startwerte nach Motiv</h2>
 <p class="small">Startpunkte &ndash; je nach Licht anpassen.</p>
@@ -486,17 +567,17 @@ Blitz: Godox V860III-S (Sony-Schuh). Synchronzeit ohne HSS: 1/250 s.
 <p>Aus dem Kurs: <b>Wo finde ich das an meiner A7R V?</b></p>
 <p class="small">Rad-/Tastenbelegung = Werkseinstellung, an der Kamera pr&uuml;fen.</p>
 
-<details class="hw" data-hw="1"><summary><span class="hwn">1</span><span class="hwt">Zeit einstellen</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Modus <b>S</b> oder <b>M</b> am Moduswahlrad. Zeit mit dem <b>hinteren Einstellrad</b> (oben hinten). Über 30″ hinaus → <b>BULB</b> (nur Modus M).</div></details>
-<details class="hw" data-hw="2"><summary><span class="hwn">2</span><span class="hwt">Blende einstellen</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Modus <b>A</b> oder <b>M</b>. Blende mit dem <b>vorderen Einstellrad</b>.<br><br><b>Wichtig:</b> 16-35 GM II und 24-70 GM II haben einen Blendenring – der muss auf <b>„A“</b> stehen, sonst gilt der Ring. 100-400 und 90 Makro: nur über die Kamera.</div></details>
-<details class="hw" data-hw="3"><summary><span class="hwn">3</span><span class="hwt">Empfindlichkeit (ISO) einstellen</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb"><b>Rechts</b> am Einstellrad hinten (Steuerrad) drücken = ISO, dann drehen.<br>Menü: <span class="path">Belichtung/Farbe › Belichtung › ISO</span>.<br>ISO AUTO mit Min./Max. (nach rechts).</div></details>
-<details class="hw" data-hw="4"><summary><span class="hwn">4</span><span class="hwt">Fokuspunkte / Fokusfelder ansteuern</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Fokusfeld wählen: Taste <b>C2</b> (meine Belegung) oder Menü <span class="path">Fokus (AF/MF) › Fokusfeld › Fokusfeld</span>.<br>Punkt verschieben: mit dem <b>Multi-Selector (Joystick)</b> oder per <b>Touch</b> auf dem Display.</div></details>
-<details class="hw" data-hw="5"><summary><span class="hwn">5</span><span class="hwt">Matrix-/Mehrfeldmessung</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Sony nennt das <b>„Multi“</b>.<br>Menü: <span class="path">Belichtung/Farbe › Messung › Messmodus › Multi</span>.<br>Schneller: <b>Fn-Taste › Messmodus</b>.</div></details>
-<details class="hw" data-hw="6"><summary><span class="hwn">6</span><span class="hwt">Selektivmessung</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Sony hat <b>keine eigene Selektivmessung</b>. Am nächsten: <b>„Mitte“</b> (mittenbetont) oder <b>„Spot“</b> (Größe Standard/Groß). Gleicher Menüpfad wie Punkt 5.</div></details>
-<details class="hw" data-hw="7"><summary><span class="hwn">7</span><span class="hwt">Spotmessung</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb"><span class="path">Messmodus › Spot</span>, Größe <b>Standard</b> oder <b>Groß</b>.<br><br>Tipp: Der Spot-Messpunkt kann mit dem Fokusfeld gekoppelt werden – <span class="path">Belichtung/Farbe › Messung › Spot-Messpunkt › Fokusfeldverknüpfung</span>.</div></details>
-<details class="hw" data-hw="8"><summary><span class="hwn">8</span><span class="hwt">Integralmessung</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Sony: <b>„Bildfeld-Durchschn.“</b> im Messmodus (gleicher Menüpfad wie Punkt 5).</div></details>
-<details class="hw" data-hw="9"><summary><span class="hwn">9</span><span class="hwt">Blendenautomatik</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">= Modus <b>S</b> (Zeitvorwahl): ich wähle die <b>Zeit</b>, die Kamera die Blende.</div></details>
-<details class="hw" data-hw="10"><summary><span class="hwn">10</span><span class="hwt">Zeitautomatik</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">= Modus <b>A</b> (Blendenvorwahl): ich wähle die <b>Blende</b>, die Kamera die Zeit.</div></details>
-<details class="hw" data-hw="11"><summary><span class="hwn">11</span><span class="hwt">Manuelle Belichtungssteuerung</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">= Modus <b>M</b>: Blende vorderes Rad, Zeit hinteres Rad, ISO fest oder AUTO.<br>Die Belichtungsskala (<b>M.M.</b>) im Sucher zeigt die Abweichung in EV.</div></details>
+<details class="hw" data-hw="1"><summary><span class="hwn">1</span><span class="hwt">Zeit einstellen<button class="q" data-q="zeit" aria-label="Einfach erklärt">?</button></span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Modus <b>S</b> oder <b>M</b> am Moduswahlrad. Zeit mit dem <b>hinteren Einstellrad</b> (oben hinten). Über 30″ hinaus → <b>BULB</b> (nur Modus M).</div></details>
+<details class="hw" data-hw="2"><summary><span class="hwn">2</span><span class="hwt">Blende einstellen<button class="q" data-q="blende" aria-label="Einfach erklärt">?</button></span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Modus <b>A</b> oder <b>M</b>. Blende mit dem <b>vorderen Einstellrad</b>.<br><br><b>Wichtig:</b> 16-35 GM II und 24-70 GM II haben einen Blendenring – der muss auf <b>„A“</b> stehen, sonst gilt der Ring. 100-400 und 90 Makro: nur über die Kamera.</div></details>
+<details class="hw" data-hw="3"><summary><span class="hwn">3</span><span class="hwt">Empfindlichkeit (ISO) einstellen<button class="q" data-q="iso" aria-label="Einfach erklärt">?</button></span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb"><b>Rechts</b> am Einstellrad hinten (Steuerrad) drücken = ISO, dann drehen.<br>Menü: <span class="path">Belichtung/Farbe › Belichtung › ISO</span>.<br>ISO AUTO mit Min./Max. (nach rechts).</div></details>
+<details class="hw" data-hw="4"><summary><span class="hwn">4</span><span class="hwt">Fokuspunkte / Fokusfelder ansteuern<button class="q" data-q="fokusfeld" aria-label="Einfach erklärt">?</button></span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Fokusfeld wählen: Taste <b>C2</b> (meine Belegung) oder Menü <span class="path">Fokus (AF/MF) › Fokusfeld › Fokusfeld</span>.<br>Punkt verschieben: mit dem <b>Multi-Selector (Joystick)</b> oder per <b>Touch</b> auf dem Display.<div class="expl"><h4>Fokusfeld = wo im Bild die Kamera scharf stellt</h4><dl><dt>Breit</dt><dd>Kamera sucht selbst aus. F&uuml;r Schnappsch&uuml;sse und Tiere mit Motiverkennung.</dd><dt>Feld</dt><dd>Ich lege einen mittelgro&szlig;en Bereich fest, darin sucht die Kamera.</dd><dt>Mitte fix</dt><dd>Immer die Bildmitte. Gut f&uuml;r den Anfang: Motiv in die Mitte, Ausl&ouml;ser halb dr&uuml;cken, halten, Bild ausrichten, abdr&uuml;cken.</dd><dt>Spot S / M / L</dt><dd>Kleiner Punkt, den ich mit dem Joystick verschiebe. Ich bestimme genau, was scharf wird. F&uuml;r Landschaft und Makro.</dd><dt>Erweiterter Spot</dt><dd>Wie Spot, nimmt bei Bedarf die Umgebung dazu.</dd><dt>Tracking</dt><dd>Verfolgt das Motiv. Nur mit AF-C. F&uuml;r Tiere und V&ouml;gel in Bewegung.</dd></dl><p class="rule">Faustregel: Steht still &rarr; Spot M. Bewegt sich &rarr; Breit oder Tracking mit Motiverkennung.</p></div></div></details>
+<details class="hw" data-hw="5"><summary><span class="hwn">5</span><span class="hwt">Matrix-/Mehrfeldmessung<button class="q" data-q="messmodus" aria-label="Einfach erklärt">?</button></span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Sony nennt das <b>„Multi“</b>.<br>Menü: <span class="path">Belichtung/Farbe › Messung › Messmodus › Multi</span>.<br>Schneller: <b>Fn-Taste › Messmodus</b>.</div></details>
+<details class="hw" data-hw="6"><summary><span class="hwn">6</span><span class="hwt">Selektivmessung<button class="q" data-q="messmodus" aria-label="Einfach erklärt">?</button></span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Sony hat <b>keine eigene Selektivmessung</b>. Am nächsten: <b>„Mitte“</b> (mittenbetont) oder <b>„Spot“</b> (Größe Standard/Groß). Gleicher Menüpfad wie Punkt 5.</div></details>
+<details class="hw" data-hw="7"><summary><span class="hwn">7</span><span class="hwt">Spotmessung<button class="q" data-q="messmodus" aria-label="Einfach erklärt">?</button></span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb"><span class="path">Messmodus › Spot</span>, Größe <b>Standard</b> oder <b>Groß</b>.<br><br>Tipp: Der Spot-Messpunkt kann mit dem Fokusfeld gekoppelt werden – <span class="path">Belichtung/Farbe › Messung › Spot-Messpunkt › Fokusfeldverknüpfung</span>.</div></details>
+<details class="hw" data-hw="8"><summary><span class="hwn">8</span><span class="hwt">Integralmessung<button class="q" data-q="messmodus" aria-label="Einfach erklärt">?</button></span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Sony: <b>„Bildfeld-Durchschn.“</b> im Messmodus (gleicher Menüpfad wie Punkt 5).</div></details>
+<details class="hw" data-hw="9"><summary><span class="hwn">9</span><span class="hwt">Blendenautomatik<button class="q" data-q="moduss" aria-label="Einfach erklärt">?</button></span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">= Modus <b>S</b> (Zeitvorwahl): ich wähle die <b>Zeit</b>, die Kamera die Blende.</div></details>
+<details class="hw" data-hw="10"><summary><span class="hwn">10</span><span class="hwt">Zeitautomatik<button class="q" data-q="modusa" aria-label="Einfach erklärt">?</button></span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">= Modus <b>A</b> (Blendenvorwahl): ich wähle die <b>Blende</b>, die Kamera die Zeit.</div></details>
+<details class="hw" data-hw="11"><summary><span class="hwn">11</span><span class="hwt">Manuelle Belichtungssteuerung<button class="q" data-q="modusm" aria-label="Einfach erklärt">?</button></span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">= Modus <b>M</b>: Blende vorderes Rad, Zeit hinteres Rad, ISO fest oder AUTO.<br>Die Belichtungsskala (<b>M.M.</b>) im Sucher zeigt die Abweichung in EV.</div></details>
 <details class="hw" data-hw="12"><summary><span class="hwn">12</span><span class="hwt">USB-Stick mit 10 eigenen Bildern</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Nur abhaken – kein Menüpfad nötig.</div></details>
 
 <div class="card">
@@ -505,7 +586,29 @@ Blitz: Godox V860III-S (Sony-Schuh). Synchronzeit ohne HSS: 1/250 s.
 </div>
 </section>
 
+<!-- ============ EINFACH ERKLAERT ============ -->
+<section class="tab" id="t-gloss">
+<h1>Einfach erkl&auml;rt</h1>
+<p class="sub">Alle Fachbegriffe der App in Alltagssprache.</p>
+<div class="card">
+  <input type="search" id="gsearch" placeholder="Begriff suchen &hellip;" aria-label="Begriff suchen" autocomplete="off">
+  <p class="small mt" id="gcount"></p>
+</div>
+<div id="glist"></div>
+</section>
+
 </main>
+
+<div id="qsheet" aria-hidden="true">
+  <div class="qback" id="qback"></div>
+  <div class="qcard" role="dialog" aria-modal="true" aria-labelledby="qt">
+    <div class="qhead"><h3 id="qt"></h3><button id="qclose" aria-label="Schlie&szlig;en">&#10005;</button></div>
+    <p class="qlabel">Einfach erkl&auml;rt</p>
+    <p class="qtext" id="qe"></p>
+    <p class="qlabel">Wann nutze ich das?</p>
+    <p class="qtext" id="qw"></p>
+  </div>
+</div>
 
 
 <script>
@@ -651,7 +754,8 @@ var ROUTES=[
  {h:"objektive",id:"t-obj",n:"Objektive"},
  {h:"kamera",id:"t-kam",n:"Kamera"},
  {h:"spickzettel",id:"t-spick",n:"Spickzettel"},
- {h:"hausaufgabe",id:"t-hw",n:"Hausaufgabe"}
+ {h:"hausaufgabe",id:"t-hw",n:"Hausaufgabe"},
+ {h:"einfach",id:"t-gloss",n:"Einfach erklärt"}
 ];
 function routeOf(h){
   h=String(h||"").replace(/^#/,"");
@@ -788,6 +892,242 @@ function hwRender(){
     });
   }
   $("hwReset").addEventListener("click",function(){HWS={};hwSave();hwRender()});
+})();
+
+/* ---------- Einfach erklärt ---------- */
+var GLOSS=[
+{
+"k": "blende",
+"t": "Blende",
+"e": "Die Blende ist das Loch im Objektiv, durch das Licht fällt. Kleine Zahl bedeutet großes Loch: viel Licht, und der Hintergrund wird unscharf. Große Zahl bedeutet kleines Loch: wenig Licht, und fast alles ist scharf.",
+"w": "Kleine Zahl wie F2.8 für Porträts, wenn der Hintergrund verschwimmen soll. Große Zahl wie F8 bis F11 für Landschaft, wenn vorne und hinten scharf sein soll."
+},
+{
+"k": "zeit",
+"t": "Belichtungszeit",
+"e": "Die Zeit sagt, wie lange die Kamera Licht sammelt. Kurz wie 1/1000 friert Bewegung ein. Lang wie 1 Sekunde macht Bewegung zu weichen Streifen und lässt mehr Licht herein.",
+"w": "Kurz bei Sport, Tieren und Kindern. Lang bei Wasser, Nacht und wenig Licht – dafür brauchst du ein Stativ."
+},
+{
+"k": "iso",
+"t": "ISO",
+"e": "ISO sagt, wie empfindlich die Kamera auf Licht reagiert. Niedrig wie 100 gibt saubere Bilder. Hoch wie 6400 hilft im Dunkeln, macht das Bild aber körnig.",
+"w": "Bleib so niedrig wie möglich. Dreh ihn erst hoch, wenn Blende und Zeit nicht mehr ausreichen."
+},
+{
+"k": "ev",
+"t": "EV",
+"e": "EV ist die Maßeinheit für Helligkeit. Ein Schritt bedeutet doppelt so viel oder halb so viel Licht. Plus macht heller, Minus macht dunkler.",
+"w": "Wenn du eine Einstellung änderst, zeigt dir die App mit EV, wie viel heller oder dunkler das Bild dadurch würde."
+},
+{
+"k": "blendenstufe",
+"t": "Blendenstufe",
+"e": "Eine Blendenstufe ist ein Schritt, der das Licht verdoppelt oder halbiert. Sie gilt für Blende, Zeit und ISO gleichermaßen.",
+"w": "Wenn du an einer Stelle eine Stufe wegnimmst, musst du sie woanders wieder draufgeben, damit das Bild gleich hell bleibt."
+},
+{
+"k": "schaerfentiefe",
+"t": "Schärfentiefe",
+"e": "Die Schärfentiefe ist der Bereich im Bild, der scharf aussieht. Er kann dünn wie ein Blatt Papier sein oder von vorne bis zum Horizont reichen.",
+"w": "Wenig Schärfentiefe für Porträts, viel für Landschaft. Du steuerst sie über die Blende."
+},
+{
+"k": "afs",
+"t": "AF-S",
+"e": "Die Kamera stellt einmal scharf und hält die Schärfe fest, solange du den Auslöser halb gedrückt hältst.",
+"w": "Für alles, was still steht: Landschaft, Gebäude, Blumen, Porträts."
+},
+{
+"k": "afc",
+"t": "AF-C",
+"e": "Die Kamera stellt ständig neu scharf und folgt dem Motiv, solange du den Auslöser halb drückst.",
+"w": "Für alles, was sich bewegt: Tiere, Vögel, Sport, spielende Kinder."
+},
+{
+"k": "fokusmodus",
+"t": "Fokusmodus",
+"e": "Der Fokusmodus sagt, ob die Kamera einmal scharf stellt und die Schärfe hält oder ob sie dem Motiv dauernd folgt.",
+"w": "AF-S für ruhige Motive, AF-C für alles, was sich bewegt."
+},
+{
+"k": "fokusfeld",
+"t": "Fokusfeld",
+"e": "Das Fokusfeld bestimmt, wo im Bild die Kamera scharf stellt. Du kannst ihr die Wahl überlassen oder selbst einen Punkt festlegen.",
+"w": "Steht das Motiv still, nimm Spot M und leg den Punkt genau aufs Motiv. Bewegt es sich, nimm Breit oder Tracking."
+},
+{
+"k": "motiverkennung",
+"t": "Motiverkennung",
+"e": "Die Kamera sucht selbst nach Menschen, Tieren oder Vögeln im Bild und stellt auf deren Auge scharf.",
+"w": "Einschalten bei Tieren, Vögeln und Menschen. Ausschalten bei Landschaft, damit die Kamera nicht auf etwas Falsches springt."
+},
+{
+"k": "messmodus",
+"t": "Messmodus",
+"e": "Der Messmodus sagt, welchen Teil des Bildes die Kamera benutzt, um die Helligkeit zu messen. Mal das ganze Bild, mal nur einen kleinen Punkt.",
+"w": "Multi für normale Situationen. Spot, wenn nur ein kleiner Teil stimmen soll, zum Beispiel ein Gesicht im Gegenlicht."
+},
+{
+"k": "belichtungskorrektur",
+"t": "Belichtungskorrektur",
+"e": "Damit sagst du der Kamera: Mach das Bild etwas heller oder dunkler, als du selbst denkst.",
+"w": "Bei Schnee oder hellem Sand nach Plus, bei dunklen Motiven nach Minus."
+},
+{
+"k": "modusa",
+"t": "Modus A",
+"e": "Du stellst die Blende ein, die Kamera sucht die passende Zeit dazu. Heißt auch Zeitautomatik.",
+"w": "Der bequemste Modus für den Alltag, wenn dir wichtig ist, wie scharf oder unscharf der Hintergrund wird."
+},
+{
+"k": "moduss",
+"t": "Modus S",
+"e": "Du stellst die Zeit ein, die Kamera sucht die passende Blende dazu. Heißt auch Blendenautomatik.",
+"w": "Wenn Bewegung im Spiel ist und du bestimmen willst, ob sie eingefroren oder verwischt wird."
+},
+{
+"k": "modusm",
+"t": "Modus M",
+"e": "Du stellst Blende und Zeit selbst ein. Die Kamera ändert nichts von allein.",
+"w": "Bei gleichbleibendem Licht, bei BULB und immer dann, wenn die Automatik dich stört."
+},
+{
+"k": "nd",
+"t": "ND-Filter",
+"e": "Ein ND-Filter ist eine graue Scheibe vor dem Objektiv. Sie nimmt Licht weg, ohne die Farben zu verändern. Dadurch kannst du länger belichten.",
+"w": "Bei Tageslicht, wenn Wasser weich fließen soll oder Wolken als Streifen erscheinen sollen."
+},
+{
+"k": "cpl",
+"t": "CPL",
+"e": "Ein Polfilter ist eine drehbare Scheibe vor dem Objektiv. Sie nimmt Spiegelungen weg: Der Himmel wird kräftiger blau, Blätter und Wasser leuchten satter.",
+"w": "Bei Landschaft mit Himmel, bei Wasser und hinter Glas. Dreh ihn, bis dir der Effekt gefällt."
+},
+{
+"k": "bulb",
+"t": "BULB",
+"e": "BULB heißt: Der Verschluss bleibt so lange offen, wie du den Auslöser gedrückt hältst. Damit gehen Belichtungen über 30 Sekunden hinaus.",
+"w": "Bei Nacht, Sternen und sehr langen Belichtungen. Nur mit Stativ und am besten mit Fernauslöser."
+},
+{
+"k": "ibis",
+"t": "IBIS",
+"e": "IBIS ist der Bildstabilisator im Kameragehäuse. Er gleicht das Zittern deiner Hände aus.",
+"w": "Hilft aus der Hand bei wenig Licht. Auf dem Stativ kannst du ihn ausschalten."
+},
+{
+"k": "oss",
+"t": "OSS",
+"e": "OSS ist ein zweiter Bildstabilisator, der im Objektiv sitzt. Zusammen mit IBIS wirkt er noch stärker.",
+"w": "Besonders nützlich bei langen Brennweiten wie dem 100-400, wo jedes Zittern stark auffällt."
+},
+{
+"k": "telekonverter",
+"t": "Telekonverter",
+"e": "Ein Telekonverter ist ein kurzes Zwischenstück zwischen Kamera und Objektiv. Er vergrößert das Bild, schluckt dabei aber Licht.",
+"w": "Wenn Tiere zu weit weg sind. Dein SEL14TC passt nur ans 100-400 und kostet eine Blendenstufe Licht."
+},
+{
+"k": "naheinstellgrenze",
+"t": "Naheinstellgrenze",
+"e": "Das ist der kürzeste Abstand, bei dem ein Objektiv noch scharf stellen kann. Gehst du näher heran, wird das Bild unscharf.",
+"w": "Wichtig bei Nahaufnahmen von Blüten oder Insekten. Dein 90er Makro kommt am nächsten heran."
+},
+{
+"k": "lichtstaerke",
+"t": "Lichtstärke",
+"e": "Die Lichtstärke ist die größte Blendenöffnung, die ein Objektiv schafft. F2.8 lässt mehr Licht herein als F5.6.",
+"w": "Wichtig bei wenig Licht und wenn du den Hintergrund unscharf haben möchtest."
+},
+{
+"k": "filtergewinde",
+"t": "Filtergewinde",
+"e": "Das ist der Durchmesser vorne am Objektiv, angegeben in Millimetern. Ein Filter muss genau dazu passen.",
+"w": "Vor dem Filterkauf nachsehen. Mit einem Step-up-Ring passt ein größerer Filter auch an ein kleineres Objektiv."
+},
+{
+"k": "bildrauschen",
+"t": "Bildrauschen",
+"e": "Rauschen ist ein feines Korn oder sind Farbflecken im Bild. Es entsteht, wenn der ISO-Wert hoch ist.",
+"w": "Halte ISO niedrig, wenn du das vermeiden willst. Etwas Rauschen ist aber besser als ein verwackeltes Bild."
+},
+{
+"k": "bildfolge",
+"t": "Bildfolge",
+"e": "Damit legst du fest, ob die Kamera ein einzelnes Bild macht oder eine schnelle Serie, solange du den Auslöser hältst.",
+"w": "Einzelbild für ruhige Motive. Serie für Tiere, Sport und alles, wo der richtige Moment nur kurz da ist."
+},
+{
+"k": "fokuslupe",
+"t": "Fokuslupe",
+"e": "Die Kamera vergrößert einen Ausschnitt auf dem Bildschirm, damit du die Schärfe genau prüfen kannst.",
+"w": "Beim Scharfstellen von Hand, bei Makro und bei Landschaft vom Stativ."
+},
+{
+"k": "langzeitrm",
+"t": "Langzeit-RM",
+"e": "Nach einer langen Belichtung macht die Kamera noch ein zweites, schwarzes Bild gleicher Länge und rechnet damit Störpunkte heraus.",
+"w": "Bei Belichtungen über einige Sekunden. Bedenke: Die Wartezeit verdoppelt sich dadurch."
+},
+{
+"k": "stativ",
+"t": "Stativ",
+"e": "Ein Stativ hält die Kamera völlig ruhig, damit auch lange Belichtungen scharf werden.",
+"w": "Ab etwa 1/30 Sekunde, bei ND-Filtern, bei Nacht und immer bei BULB."
+}
+];
+var GMAP={};for(var gi=0;gi<GLOSS.length;gi++)GMAP[GLOSS[gi].k]=GLOSS[gi];
+
+function openQ(k){
+  var g=GMAP[k];if(!g)return;
+  $("qt").textContent=g.t;
+  $("qe").textContent=g.e;
+  $("qw").textContent=g.w;
+  var sh=$("qsheet");sh.classList.add("on");sh.setAttribute("aria-hidden","false");
+  $("qclose").focus();
+}
+function closeQ(){
+  var sh=$("qsheet");sh.classList.remove("on");sh.setAttribute("aria-hidden","true");
+}
+(function(){
+  var qs=document.querySelectorAll(".q");
+  for(var i=0;i<qs.length;i++){
+    // stopPropagation: sonst klappt eine umgebende Karte mit auf oder zu
+    qs[i].addEventListener("click",function(e){
+      e.stopPropagation();e.preventDefault();
+      menuOpen(false);openQ(this.getAttribute("data-q"));
+    });
+  }
+  $("qclose").addEventListener("click",function(e){e.stopPropagation();closeQ()});
+  $("qback").addEventListener("click",function(e){e.stopPropagation();closeQ()});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeQ()});
+})();
+
+/* Liste auf der Seite "Einfach erklärt" – alphabetisch, mit Suche */
+var GSORT=GLOSS.slice().sort(function(a,b){return a.t.localeCompare(b.t,"de")});
+(function(){
+  var h="";
+  for(var i=0;i<GSORT.length;i++){var g=GSORT[i];
+    h+='<details class="gi" data-t="'+esc(g.t.toLowerCase())+' '+esc(g.e.toLowerCase())+'">'
+     + '<summary><span>'+esc(g.t)+'</span><span class="gia">\u25b8</span></summary>'
+     + '<div class="gib"><p class="qlabel" style="margin-top:0">Einfach erklärt</p>'
+     + '<p class="qtext">'+esc(g.e)+'</p>'
+     + '<p class="qlabel">Wann nutze ich das?</p>'
+     + '<p class="qtext">'+esc(g.w)+'</p></div></details>';
+  }
+  $("glist").innerHTML=h;
+  function gfilter(){
+    var q=$("gsearch").value.toLowerCase().trim(),d=document.querySelectorAll("#glist details"),n=0;
+    for(var i=0;i<d.length;i++){
+      var hit=!q||d[i].getAttribute("data-t").indexOf(q)>=0;
+      d[i].style.display=hit?"":"none";
+      if(hit)n++;
+    }
+    $("gcount").textContent=q?(n+" von "+d.length+" Begriffen"):(d.length+" Begriffe");
+  }
+  $("gsearch").addEventListener("input",gfilter);
+  gfilter();
 })();
 
 document.addEventListener("click",function(e){
