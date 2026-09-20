@@ -71,6 +71,38 @@ th{color:var(--ac)}
 ul{margin:6px 0;padding-left:20px}li{margin:4px 0}
 .path{font-weight:700}
 .mt{margin-top:12px}
+/* Spickzettel: Skalen */
+.apr{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:10px 0 4px}
+.ap1{text-align:center}
+.ring{width:36px;height:36px;margin:0 auto;border-radius:50%;border:2px solid var(--line);background:#000;display:flex;align-items:center;justify-content:center}
+.ring i{display:block;border-radius:50%;background:var(--ac)}
+.ap1 b{display:block;font-size:13px;font-weight:800;color:var(--mu);margin-top:5px}
+.scale{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.scale span{background:#000;border:2px solid var(--line);border-radius:9px;padding:5px 8px;font-size:15px;font-weight:800}
+.bar{height:7px;border-radius:4px;background:linear-gradient(90deg,var(--ac),#3a3a3a);margin:10px 0 8px}
+.ends{display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:14px;color:var(--mu);font-weight:600}
+.ends div:last-child{text-align:right}
+.merk{background:#2a2200;border:2px solid var(--ac);border-radius:12px;padding:12px;font-weight:800;font-size:16px}
+/* Spickzettel: Motive */
+.motv{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.motv div{background:#000;border:2px solid var(--line);border-radius:12px;padding:8px 4px;text-align:center}
+.motv b{display:block;font-size:20px;font-weight:900;color:var(--ac)}
+.motv i{display:block;font-style:normal;font-size:13px;color:var(--mu);font-weight:700;margin-top:3px}
+.hint{color:var(--wa)}
+/* Hausaufgabe */
+details.hw{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:0 0 10px;overflow:hidden}
+details.hw[open]{border-color:var(--ac)}
+details.hw>summary{list-style:none;display:flex;align-items:center;gap:10px;padding:12px 14px;min-height:64px;font-size:18px;font-weight:800}
+details.hw>summary::-webkit-details-marker{display:none}
+.hwn{flex:0 0 34px;height:34px;border-radius:50%;background:#222;color:var(--ac);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900}
+.hwt{flex:1}
+details.hw.done .hwt{color:var(--ok);text-decoration:line-through}
+.hwa{flex:0 0 18px;color:var(--mu);font-size:15px;display:inline-block;transition:transform .15s}
+details.hw[open] .hwa{color:var(--ac);transform:rotate(90deg)}
+.hwc{flex:0 0 30px;width:30px;height:30px;margin:0;accent-color:var(--ac)}
+.hwb{padding:0 14px 14px;font-size:16px;line-height:1.5;color:var(--mu)}
+.hwb b{color:var(--tx)}
+.prog{font-size:22px;font-weight:900;color:var(--ac)}
 </style>
 <meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-title" content="A7R V">
@@ -87,6 +119,8 @@ ul{margin:6px 0;padding-left:20px}li{margin:4px 0}
     <button data-route="filter">Filter</button>
     <button data-route="objektive">Objektive</button>
     <button data-route="kamera">Kamera</button>
+    <button data-route="spickzettel">Spickzettel</button>
+    <button data-route="hausaufgabe">Hausaufgabe</button>
   </div></div>
 </header>
 <main>
@@ -98,6 +132,8 @@ ul{margin:6px 0;padding-left:20px}li{margin:4px 0}
 <button class="home" data-route="filter"><b>Filter</b><i>ND, CPL, BULB-Zeit</i></button>
 <button class="home" data-route="objektive"><b>Objektive</b><i>Daten &amp; Filtergewinde</i></button>
 <button class="home" data-route="kamera"><b>Kamera</b><i>Speicherpl&auml;tze, Tasten, Men&uuml;s</i></button>
+<button class="home" data-route="spickzettel"><b>Spickzettel</b><i>Was bewirkt was &middot; Startwerte nach Motiv</i></button>
+<button class="home" data-route="hausaufgabe"><b>Hausaufgabe</b><i>Wo finde ich das an der Kamera?</i></button>
 </section>
 
 <!-- ============ RECHNER ============ -->
@@ -277,8 +313,71 @@ ul{margin:6px 0;padding-left:20px}li{margin:4px 0}
 Blitz: Godox V860III-S (Sony-Schuh). Synchronzeit ohne HSS: 1/250 s.
 </div>
 
-<p class="small" style="text-align:center;opacity:.6;margin:18px 0 0">Version 4</p>
+<p class="small" style="text-align:center;opacity:.6;margin:18px 0 0">Version 5</p>
 </section>
+<!-- ============ SPICKZETTEL ============ -->
+<section class="tab" id="t-spick">
+<h1>Spickzettel</h1>
+
+<h2 class="mt">Was bewirkt was</h2>
+
+<div class="card">
+  <h3 style="margin-top:0">Blende</h3>
+  <div class="apr"><div class="ap1"><div class="ring"><i style="width:30px;height:30px"></i></div><b>F2.8</b></div><div class="ap1"><div class="ring"><i style="width:25px;height:25px"></i></div><b>F4</b></div><div class="ap1"><div class="ring"><i style="width:20px;height:20px"></i></div><b>F5.6</b></div><div class="ap1"><div class="ring"><i style="width:16px;height:16px"></i></div><b>F8</b></div><div class="ap1"><div class="ring"><i style="width:12px;height:12px"></i></div><b>F11</b></div><div class="ap1"><div class="ring"><i style="width:9px;height:9px"></i></div><b>F16</b></div><div class="ap1"><div class="ring"><i style="width:6px;height:6px"></i></div><b>F22</b></div></div>
+  <div class="bar"></div>
+  <div class="ends">
+    <div>gro&szlig;e &Ouml;ffnung &middot; viel Licht &middot; wenig Sch&auml;rfentiefe (Hintergrund unscharf)</div>
+    <div>kleine &Ouml;ffnung &middot; wenig Licht &middot; viel Sch&auml;rfentiefe (alles scharf)</div>
+  </div>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0">Zeit</h3>
+  <div class="scale"><span>1/1000</span><span>1/500</span><span>1/250</span><span>1/125</span><span>1/60</span><span>1/30</span><span>1/15</span><span>1/8</span><span>1/4</span><span>1/2</span></div>
+  <div class="bar"></div>
+  <div class="ends"><div>kurz &middot; friert Bewegung ein</div><div>lang &middot; Bewegungsunsch&auml;rfe, Stativ</div></div>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0">ISO</h3>
+  <div class="scale"><span>100</span><span>200</span><span>400</span><span>800</span><span>1600</span><span>3200</span><span>6400</span><span>12800</span><span>25600</span></div>
+  <div class="bar"></div>
+  <div class="ends"><div>niedrig &middot; sauberes Bild</div><div>hoch &middot; mehr Bildrauschen</div></div>
+  <p class="small mt">A7R V: ISO 100&ndash;32000 normal, 50 und bis 102400 erweitert.</p>
+</div>
+
+<div class="merk">Jeder Schritt in diesen Reihen = 1 Blendenstufe (doppeltes bzw. halbes Licht).</div>
+
+<h2 class="mt" style="margin-top:20px">Startwerte nach Motiv</h2>
+<p class="small">Startpunkte &ndash; je nach Licht anpassen.</p>
+<div id="motList"></div>
+</section>
+
+<!-- ============ HAUSAUFGABE ============ -->
+<section class="tab" id="t-hw">
+<h1>Hausaufgabe</h1>
+<p>Aus dem Kurs: <b>Wo finde ich das an meiner A7R V?</b></p>
+<p class="small">Rad-/Tastenbelegung = Werkseinstellung, an der Kamera pr&uuml;fen.</p>
+
+<details class="hw" data-hw="1"><summary><span class="hwn">1</span><span class="hwt">Zeit einstellen</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Modus <b>S</b> oder <b>M</b> am Moduswahlrad. Zeit mit dem <b>hinteren Einstellrad</b> (oben hinten). Über 30″ hinaus → <b>BULB</b> (nur Modus M).</div></details>
+<details class="hw" data-hw="2"><summary><span class="hwn">2</span><span class="hwt">Blende einstellen</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Modus <b>A</b> oder <b>M</b>. Blende mit dem <b>vorderen Einstellrad</b>.<br><br><b>Wichtig:</b> 16-35 GM II und 24-70 GM II haben einen Blendenring – der muss auf <b>„A“</b> stehen, sonst gilt der Ring. 100-400 und 90 Makro: nur über die Kamera.</div></details>
+<details class="hw" data-hw="3"><summary><span class="hwn">3</span><span class="hwt">Empfindlichkeit (ISO) einstellen</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb"><b>Rechts</b> am Einstellrad hinten (Steuerrad) drücken = ISO, dann drehen.<br>Menü: <span class="path">Belichtung/Farbe › Belichtung › ISO</span>.<br>ISO AUTO mit Min./Max. (nach rechts).</div></details>
+<details class="hw" data-hw="4"><summary><span class="hwn">4</span><span class="hwt">Fokuspunkte / Fokusfelder ansteuern</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Fokusfeld wählen: Taste <b>C2</b> (meine Belegung) oder Menü <span class="path">Fokus (AF/MF) › Fokusfeld › Fokusfeld</span>.<br>Punkt verschieben: mit dem <b>Multi-Selector (Joystick)</b> oder per <b>Touch</b> auf dem Display.</div></details>
+<details class="hw" data-hw="5"><summary><span class="hwn">5</span><span class="hwt">Matrix-/Mehrfeldmessung</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Sony nennt das <b>„Multi“</b>.<br>Menü: <span class="path">Belichtung/Farbe › Messung › Messmodus › Multi</span>.<br>Schneller: <b>Fn-Taste › Messmodus</b>.</div></details>
+<details class="hw" data-hw="6"><summary><span class="hwn">6</span><span class="hwt">Selektivmessung</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Sony hat <b>keine eigene Selektivmessung</b>. Am nächsten: <b>„Mitte“</b> (mittenbetont) oder <b>„Spot“</b> (Größe Standard/Groß). Gleicher Menüpfad wie Punkt 5.</div></details>
+<details class="hw" data-hw="7"><summary><span class="hwn">7</span><span class="hwt">Spotmessung</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb"><span class="path">Messmodus › Spot</span>, Größe <b>Standard</b> oder <b>Groß</b>.<br><br>Tipp: Der Spot-Messpunkt kann mit dem Fokusfeld gekoppelt werden – <span class="path">Belichtung/Farbe › Messung › Spot-Messpunkt › Fokusfeldverknüpfung</span>.</div></details>
+<details class="hw" data-hw="8"><summary><span class="hwn">8</span><span class="hwt">Integralmessung</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Sony: <b>„Bildfeld-Durchschn.“</b> im Messmodus (gleicher Menüpfad wie Punkt 5).</div></details>
+<details class="hw" data-hw="9"><summary><span class="hwn">9</span><span class="hwt">Blendenautomatik</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">= Modus <b>S</b> (Zeitvorwahl): ich wähle die <b>Zeit</b>, die Kamera die Blende.</div></details>
+<details class="hw" data-hw="10"><summary><span class="hwn">10</span><span class="hwt">Zeitautomatik</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">= Modus <b>A</b> (Blendenvorwahl): ich wähle die <b>Blende</b>, die Kamera die Zeit.</div></details>
+<details class="hw" data-hw="11"><summary><span class="hwn">11</span><span class="hwt">Manuelle Belichtungssteuerung</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">= Modus <b>M</b>: Blende vorderes Rad, Zeit hinteres Rad, ISO fest oder AUTO.<br>Die Belichtungsskala (<b>M.M.</b>) im Sucher zeigt die Abweichung in EV.</div></details>
+<details class="hw" data-hw="12"><summary><span class="hwn">12</span><span class="hwt">USB-Stick mit 10 eigenen Bildern</span><span class="hwa">▸</span><input type="checkbox" class="hwc" aria-label="erledigt"></summary><div class="hwb">Nur abhaken – kein Menüpfad nötig.</div></details>
+
+<div class="card">
+  <div class="prog" id="hwProg">0 von 12 erledigt</div>
+  <button class="btn mt" id="hwReset" style="width:100%">Alle zur&uuml;cksetzen</button>
+</div>
+</section>
+
 </main>
 
 
@@ -420,7 +519,9 @@ var ROUTES=[
  {h:"rechner",id:"t-rechner",n:"Rechner"},
  {h:"filter",id:"t-filter",n:"Filter"},
  {h:"objektive",id:"t-obj",n:"Objektive"},
- {h:"kamera",id:"t-kam",n:"Kamera"}
+ {h:"kamera",id:"t-kam",n:"Kamera"},
+ {h:"spickzettel",id:"t-spick",n:"Spickzettel"},
+ {h:"hausaufgabe",id:"t-hw",n:"Hausaufgabe"}
 ];
 function routeOf(h){
   h=String(h||"").replace(/^#/,"");
@@ -491,8 +592,76 @@ $("tcBtn").addEventListener("click",function(){if(!L().tc)return;S.tc=!S.tc;fixL
   $("c"+k).addEventListener("change",function(){change(p,+this.value)});
 });
 $("fb").addEventListener("change",function(){S.fb=+this.value;save();render()});
+/* ---------- Spickzettel: Startwerte nach Motiv ---------- */
+var MOTIV=[
+ {n:"Action / Sport",z:"Bewegung einfrieren",a:4,t:"1/1000",i:400,o:"Tele 100-400 (dort mind. F4.5\u20135.6, ISO Auto nutzen)"},
+ {n:"Street (Bewegung)",z:"Bewegung einfrieren",a:5.6,t:"1/250",i:400,o:"Standard 24-70"},
+ {n:"Street (Alltag, Langzeit)",z:"Alltagsmomente",a:5.6,t:'4"',i:100,o:"Standard 24-70, Stativ",h:'Vorlage \u201ef/5.8\u201c \u2013 vermutlich Druckfehler'},
+ {n:"Feuerwerk",z:"Explosion einfangen",a:11,t:'4"',i:100,o:"Standard 24-70, Stativ"},
+ {n:"Sonnenuntergang / -aufgang",z:"kr\u00e4ftige Farben",a:2.8,t:"1/200",i:100,o:"Weitwinkel 16-35 oder Standard 24-70"},
+ {n:"Innen / wenig Licht",z:"schwaches Licht",a:2.8,t:"1/60",i:800,o:"Standard 24-70"},
+ {n:"Landschaft",z:"scharf & detailreich",a:11,t:"1/125",i:100,o:"Weitwinkel 16-35"},
+ {n:"Makro / Nah",z:"feine Details",a:8,t:"1/160",i:200,o:"Makro 90"},
+ {n:"Nacht",z:"Stadtlichter",a:2.8,t:"1/30",i:3200,o:"Weitwinkel 16-35"},
+ {n:"Portr\u00e4t",z:"Hintergrund unscharf",a:2.8,t:"1/200",i:100,o:"Standard 24-70 bei 70 mm oder Makro 90",h:"Vorlage F1.8 \u2013 meine Objektive haben max. F2.8"}
+];
+function esc(x){return String(x).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function tLab(t){return t.indexOf('"')>0?t.replace('"'," s"):t}
+(function(){
+  var h="";
+  for(var i=0;i<MOTIV.length;i++){var m=MOTIV[i];
+    h+='<div class="card"><h3 style="margin-top:0">'+(i+1)+" \u00b7 "+esc(m.n)+"</h3>"
+     + '<div class="small">'+esc(m.z)+"</div>"
+     + '<div class="motv"><div><b>F'+m.a+'</b><i>Blende</i></div><div><b>'+esc(tLab(m.t))+'</b><i>Zeit</i></div><div><b>'+m.i+'</b><i>ISO</i></div></div>'
+     + '<div class="small mt">Objektiv: '+esc(m.o)+"</div>"
+     + (m.h?'<div class="small hint mt">'+esc(m.h)+"</div>":"")
+     + '<button class="btn mt" data-preset="'+i+'" style="width:100%">In Rechner \u00fcbernehmen</button></div>';
+  }
+  $("motList").innerHTML=h;
+})();
+
+// Werte als Messung setzen; Blende auf den Bereich des aktuellen Objektivs begrenzen
+function applyPreset(i){
+  var m=MOTIV[i];if(!m)return;
+  S.m.a=cl(AP.indexOf(m.a),apR());
+  S.m.t=cl(SHL.indexOf(m.t),rng("t"));
+  S.m.i=cl(ISO.indexOf(m.i),rng("i"));
+  S.c={a:S.m.a,t:S.m.t,i:S.m.i};
+  save();render();
+  location.hash="#rechner";
+}
+
+/* ---------- Hausaufgabe: Abhaken ---------- */
+var HWK="sonyA7RV_hw",HWS={};
+try{HWS=JSON.parse(localStorage.getItem(HWK)||"{}")||{}}catch(e){HWS={}}
+function hwSave(){try{localStorage.setItem(HWK,JSON.stringify(HWS))}catch(e){}}
+function hwRender(){
+  var d=document.querySelectorAll("details.hw"),n=0;
+  for(var i=0;i<d.length;i++){
+    var on=!!HWS[d[i].getAttribute("data-hw")];
+    d[i].querySelector(".hwc").checked=on;
+    d[i].classList.toggle("done",on);
+    if(on)n++;
+  }
+  $("hwProg").textContent=n+" von "+d.length+" erledigt";
+}
+(function(){
+  var c=document.querySelectorAll(".hwc");
+  for(var i=0;i<c.length;i++){
+    // Klick auf das Kaestchen darf die Karte nicht auf-/zuklappen
+    c[i].addEventListener("click",function(e){e.stopPropagation();menuOpen(false)});
+    c[i].addEventListener("change",function(){
+      HWS[this.closest("details").getAttribute("data-hw")]=this.checked;
+      hwSave();hwRender();
+    });
+  }
+  $("hwReset").addEventListener("click",function(){HWS={};hwSave();hwRender()});
+})();
+
 document.addEventListener("click",function(e){
   var b=e.target.closest("button");if(!b)return;
+  var pr=b.getAttribute("data-preset");
+  if(pr!==null){applyPreset(+pr);return}
   var p=b.getAttribute("data-p"),d=b.getAttribute("data-d");
   if(p&&d){
     if(p==="fb"){S.fb=cl(S.fb+(+d),rng("fb"));save();render()}
@@ -521,6 +690,7 @@ $("modeI").addEventListener("click",function(){S.mode="i";save();render()});
 $("reset").addEventListener("click",function(){S.c={a:S.m.a,t:S.m.t,i:S.m.i};save();render()});
 
 fixLens();
+hwRender();
 applyRoute(false);
 })();
 </script>
