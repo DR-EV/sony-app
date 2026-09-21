@@ -1,4 +1,4 @@
-const CACHE = 'sony-a7rv-v15';
+const CACHE = 'sony-a7rv-v16';
 const NET_TIMEOUT = 3000;
 const ASSETS = [
   './',
