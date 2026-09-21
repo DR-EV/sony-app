@@ -61,20 +61,31 @@ header{position:fixed;top:0;left:0;right:0;z-index:20;display:none;
   background:rgba(11,11,13,.72);
   -webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px);
   border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
-body.hdr header{display:block}
-body.hdr main{padding-top:78px}
+header{display:block}
+main{padding-top:78px}
 .hrow{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:10px;
       padding:0 var(--s2);min-height:64px}
 .hic{display:flex;align-items:center;justify-content:center;width:38px;height:38px;
      border-radius:11px;background:var(--acd);color:var(--ac);border:1px solid var(--acb);flex:0 0 38px}
-.hrow .ht{flex:1;margin:0;font-size:19px;font-weight:800;color:var(--tx);letter-spacing:-.01em}
+.hrow .htw{flex:1;min-width:0}
+.hrow .hpath{font-size:13px;font-weight:600;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hrow .hpath:empty{display:none}
+.hrow .ht{margin:0;font-size:19px;font-weight:800;color:var(--tx);letter-spacing:-.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#bbtn{display:flex;align-items:center;justify-content:center;width:48px;height:48px;min-height:48px;flex:0 0 48px;
+  border-radius:var(--r2);border:1px solid var(--line2);background:var(--card2);color:var(--tx);padding:0}
+#bbtn:active{background:var(--ac);color:#14100a;border-color:var(--ac)}
+body.home #bbtn{display:none}
+body:not(.home) .hic{display:none}
 #mbtn{display:flex;align-items:center;justify-content:center;width:56px;height:56px;min-height:56px;
   border-radius:var(--r2);border:1px solid var(--line2);background:var(--card2);color:var(--tx);padding:0}
 #mbtn:active{background:var(--ac);color:#14100a;border-color:var(--ac)}
 
 /* ---------- Menü ---------- */
 #menu{display:none;border-top:1px solid var(--line);padding:var(--s1) var(--s2) var(--s2);
-      background:rgba(16,16,20,.97);box-shadow:var(--sh)}
+      background:rgba(16,16,20,.97);box-shadow:var(--sh);
+      max-height:calc(100vh - 66px - env(safe-area-inset-top));max-height:calc(100dvh - 66px - env(safe-area-inset-top));
+      overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 #menu.on{display:block;animation:drop .18s ease-out}
 @keyframes drop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 #menu .mw{max-width:760px;margin:0 auto}
@@ -84,6 +95,10 @@ body.hdr main{padding-top:78px}
 #menu button .ic{color:var(--mu)}
 #menu button.on{background:var(--acd);border-color:var(--acb);color:var(--ac2)}
 #menu button.on .ic{color:var(--ac)}
+#menu button.cat{margin-top:var(--s2)}
+#menu button.sub{margin-left:28px;width:calc(100% - 28px);min-height:48px;font-size:16px;font-weight:600}
+#menu button.sub .ic{width:20px;height:20px;flex-basis:20px}
+#menu button.par{border-color:var(--acb)}
 
 /* ---------- Startseite ---------- */
 .herowrap{position:relative;isolation:isolate;display:flex;justify-content:center;
@@ -104,6 +119,14 @@ body.hdr main{padding-top:78px}
   border-radius:12px;background:var(--acd);color:var(--ac);border:1px solid var(--acb);margin-bottom:2px}
 .tile b{font-size:19px;font-weight:800;color:var(--tx);letter-spacing:-.01em}
 .tile i{font-style:normal;font-size:15px;font-weight:500;color:var(--mu);line-height:1.3}
+.tiles.one{grid-template-columns:1fr}
+.tiles.big .tile{flex-direction:row;align-items:center;gap:14px;padding:18px 16px;min-height:88px}
+.tiles.big .ticon{width:52px;height:52px;flex:0 0 52px;border-radius:14px;margin:0}
+.tiles.big .ticon .ic{width:28px;height:28px;flex-basis:28px}
+.tile .tt{display:flex;flex-direction:column;gap:4px;min-width:0}
+.tiles.big .tile b{font-size:21px}
+.tile .tchev{margin-left:auto;color:var(--mu)}
+.tile.prog{padding-right:64px}
 .tprog{position:absolute;top:12px;right:12px;font-size:15px;font-weight:800;color:var(--ac);
   background:var(--acd);border:1px solid var(--acb);border-radius:999px;padding:3px 9px;
   font-variant-numeric:tabular-nums}
@@ -408,31 +431,10 @@ input::placeholder,textarea::placeholder{color:var(--mu)}
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 </head>
 <body>
-<svg class="sprite" aria-hidden="true" focusable="false"><symbol id="i-start" viewBox="0 0 24 24"><path d="M3.5 11.2 12 4.3l8.5 6.9"/><path d="M6.2 10.2v9.5h11.6v-9.5"/></symbol><symbol id="i-rechner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><path d="M12 3.6v8.4l7.3 4.2M12 12l-7.3 4.2M12 12l7.3-4.2"/></symbol><symbol id="i-filter" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.8"/><path d="M12 3.6v4.6M12 15.8v4.6"/></symbol><symbol id="i-objektive" viewBox="0 0 24 24"><rect x="2.8" y="7.6" width="13.2" height="8.8" rx="2"/><path d="M6.5 7.6v8.8M9.9 7.6v8.8"/><path d="m16 9.8 5.2-2.6v9.6L16 14.2z"/></symbol><symbol id="i-kamera" viewBox="0 0 24 24"><path d="M3.6 8.3h3.1l1.5-2.2h5.6l1.5 2.2h3.1A1.6 1.6 0 0 1 20 9.9v7.5a1.6 1.6 0 0 1-1.6 1.6H3.6A1.6 1.6 0 0 1 2 17.4V9.9a1.6 1.6 0 0 1 1.6-1.6z"/><circle cx="11" cy="13.4" r="3.3"/></symbol><symbol id="i-spickzettel" viewBox="0 0 24 24"><rect x="3.2" y="4.8" width="17.6" height="14.4" rx="2.4"/><path d="M3.2 9.3h17.6M7.2 12.9h8.6M7.2 16.1h5.6"/></symbol><symbol id="i-hausaufgabe" viewBox="0 0 24 24"><path d="m3.4 7.3 1.6 1.6 2.8-3.2M3.4 13.3 5 14.9l2.8-3.2M3.4 19.3 5 20.9l2.8-3.2"/><path d="M11.5 7.4h9.1M11.5 13.4h9.1M11.5 19.4h6.6"/></symbol><symbol id="i-gestaltung" viewBox="0 0 24 24"><rect x="3.2" y="5" width="17.6" height="14" rx="2"/><path d="M9.1 5v14M14.9 5v14M3.2 9.7h17.6M3.2 14.3h17.6"/></symbol><symbol id="i-symbole" viewBox="0 0 24 24"><circle cx="7.5" cy="7.5" r="3.4"/><rect x="13.6" y="4.1" width="6.8" height="6.8" rx="1.6"/><rect x="3.6" y="13.4" width="6.8" height="6.8" rx="1.6"/><path d="m17 13.2 3.4 6.8h-6.8z"/></symbol><symbol id="i-situationen" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></symbol><symbol id="i-grundlagen" viewBox="0 0 24 24"><path d="M12 6.6C10.2 5.2 7.8 4.6 4.4 4.6v12.8c3.4 0 5.8.6 7.6 2 1.8-1.4 4.2-2 7.6-2V4.6c-3.4 0-5.8.6-7.6 2z"/><path d="M12 6.6v12.8"/></symbol><symbol id="i-fehlersuche" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.6"/><path d="m15.4 15.4 4.6 4.6"/><path d="M10.5 7.4v4M10.5 13.6h.01"/></symbol><symbol id="i-checkliste" viewBox="0 0 24 24"><path d="m3.6 7.2 1.6 1.6 2.8-3.2M3.6 13.2l1.6 1.6 2.8-3.2M3.6 19.2l1.6 1.6 2.8-3.2"/><path d="M11.6 7.4h8.8M11.6 13.4h8.8M11.6 19.4h6"/></symbol><symbol id="i-bildbesprechung" viewBox="0 0 24 24"><rect x="3.2" y="4.6" width="17.6" height="12.4" rx="2"/><path d="m7.4 21 2.6-4M16.6 21 14 17"/><circle cx="12" cy="10.8" r="2.6"/></symbol><symbol id="i-sonnenstand" viewBox="0 0 24 24"><circle cx="12" cy="12.6" r="4"/><path d="M12 5.2v-2M12 22v-2M4.6 12.6h-2M21.4 12.6h2M6.8 7.4 5.4 6M17.2 17.8l1.4 1.4M17.2 7.4 18.6 6M6.8 17.8 5.4 19.2"/></symbol><symbol id="i-schaerfentiefe" viewBox="0 0 24 24"><path d="M3 18.4h18"/><circle cx="6.4" cy="12.4" r="2.6"/><circle cx="12" cy="11" r="3.4"/><circle cx="18.4" cy="12.4" r="2"/><path d="M8.6 21h6.8"/></symbol><symbol id="i-sterne" viewBox="0 0 24 24"><path d="m12 3.4 1.9 4.2 4.6.5-3.4 3.1.9 4.5L12 13.5l-4 2.2.9-4.5L5.5 8.1l4.6-.5z"/><path d="M19.4 17.6h.01M5 19.8h.01M17.8 4.6h.01"/></symbol><symbol id="i-glossar" viewBox="0 0 24 24"><rect x="4" y="3.6" width="16" height="16.8" rx="2"/><path d="M8 3.6v16.8M11 8h6M11 12h6M11 16h4"/></symbol><symbol id="i-notizen" viewBox="0 0 24 24"><path d="M19.4 5.6v13.2a1.6 1.6 0 0 1-1.6 1.6H6.2a1.6 1.6 0 0 1-1.6-1.6V5.2a1.6 1.6 0 0 1 1.6-1.6h8.2z"/><path d="M8.4 9.6h7.2M8.4 13.2h7.2M8.4 16.6h4.4"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7.5h16M4 12h16M4 16.5h16"/></symbol><symbol id="i-einfach" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M9.7 9.5a2.4 2.4 0 0 1 4.7.6c0 1.6-2.3 1.9-2.3 3.4"/><path d="M12 17.2h.01"/></symbol></svg>
+<svg class="sprite" aria-hidden="true" focusable="false"><symbol id="i-start" viewBox="0 0 24 24"><path d="M3.5 11.2 12 4.3l8.5 6.9"/><path d="M6.2 10.2v9.5h11.6v-9.5"/></symbol><symbol id="i-rechner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><path d="M12 3.6v8.4l7.3 4.2M12 12l-7.3 4.2M12 12l7.3-4.2"/></symbol><symbol id="i-filter" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.8"/><path d="M12 3.6v4.6M12 15.8v4.6"/></symbol><symbol id="i-objektive" viewBox="0 0 24 24"><rect x="2.8" y="7.6" width="13.2" height="8.8" rx="2"/><path d="M6.5 7.6v8.8M9.9 7.6v8.8"/><path d="m16 9.8 5.2-2.6v9.6L16 14.2z"/></symbol><symbol id="i-kamera" viewBox="0 0 24 24"><path d="M3.6 8.3h3.1l1.5-2.2h5.6l1.5 2.2h3.1A1.6 1.6 0 0 1 20 9.9v7.5a1.6 1.6 0 0 1-1.6 1.6H3.6A1.6 1.6 0 0 1 2 17.4V9.9a1.6 1.6 0 0 1 1.6-1.6z"/><circle cx="11" cy="13.4" r="3.3"/></symbol><symbol id="i-spickzettel" viewBox="0 0 24 24"><rect x="3.2" y="4.8" width="17.6" height="14.4" rx="2.4"/><path d="M3.2 9.3h17.6M7.2 12.9h8.6M7.2 16.1h5.6"/></symbol><symbol id="i-hausaufgabe" viewBox="0 0 24 24"><path d="m3.4 7.3 1.6 1.6 2.8-3.2M3.4 13.3 5 14.9l2.8-3.2M3.4 19.3 5 20.9l2.8-3.2"/><path d="M11.5 7.4h9.1M11.5 13.4h9.1M11.5 19.4h6.6"/></symbol><symbol id="i-gestaltung" viewBox="0 0 24 24"><rect x="3.2" y="5" width="17.6" height="14" rx="2"/><path d="M9.1 5v14M14.9 5v14M3.2 9.7h17.6M3.2 14.3h17.6"/></symbol><symbol id="i-symbole" viewBox="0 0 24 24"><circle cx="7.5" cy="7.5" r="3.4"/><rect x="13.6" y="4.1" width="6.8" height="6.8" rx="1.6"/><rect x="3.6" y="13.4" width="6.8" height="6.8" rx="1.6"/><path d="m17 13.2 3.4 6.8h-6.8z"/></symbol><symbol id="i-situationen" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></symbol><symbol id="i-grundlagen" viewBox="0 0 24 24"><path d="M12 6.6C10.2 5.2 7.8 4.6 4.4 4.6v12.8c3.4 0 5.8.6 7.6 2 1.8-1.4 4.2-2 7.6-2V4.6c-3.4 0-5.8.6-7.6 2z"/><path d="M12 6.6v12.8"/></symbol><symbol id="i-fehlersuche" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.6"/><path d="m15.4 15.4 4.6 4.6"/><path d="M10.5 7.4v4M10.5 13.6h.01"/></symbol><symbol id="i-checkliste" viewBox="0 0 24 24"><path d="m3.6 7.2 1.6 1.6 2.8-3.2M3.6 13.2l1.6 1.6 2.8-3.2M3.6 19.2l1.6 1.6 2.8-3.2"/><path d="M11.6 7.4h8.8M11.6 13.4h8.8M11.6 19.4h6"/></symbol><symbol id="i-bildbesprechung" viewBox="0 0 24 24"><rect x="3.2" y="4.6" width="17.6" height="12.4" rx="2"/><path d="m7.4 21 2.6-4M16.6 21 14 17"/><circle cx="12" cy="10.8" r="2.6"/></symbol><symbol id="i-sonnenstand" viewBox="0 0 24 24"><circle cx="12" cy="12.6" r="4"/><path d="M12 5.2v-2M12 22v-2M4.6 12.6h-2M21.4 12.6h2M6.8 7.4 5.4 6M17.2 17.8l1.4 1.4M17.2 7.4 18.6 6M6.8 17.8 5.4 19.2"/></symbol><symbol id="i-schaerfentiefe" viewBox="0 0 24 24"><path d="M3 18.4h18"/><circle cx="6.4" cy="12.4" r="2.6"/><circle cx="12" cy="11" r="3.4"/><circle cx="18.4" cy="12.4" r="2"/><path d="M8.6 21h6.8"/></symbol><symbol id="i-sterne" viewBox="0 0 24 24"><path d="m12 3.4 1.9 4.2 4.6.5-3.4 3.1.9 4.5L12 13.5l-4 2.2.9-4.5L5.5 8.1l4.6-.5z"/><path d="M19.4 17.6h.01M5 19.8h.01M17.8 4.6h.01"/></symbol><symbol id="i-glossar" viewBox="0 0 24 24"><rect x="4" y="3.6" width="16" height="16.8" rx="2"/><path d="M8 3.6v16.8M11 8h6M11 12h6M11 16h4"/></symbol><symbol id="i-notizen" viewBox="0 0 24 24"><path d="M19.4 5.6v13.2a1.6 1.6 0 0 1-1.6 1.6H6.2a1.6 1.6 0 0 1-1.6-1.6V5.2a1.6 1.6 0 0 1 1.6-1.6h8.2z"/><path d="M8.4 9.6h7.2M8.4 13.2h7.2M8.4 16.6h4.4"/></symbol><symbol id="i-draussen" viewBox="0 0 24 24"><circle cx="16.5" cy="7" r="2.6"/><path d="M2.5 19.5 9 10.5l4 5.2 2.4-3 6.1 6.8z"/></symbol><symbol id="i-ausruestung" viewBox="0 0 24 24"><rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M8.5 7.5V5.6c0-.9.7-1.6 1.6-1.6h3.8c.9 0 1.6.7 1.6 1.6v1.9M3 12.5h18M10 12.5v2h4v-2"/></symbol><symbol id="i-lernen" viewBox="0 0 24 24"><path d="M12 6.8C10 5.3 7 4.8 3.5 5v13.2c3.5-.2 6.5.3 8.5 1.8 2-1.5 5-2 8.5-1.8V5c-3.5-.2-6.5.3-8.5 1.8zM12 6.8V20"/></symbol><symbol id="i-back" viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5"/></symbol><symbol id="i-chev" viewBox="0 0 24 24"><path d="m9.5 5.5 6.5 6.5-6.5 6.5"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7.5h16M4 12h16M4 16.5h16"/></symbol><symbol id="i-einfach" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M9.7 9.5a2.4 2.4 0 0 1 4.7.6c0 1.6-2.3 1.9-2.3 3.4"/><path d="M12 17.2h.01"/></symbol></svg>
 <header>
-  <div class="hrow"><span class="hic"><svg class="ic" aria-hidden="true"><use id="hicon" href="#i-start"/></svg></span><div class="ht" id="htitle"></div><button id="mbtn" aria-expanded="false" aria-label="Men&uuml;"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg></button></div>
-  <div id="menu"><div class="mw">
-    <button data-route="start"><svg class="ic" aria-hidden="true"><use href="#i-start"/></svg><span>Start</span></button>
-    <button data-route="grundlagen"><svg class="ic" aria-hidden="true"><use href="#i-grundlagen"/></svg><span>Grundlagen</span></button>
-    <button data-route="situationen"><svg class="ic" aria-hidden="true"><use href="#i-situationen"/></svg><span>Situationen</span></button>
-    <button data-route="gestaltung"><svg class="ic" aria-hidden="true"><use href="#i-gestaltung"/></svg><span>Gestaltung</span></button>
-    <button data-route="symbole"><svg class="ic" aria-hidden="true"><use href="#i-symbole"/></svg><span>Symbole</span></button>
-    <button data-route="objektive"><svg class="ic" aria-hidden="true"><use href="#i-objektive"/></svg><span>Objektive</span></button>
-    <button data-route="filter"><svg class="ic" aria-hidden="true"><use href="#i-filter"/></svg><span>Filter</span></button>
-    <button data-route="rechner"><svg class="ic" aria-hidden="true"><use href="#i-rechner"/></svg><span>Rechner</span></button>
-    <button data-route="kamera"><svg class="ic" aria-hidden="true"><use href="#i-kamera"/></svg><span>Kamera</span></button>
-    <button data-route="fehlersuche"><svg class="ic" aria-hidden="true"><use href="#i-fehlersuche"/></svg><span>Fehlersuche</span></button>
-    <button data-route="checkliste"><svg class="ic" aria-hidden="true"><use href="#i-checkliste"/></svg><span>Checkliste</span></button>
-    <button data-route="bildbesprechung"><svg class="ic" aria-hidden="true"><use href="#i-bildbesprechung"/></svg><span>Bildbesprechung</span></button>
-    <button data-route="sonnenstand"><svg class="ic" aria-hidden="true"><use href="#i-sonnenstand"/></svg><span>Sonnenstand</span></button>
-    <button data-route="schaerfentiefe"><svg class="ic" aria-hidden="true"><use href="#i-schaerfentiefe"/></svg><span>Sch&auml;rfentiefe</span></button>
-    <button data-route="sterne"><svg class="ic" aria-hidden="true"><use href="#i-sterne"/></svg><span>Sterne</span></button>
-    <button data-route="glossar"><svg class="ic" aria-hidden="true"><use href="#i-glossar"/></svg><span>Glossar</span></button>
-    <button data-route="notizen"><svg class="ic" aria-hidden="true"><use href="#i-notizen"/></svg><span>Notizen</span></button>
-    <button data-route="spickzettel"><svg class="ic" aria-hidden="true"><use href="#i-spickzettel"/></svg><span>Spickzettel</span></button>
-    <button data-route="hausaufgabe"><svg class="ic" aria-hidden="true"><use href="#i-hausaufgabe"/></svg><span>Hausaufgabe</span></button>
-    <button data-route="einfach"><svg class="ic" aria-hidden="true"><use href="#i-einfach"/></svg><span>Einfach erkl&auml;rt</span></button>
-  </div></div>
+  <div class="hrow"><button id="bbtn" aria-label="Zur&uuml;ck"><svg class="ic" aria-hidden="true"><use href="#i-back"/></svg></button><span class="hic"><svg class="ic" aria-hidden="true"><use id="hicon" href="#i-start"/></svg></span><div class="htw"><div class="hpath" id="hpath"></div><div class="ht" id="htitle"></div></div><button id="mbtn" aria-expanded="false" aria-label="Men&uuml;"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg></button></div>
+  <div id="menu"><div class="mw" id="mw"></div></div>
 </header>
 <main>
 
@@ -441,25 +443,13 @@ input::placeholder,textarea::placeholder{color:var(--mu)}
 <h1>Sony A7R V</h1>
 <p class="sub">Mein Begleiter f&uuml;r drau&szlig;en</p>
 <div class="herowrap"><img class="hero" src="kamera.png" alt="Sony A7R V mit Hochformatgriff VG-C4EM" width="800" height="609"></div>
-<div class="tiles">
-<button class="tile" data-route="grundlagen"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-grundlagen"/></svg></span><b>Grundlagen</b><i>Fotografieren einfach erkl&auml;rt</i></button>
-<button class="tile" data-route="situationen"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-situationen"/></svg></span><b>Situationen</b><i>Was stelle ich wof&uuml;r ein</i></button>
-<button class="tile" data-route="gestaltung"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-gestaltung"/></svg></span><b>Gestaltung</b><i>Wie baue ich ein Bild auf</i></button>
-<button class="tile" data-route="symbole"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-symbole"/></svg></span><b>Symbole</b><i>Was bedeutet die Anzeige</i></button>
-<button class="tile" data-route="objektive"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-objektive"/></svg></span><b>Objektive</b><i>Meine Objektive im &Uuml;berblick</i></button>
-<button class="tile" data-route="filter"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-filter"/></svg></span><b>Filter</b><i>ND und CPL umrechnen</i></button>
-<button class="tile" data-route="rechner"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-rechner"/></svg></span><b>Rechner</b><i>Blende, Zeit und ISO umrechnen</i></button>
-<button class="tile" data-route="kamera"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-kamera"/></svg></span><b>Kamera</b><i>Meine Einstellungen und Tasten</i></button>
-<button class="tile" data-route="fehlersuche"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-fehlersuche"/></svg></span><b>Fehlersuche</b><i>Was ist schiefgelaufen</i></button>
-<button class="tile" data-route="checkliste"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-checkliste"/></svg></span><b>Checkliste</b><i>Vor dem Losgehen</i></button>
-<button class="tile" data-route="bildbesprechung"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-bildbesprechung"/></svg></span><b>Bildbesprechung</b><i>Mein Bild selbst pr&uuml;fen</i></button>
-<button class="tile" data-route="sonnenstand"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-sonnenstand"/></svg></span><b>Sonnenstand</b><i>Gold, Blau, Dunkelheit, Mond</i></button>
-<button class="tile" data-route="schaerfentiefe"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-schaerfentiefe"/></svg></span><b>Sch&auml;rfentiefe</b><i>Von wo bis wo ist es scharf</i></button>
-<button class="tile" data-route="sterne"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-sterne"/></svg></span><b>Sterne</b><i>L&auml;ngste Zeit ohne Striche</i></button>
-<button class="tile" data-route="glossar"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-glossar"/></svg></span><b>Glossar</b><i>Begriffe von A bis Z</i></button>
-<button class="tile" data-route="notizen"><span class="ticon"><svg class="ic" aria-hidden="true"><use href="#i-notizen"/></svg></span><b>Notizen</b><i>Mitschreiben im Kurs</i></button>
-</div>
+<div class="tiles one big" id="tl-start"></div>
 </section>
+
+<!-- ============ UEBERSICHTEN ============ -->
+<section class="tab" id="t-draussen"><div class="tiles one big" id="tl-draussen"></div></section>
+<section class="tab" id="t-ausruestung"><div class="tiles one big" id="tl-ausruestung"></div></section>
+<section class="tab" id="t-lernen"><div class="tiles one big" id="tl-lernen"></div></section>
 
 <!-- ============ RECHNER ============ -->
 <section class="tab" id="t-rechner">
@@ -662,7 +652,7 @@ input::placeholder,textarea::placeholder{color:var(--mu)}
 Blitz: Godox V860III-S (Sony-Schuh). Synchronzeit ohne HSS: 1/250 s.
 </div>
 
-<p class="small" style="text-align:center;opacity:.6;margin:18px 0 0">Version 12</p>
+<p class="small" style="text-align:center;opacity:.6;margin:18px 0 0">Version 13</p>
 </section>
 <!-- ============ SPICKZETTEL ============ -->
 <section class="tab" id="t-spick">
@@ -1277,50 +1267,91 @@ function render(){
 }
 
 /* ---------- Navigation ueber location.hash (Zurueck-Geste funktioniert) ---------- */
-var ROUTES=[
- {h:"start",id:"t-start",n:"Start"},
- {h:"grundlagen",id:"t-grund",n:"Grundlagen"},
- {h:"situationen",id:"t-sit",n:"Situationen"},
- {h:"gestaltung",id:"t-gest",n:"Gestaltung"},
- {h:"symbole",id:"t-sym",n:"Symbole"},
- {h:"rechner",id:"t-rechner",n:"Rechner"},
- {h:"filter",id:"t-filter",n:"Filter"},
- {h:"objektive",id:"t-obj",n:"Objektive"},
- {h:"kamera",id:"t-kam",n:"Kamera"},
- {h:"fehlersuche",id:"t-fehler",n:"Fehlersuche"},
- {h:"checkliste",id:"t-check",n:"Checkliste"},
- {h:"bildbesprechung",id:"t-bespr",n:"Bildbesprechung"},
- {h:"sonnenstand",id:"t-sonne",n:"Sonnenstand"},
- {h:"schaerfentiefe",id:"t-dof",n:"Schärfentiefe"},
- {h:"sterne",id:"t-sterne",n:"Sterne"},
- {h:"glossar",id:"t-glossar",n:"Glossar"},
- {h:"notizen",id:"t-notiz",n:"Notizen"},
- {h:"spickzettel",id:"t-spick",n:"Spickzettel"},
- {h:"hausaufgabe",id:"t-hw",n:"Hausaufgabe"},
- {h:"einfach",id:"t-gloss",n:"Einfach erklärt"}
+var NAV=[
+ {h:"draussen",n:"Draußen fotografieren",d:"Rechnen vor Ort",sub:[
+  {h:"rechner",id:"t-rechner",n:"Belichtungsrechner",d:"Blende, Zeit und ISO umrechnen"},
+  {h:"filter",id:"t-filter",n:"Filter-Rechner",d:"ND und CPL umrechnen"},
+  {h:"schaerfentiefe",id:"t-dof",n:"Schärfentiefe",d:"Von wo bis wo ist es scharf"},
+  {h:"sterne",id:"t-sterne",n:"Sterne",d:"Längste Zeit ohne Striche"},
+  {h:"sonnenstand",id:"t-sonne",n:"Sonnenstand",d:"Gold, Blau, Dunkelheit, Mond"},
+  {h:"situationen",id:"t-sit",n:"Situationen",d:"Was stelle ich wofür ein"},
+  {h:"checkliste",id:"t-check",n:"Checkliste",d:"Vor dem Losgehen"},
+  {h:"fehlersuche",id:"t-fehler",n:"Fehlersuche",d:"Was ist schiefgelaufen"}]},
+ {h:"ausruestung",n:"Meine Ausrüstung",d:"Objektive und Kamera",sub:[
+  {h:"objektive",id:"t-obj",n:"Objektive",d:"Meine Objektive im Überblick"},
+  {h:"kamera",id:"t-kam",n:"Kamera",d:"Meine Einstellungen und Tasten"},
+  {h:"symbole",id:"t-sym",n:"Symbole",d:"Was bedeutet die Anzeige"}]},
+ {h:"lernen",n:"Lernen",d:"Spickzettel, Hausaufgabe, Begriffe",sub:[
+  {h:"spickzettel",id:"t-spick",n:"Spickzettel",d:"Das Wichtigste auf einen Blick"},
+  {h:"hausaufgabe",id:"t-hw",n:"Hausaufgabe",d:"Wo finde ich das an der Kamera",prog:1},
+  {h:"erklaert",id:"t-gloss",n:"Einfach erklärt",d:"Fachbegriffe in Alltagssprache",ic:"einfach"},
+  {h:"grundlagen",id:"t-grund",n:"Grundlagen",d:"Fotografieren einfach erklärt"},
+  {h:"gestaltung",id:"t-gest",n:"Gestaltung",d:"Wie baue ich ein Bild auf"},
+  {h:"bildbesprechung",id:"t-bespr",n:"Bildbesprechung",d:"Mein Bild selbst prüfen"},
+  {h:"glossar",id:"t-glossar",n:"Glossar",d:"Begriffe von A bis Z"},
+  {h:"notizen",id:"t-notiz",n:"Notizen",d:"Mitschreiben im Kurs"}]}
 ];
+var HOME={h:"start",id:"t-start",n:"Start",sub:NAV};
+var ALIAS={einfach:"erklaert"};   // alte Adressen
+var ROUTES=[HOME];
+NAV.forEach(function(c){
+  c.id="t-"+c.h;c.up=HOME;ROUTES.push(c);
+  c.sub.forEach(function(r){r.up=c;ROUTES.push(r)});
+});
+function icOf(r){return "#i-"+(r.ic||r.h)}
+function svgI(r,cls){return '<svg class="ic'+(cls||"")+'" aria-hidden="true"><use href="'+icOf(r)+'"/></svg>'}
+function tileHTML(r){
+  return '<button class="tile'+(r.prog?" prog":"")+'" data-route="'+r.h+'"><span class="ticon">'+svgI(r)+'</span>'+
+    '<span class="tt"><b>'+r.n+'</b><i>'+r.d+'</i></span>'+
+    (r.prog?'<span class="tprog" id="tileProg"></span>':'<svg class="ic tchev" aria-hidden="true"><use href="#i-chev"/></svg>')+'</button>';
+}
+(function(){
+  $("tl-start").innerHTML=NAV.map(tileHTML).join("");
+  NAV.forEach(function(c){$("tl-"+c.h).innerHTML=c.sub.map(tileHTML).join("")});
+  var m='<button data-route="start">'+svgI(HOME)+'<span>Start</span></button>';
+  NAV.forEach(function(c){
+    m+='<button class="cat" data-route="'+c.h+'">'+svgI(c)+'<span>'+c.n+'</span></button>';
+    c.sub.forEach(function(r){m+='<button class="sub" data-route="'+r.h+'">'+svgI(r)+'<span>'+r.n+'</span></button>'});
+  });
+  $("mw").innerHTML=m;
+})();
 function routeOf(h){
   h=String(h||"").replace(/^#/,"");
+  if(ALIAS[h])h=ALIAS[h];
   for(var i=0;i<ROUTES.length;i++)if(ROUTES[i].h===h)return ROUTES[i];
   return ROUTES[0];
 }
 function menuOpen(on){
   $("menu").classList.toggle("on",on);
   $("mbtn").setAttribute("aria-expanded",on?"true":"false");
+  if(on){var cur=document.querySelector("#menu button.on");if(cur)cur.scrollIntoView({block:"nearest"})}
 }
 function applyRoute(scroll){
   var r=routeOf(location.hash),i;
   var tabs=document.querySelectorAll(".tab");
   for(i=0;i<tabs.length;i++)tabs[i].classList.toggle("on",tabs[i].id===r.id);
-  document.body.classList.toggle("hdr",r.h!=="start");
-  $("htitle").textContent=r.h==="start"?"":r.n;
-  $("hicon").setAttribute("href","#i-"+r.h);
+  document.body.classList.toggle("home",r===HOME);
+  $("htitle").textContent=r.n;
+  $("hpath").textContent=r.up&&r.up!==HOME?r.up.n+" › "+r.n:"";
   var mi=document.querySelectorAll("#menu button");
-  for(i=0;i<mi.length;i++)mi[i].classList.toggle("on",mi[i].getAttribute("data-route")===r.h);
+  for(i=0;i<mi.length;i++){
+    var dr=mi[i].getAttribute("data-route");
+    mi[i].classList.toggle("on",dr===r.h);
+    mi[i].classList.toggle("par",!!r.up&&r.up!==HOME&&dr===r.up.h);
+  }
+  if(("#"+r.h)!==location.hash&&location.hash)history.replaceState(null,"","#"+r.h);
+  lastRoute=r;
   menuOpen(false);
   if(scroll!==false)window.scrollTo(0,0);
 }
-window.addEventListener("hashchange",function(){applyRoute(true)});
+window.addEventListener("hashchange",function(){prevRoute=lastRoute;applyRoute(true)});
+var lastRoute=null,prevRoute=null;
+// Zurueck = eine Ebene hoch; kam man von dort, echten Browser-Schritt zurueck
+function goUp(){
+  var r=routeOf(location.hash);if(!r.up)return;
+  if(prevRoute===r.up)history.back();
+  else location.hash="#"+r.up.h;
+}
 
 var FIL=[
  {k:"nd8",n:"ND8",st:3,t:"3 Stufen"},
@@ -2030,6 +2061,7 @@ document.addEventListener("click",function(e){
   var f=b.getAttribute("data-f");
   if(f){S.fil[f]=!S.fil[f];save();render();return}
   if(b.id==="mbtn"){menuOpen(!$("menu").classList.contains("on"));return}
+  if(b.id==="bbtn"){menuOpen(false);goUp();return}
   var r=b.getAttribute("data-route");
   if(r){
     menuOpen(false);
